@@ -1,0 +1,19 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Home" %}HOME{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+
+
+    <h1>{% trans "hi" %}</h1>
+
+{% block extra_js %}
+<link rel="stylesheet" href="{% static 'js/home.js' %}">
+{% endblock %}
+{% endblock %}
