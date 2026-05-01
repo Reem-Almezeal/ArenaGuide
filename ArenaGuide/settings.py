@@ -47,7 +47,11 @@ INSTALLED_APPS = [
     'booking',
     'service',
     'dashboard',
+    'payment',
 ]
+
+
+AUTH_USER_MODEL = "account.User"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -139,3 +143,5 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+
