@@ -1,0 +1,70 @@
+{% extends "account/base_auth.html" %}
+{% load static %}
+{% load i18n %}
+{% block auth_title %}{% trans "Login" %}{% endblock %}
+
+
+{% block image_title %}
+    {% trans "Your Smart Stadium Guide" %}
+{% endblock %}
+
+{% block image_text %}
+    {% trans "Book tickets, explore stadium services, and enjoy a smoother match-day experience" %}
+{% endblock %}
+
+
+{% block auth_content %}
+    <h1>{% trans "Welcome to ArenaGuide" %}</h1>
+    <p>{% trans "Start your experience by signing in or creating an account" %}</p>
+
+    <div class="auth-tabs">
+        <a href="{% url 'account:login' %}" class="active">
+            {% trans "Sign In" %}
+        </a>
+        <a href="{% url 'account:register' %}">
+            {% trans "Sign Up" %}
+        </a>
+    </div>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="auth-message {{ message.tags }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+    <form method="post" class="auth-form">
+        {% csrf_token %}
+
+        <div class="auth-field">
+            <label>{% trans "Username" %} <span>*</span></label>
+            <div class="auth-input">
+                <i class="bi bi-person"></i>
+                {{ form.username }}
+            </div>
+            {{ form.username.errors }}
+        </div>
+
+        <div class="auth-field">
+            <label>{% trans "Password" %} <span>*</span></label>
+            <div class="auth-input">
+                <i class="bi bi-lock"></i>
+                {{ form.password }}
+            </div>
+            {{ form.password.errors }}
+        </div>
+
+        {{ form.non_field_errors }}
+
+        <button type="submit" class="auth-submit">
+            {% trans "Sign In" %}
+        </button>
+    </form>
+
+    <div class="auth-extra">
+        <a href="{% url 'account:password_reset' %}">
+            {% trans "Forgot password?" %}
+        </a>
+    </div>
+{% endblock %}
