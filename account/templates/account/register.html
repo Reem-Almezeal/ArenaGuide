@@ -1,0 +1,57 @@
+{% extends "account/base_auth.html" %}
+{% load static i18n %}
+{% block auth_title %}{% trans "Register" %}{% endblock %}
+
+{% block auth_image %}
+    <img src="{% static 'image/register.png' %}" alt="register">
+{% endblock %}
+
+{% block auth_content %}
+    <div class="register-compact">
+
+    <h1>{% trans "Create your account" %}</h1>
+
+    <div class="auth-tabs">
+        <a href="{% url 'account:login' %}">{% trans "Sign In" %}</a>
+        <a href="{% url 'account:register' %}" class="active">{% trans "Sign Up" %}</a>
+    </div>
+
+    <form method="post" class="auth-form register-form">
+        {% csrf_token %}
+        <div class="auth-field full">
+            <label>{% trans "Username" %} <span>*</span></label>
+            <div class="auth-input"><i class="bi bi-person"></i>{{ form.username }}</div>
+            {{ form.username.errors }}
+        </div>
+
+        <div class="auth-field">
+            <label>{% trans "Email" %} <span>*</span></label>
+            <div class="auth-input"><i class="bi bi-envelope"></i>{{ form.email }}</div>
+            {{ form.email.errors }}
+        </div>
+
+        <div class="auth-field">
+            <label>{% trans "Phone" %}</label>
+            <div class="auth-input"><i class="bi bi-phone"></i>{{ form.phone }}</div>
+            {{ form.phone.errors }}
+        </div>
+
+        <div class="auth-field">
+            <label>{% trans "Password" %} <span>*</span></label>
+            <div class="auth-input"><i class="bi bi-lock"></i>{{ form.password }}</div>
+            {{ form.password.errors }}
+        </div>
+
+        <div class="auth-field">
+            <label>{% trans "Confirm Password" %} <span>*</span></label>
+            <div class="auth-input"><i class="bi bi-shield-lock"></i>{{ form.confirm_password }}</div>
+            {{ form.confirm_password.errors }}
+        </div>
+        {{ form.non_field_errors }}
+        <button type="submit" class="auth-submit full">
+            {% trans "Create Account" %}
+        </button>
+    </form>
+</div>
+
+{% endblock %}
