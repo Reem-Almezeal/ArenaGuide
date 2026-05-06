@@ -1,0 +1,72 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Seat Navigation" %}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/seat_map.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="seat-page">
+    <div class="seat-container">
+
+        <div class="seat-card info-card">
+            <h1>{{ ticket.match.home_team.name }} vs {{ ticket.match.away_team.name }}</h1>
+            <p class="subtitle">{{ ticket.match.stadium.name }}</p>
+
+            <div class="info-grid">
+                <div class="info-box">
+                    <span>{% trans "Seat" %}</span>
+                    <strong>{{ ticket.seat.section }} • Row {{ ticket.seat.row }} • Seat {{ ticket.seat.number }}</strong>
+                </div>
+
+                <div class="info-box">
+                    <span>{% trans "Gate" %}</span>
+                    <strong>
+                        {% if ticket.gate %}
+                            {{ ticket.gate.name }}
+                        {% else %}
+                            N/A
+                        {% endif %}
+                    </strong>
+                </div>
+
+                <div class="info-box">
+                    <span>{% trans "Ticket Code" %}</span>
+                    <strong>{{ ticket.ticket_code }}</strong>
+                </div>
+
+                <div class="info-box">
+                    <span>{% trans "Status" %}</span>
+                    <strong class="active-text">{{ ticket.get_status_display }}</strong>
+                </div>
+            </div>
+
+            <a href="{% url 'booking:my_tickets' %}" class="back-btn">
+                {% trans "Back to My Tickets" %}
+            </a>
+        </div>
+
+        <div class="seat-card announcement-card">
+
+            <div class="map-mark">⌖</div>
+
+            <h2>{% trans "Interactive Stadium Map" %}</h2>
+
+            <p>
+                {% trans "Stay tuned for an interactive map experience that will help visitors navigate from the gate directly to their seats inside the stadium." %}
+            </p>
+
+            <p class="note">
+                {% trans "This feature will be available in a future ArenaGuide update." %}
+            </p>
+            <h4 class="soon-badge">{% trans "Coming Soon...." %}</h4>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

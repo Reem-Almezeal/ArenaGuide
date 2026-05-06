@@ -1,0 +1,154 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block title %}ArenaGuide | About{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="about-hero">
+    <div class="about-hero__bg"></div>
+    <div class="about-hero__glass"></div>
+    <div class="about-container about-hero__content about-reveal">
+        <span>{% trans "About ArenaGuide" %}</span>
+        <h1>{% trans "A smarter stadium experience from ticket to seat." %}</h1>
+        <p>{% trans "ArenaGuide helps visitors book tickets, reserve parking, explore services, and enjoy match day with less stress and more confidence." %}</p>
+    </div>
+</section>
+
+<section class="about-section">
+    <div class="about-container about-intro">
+        <div class="about-video about-reveal">
+            <video autoplay muted loop playsinline poster="{% static 'image/logo.png' %}">
+                <source src="{% static 'video/fans.mp4' %}" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="about-text about-reveal">
+            <span>{% trans "Who We Are" %}</span>
+            <h2>{% trans "Built for fans, visitors, and stadium teams." %}</h2>
+            <p>{% trans "ArenaGuide brings important stadium services into one simple platform, making the visitor journey easier before, during, and after the match." %}</p>
+            <p>{% trans "From tickets and parking to restaurants, cafes, events, maps, and emergency access, everything is designed to be clear and fast." %}</p>
+
+            <a href="{% url 'match:matches' %}" class="about-btn">
+                {% trans "Explore Matches" %}
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="about-section about-stats-section">
+    <div class="about-container">
+        <div class="about-stats">
+            <div class="about-stat about-reveal">
+                <i class="bi bi-people"></i>
+                <strong data-about-count="120000">0</strong>
+                <span>{% trans "Visitors Supported" %}</span>
+            </div>
+
+            <div class="about-stat about-reveal">
+                <i class="bi bi-calendar2-event"></i>
+                <strong data-about-count="320">0</strong>
+                <span>{% trans "Matches Covered" %}</span>
+            </div>
+
+            <div class="about-stat about-reveal">
+                <i class="bi bi-ticket-perforated"></i>
+                <strong data-about-count="85000">0</strong>
+                <span>{% trans "Tickets Managed" %}</span>
+            </div>
+
+            <div class="about-stat about-reveal">
+                <i class="bi bi-p-circle"></i>
+                <strong data-about-count="24000">0</strong>
+                <span>{% trans "Parking Reservations" %}</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="about-section">
+    <div class="about-container">
+        <div class="about-head about-reveal">
+            <h2>{% trans "Everything visitors need in one journey" %}</h2>
+        </div>
+
+        <div class="about-values">
+            <div class="about-value-card about-reveal">
+                <i class="bi bi-ticket-perforated"></i>
+                <h3>{% trans "Easy Booking" %}</h3>
+                <p>{% trans "Find matches, book tickets, and manage your plans smoothly" %}</p>
+            </div>
+
+            <div class="about-value-card about-reveal">
+                <i class="bi bi-car-front"></i>
+                <h3>{% trans "Parking Ready" %}</h3>
+                <p>{% trans "Reserve parking before arriving and reduce match-day stress." %}</p>
+            </div>
+
+            <div class="about-value-card about-reveal">
+                <i class="bi bi-geo-alt"></i>
+                <h3>{% trans "Clear Navigation" %}</h3>
+                <p>{% trans "Explore gates, seats, restaurants, cafes, and emergency points." %}</p>
+            </div>
+            <div class="about-value-card about-reveal">
+                <i class="bi bi-shield-check"></i>
+                <h3>{% trans "Safety First" %}</h3>
+                <p>{% trans "Access emergency services and support when needed." %}</p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="about-section about-testimonials-section">
+    <div class="about-container">
+        <div class="about-head about-reveal">
+            <span>{% trans "Visitor Feedback" %}</span>
+            <h2>{% trans "What visitors say about ArenaGiude" %}</h2>
+        </div>
+
+        <div class="about-testimonials">
+            <div class="about-testimonial about-reveal">
+                <i class="bi bi-quote"></i>
+                <p>{% trans "Booking my ticket and parking in one place made match day much easier." %}</p>
+                <h4>{% trans "Sara Alotaibi" %}</h4>
+                <span>{% trans "Football Fan" %}</span>
+            </div>
+
+            <div class="about-testimonial about-reveal">
+                <i class="bi bi-quote"></i>
+                <p>{% trans "The services and stadium information were clear and easy to access." %}</p>
+                <h4>{% trans "Mohammed Alharbi" %}</h4>
+                <span>{% trans "Stadium Visitor" %}</span>
+            </div>
+
+            <div class="about-testimonial about-reveal">
+                <i class="bi bi-quote"></i>
+                <p>{% trans "A professional idea that improves the whole visitor journey." %}</p>
+                <h4>{% trans "Noura Alqahtani" %}</h4>
+                <span>{% trans "Event Attendee" %}</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="about-section about-vision">
+    <div class="about-container about-vision__box about-reveal">
+        <span>{% trans "Our Vision" %}</span>
+        <h2>{% trans "To become the digital companion for stadium visitors in Saudi Arabia and beyond." %}</h2>
+        <p>{% trans "With major sports events ahead, ArenaGuide is designed to support both local fans and international visitors with a smoother, smarter, and safer experience." %}</p>
+        <a href="#" class="about-btn">
+            {% trans "Explore Services" %}
+        </a>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/about.js' %}"></script>
+{% endblock %}
