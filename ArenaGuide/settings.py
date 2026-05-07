@@ -159,8 +159,6 @@ LOCALE_PATHS = [
 USE_I18N = True
 USE_L10N = True
 
-
-
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"

@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect,get_object_or_404
 from .models import GateStatusUpdate
 from django.http import HttpRequest,HttpResponse
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required 
 from django.db.models import Count
 from .models import GateStatusUpdate
 from match.models import Match
@@ -9,7 +9,9 @@ from stadium.models import Gate
 from booking.models import Ticket
 from booking.models import Ticket, TicketHolder
 from booking.views import make_identity_hash
-
+from django.contrib.auth import  logout
+from django.contrib import messages
+from stadium.models import Gate
 
 
 def organizer_dashboard(request:HttpRequest):
@@ -81,3 +83,36 @@ def verify_visitor(request:HttpRequest):
                 error_message = "No visitor found with this identity number."
 
     return render(request, "dashboard/verify_visitor.html", {"ticket": ticket,"holder": holder,"id_type": id_type,"identity_number": identity_number,"error_message": error_message, })
+
+
+from stadium.models import Gate
+
+@login_required(login_url="account:login")
+def gate_management_view(request):
+    gates = Gate.objects.select_related("stadium").all()
+
+    return render(
+        request,
+        "dashboard/gate_management.html",
+        {
+            "gates": gates
+        }
+    )
+
+
+@login_required(login_url="account:login")
+def update_gate_status(request, gate_id):
+    if not request.user.is_organizer():
+        return redirect("core:home")
+    gate = get_object_or_404(Gate, id=gate_id)
+    status = request.POST.get("status")
+
+    if status in [
+        Gate.Status.OPEN,
+        Gate.Status.CLOSED,
+        Gate.Status.MAINTENANCE
+    ]:
+        gate.status = status
+        gate.save()
+
+    return redirect("dashboard:gate_management")

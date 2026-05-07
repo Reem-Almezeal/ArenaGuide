@@ -1,0 +1,210 @@
+.gates-page{
+    padding: 20px;
+}
+
+.gates-header h2{
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.gates-header p{
+    color: #777;
+    margin-bottom: 30px;
+}
+
+.gates-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+    gap: 20px;
+}
+
+.gate-card{
+    background: white;
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+}
+
+.gate-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.gate-top h3{
+    margin: 0;
+    font-size: 22px;
+}
+
+.gate-top span{
+    color: #777;
+    font-size: 14px;
+}
+
+.gate-status{
+    padding: 8px 14px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.open{
+    background: #dff7e5;
+    color: #159947;
+}
+
+.closed{
+    background: #ffe0e0;
+    color: #d62828;
+}
+
+.maintenance{
+    background: #fff3d6;
+    color: #d48a00;
+}
+
+.status-select{
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 15px;
+}
+
+.update-btn{
+    width: 100%;
+    border: none;
+    background: linear-gradient(135deg,#0f9d58,#18b368);
+    color: white;
+    padding: 13px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.update-btn:hover{
+    opacity: .9;
+}
+
+@media (max-width: 991px){
+
+    .gates-page{
+        padding: 18px;
+    }
+
+    .gates-grid{
+        grid-template-columns: repeat(2,1fr);
+        gap: 18px;
+    }
+
+    .gate-card{
+        padding: 18px;
+    }
+
+    .gate-top h3{
+        font-size: 20px;
+    }
+
+    .update-btn{
+        padding: 12px;
+        font-size: 15px;
+    }
+
+}
+
+@media (max-width: 767px){
+
+    .gates-page{
+        padding: 15px;
+    }
+
+    .gates-header{
+        margin-bottom: 20px;
+    }
+
+    .gates-header h2{
+        font-size: 24px;
+    }
+
+    .gates-header p{
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .gates-grid{
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .gate-card{
+        border-radius: 12px;
+        padding: 16px;
+    }
+
+    .gate-top{
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    .gate-status{
+        font-size: 12px;
+        padding: 7px 12px;
+    }
+
+    .status-select{
+        font-size: 14px;
+        padding: 11px;
+    }
+
+    .update-btn{
+        font-size: 14px;
+    }
+
+}
+
+@media (max-width: 480px){
+
+    .gates-page{
+        padding: 12px;
+    }
+
+    .gates-header h2{
+        font-size: 21px;
+    }
+
+    .gates-header p{
+        font-size: 13px;
+    }
+
+    .gate-card{
+        padding: 14px;
+        border-radius: 10px;
+    }
+
+    .gate-top h3{
+        font-size: 18px;
+    }
+
+    .gate-top span{
+        font-size: 12px;
+    }
+
+    .gate-status{
+        width: fit-content;
+    }
+
+    .status-select{
+        padding: 10px;
+        border-radius: 8px;
+    }
+
+    .update-btn{
+        padding: 11px;
+        border-radius: 8px;
+        font-size: 13px;
+    }
+
+}

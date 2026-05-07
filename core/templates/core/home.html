@@ -22,7 +22,7 @@ quick access to important platform features and upcoming matches
     <div class="ag-hero-glass"></div>
 
     <div class="ag-hero-content ag-reveal">
-        <h1>{% trans "Your Match-Day Journey Starts Here" %}</h1>
+        <h1>{% trans "Your Match-Day Journey Starts From Here" %}</h1>
 
         <div class="ag-hero-stats">
             <a href="{% url 'match:matches' %}" class="ag-stat-card">
@@ -78,16 +78,16 @@ quick access to important platform features and upcoming matches
     <div class="ag-container">
 
         <div class="ag-section-head ag-reveal">
-            <h2>{% trans "The next big match is almost here" %}</h2>
+            <h2>{% trans "The Next Match" %}</h2>
         </div>
 
         {% if featured_match %}
         <a href="{% url 'match:matches' %}" class="ag-featured-card ag-reveal">
             <div class="ag-featured-media">
-                {% if featured_match.poster %}
-                    <img src="{{ featured_match.poster.url }}" alt="{{ featured_match }}">
+                {% if featured_match.image %}
+                    <img src="{{ featured_match.image.url }}" alt="{{ featured_match }}">
                 {% else %}
-                    <img src="{% static 'image/footbal.png' %}" alt="Featured match">
+                    <img src="{% static 'image/vs.jpg' %}" alt="Featured match">
                 {% endif %}
             </div>
 
@@ -141,7 +141,7 @@ quick access to important platform features and upcoming matches
         <div class="ag-match-grid">
             <a href="{% url 'match:matches' %}" class="ag-match-card ag-reveal">
                 <div class="ag-match-media">
-                    <video autoplay muted loop playsinline poster="{% static 'image/match-1.jpg' %}">
+                    <video autoplay muted loop playsinline poster="{% static 'image/vs.jpg' %}">
                         <source src="{% static 'video/match.mp4' %}" type="video/mp4">
                     </video>
                     <span class="ag-status live">{% trans "Live Now" %}</span>
@@ -161,7 +161,7 @@ quick access to important platform features and upcoming matches
 
             <a href="{% url 'match:matches' %}" class="ag-match-card ag-reveal">
                 <div class="ag-match-media">
-                    <img src="{% static 'image/footbal.png' %}" alt="Match">
+                    <img src="{% static 'image/vs.jpg' %}" alt="Match">
                     <span class="ag-status available">{% trans "Available" %}</span>
                 </div>
 
@@ -179,7 +179,7 @@ quick access to important platform features and upcoming matches
 
             <a href="{% url 'match:matches' %}" class="ag-match-card ag-reveal">
                 <div class="ag-match-media">
-                    <img src="{% static 'image/footbal.png' %}" alt="Match">
+                    <img src="{% static 'image/ksa_vs_jp.png' %}" alt="Match">
                     <span class="ag-status upcoming">{% trans "Upcoming" %}</span>
                 </div>
 
@@ -208,12 +208,12 @@ quick access to important platform features and upcoming matches
 <section class="ag-section ag-about" id="about">
     <div class="ag-container ag-about-wrap">
         <div class="ag-about-text ag-reveal">
-            <span>{% trans "About ArenaGuide" %}</span>
-            <h2>{% trans "A complete platform for every stadium visitor." %}</h2>
+            <span>{% trans "About The Platform" %}</span>
+            <h2>{% trans "The Unified National Digital Platform for Football Matches" %}</h2>
             <p>
-                {% trans "ArenaGuide brings matches, tickets, parking, restaurants, cafes, events, and emergency services into one smooth experience." %}
+                {% trans "A comprehensive digital experience that brings together everything a visitor needs in one place, easily and reliably" %}
             </p>
-            <a href="/{{ LANGUAGE_CODE }}/about/" class="ag-btn ag-btn-primary">{% trans "Learn More" %}</a>
+            <a href="{% url 'core:about' %}" class="ag-btn ag-btn-primary">{% trans "Learn More" %}</a>
         </div>
 
         <div class="ag-about-media ag-reveal">
@@ -225,16 +225,15 @@ quick access to important platform features and upcoming matches
 <section class="ag-section ag-news">
     <div class="ag-container">
         <div class="ag-section-head ag-reveal">
-            <h2>{% trans "Important match-day updates" %}</h2>
+            <h2>{% trans "Latest News" %}</h2>
         </div>
 
         <div class="ag-news-layout">
             <a href="#" class="ag-news-main ag-reveal">
-                <img src="{% static 'image/footbal.png' %}" alt="News">
+                <img src="{% static 'image/stadium.jpg' %}" alt="News">
                 <div>
                     <span>{% trans "World Cup 2034" %}</span>
-                    <h3>{% trans "New stadium services prepared for international visitors" %}</h3>
-                    <p>{% trans "ArenaGuide introduces smarter ticket, parking, and visitor support experiences." %}</p>
+                    <h3>{% trans "New stadium services prepared for visitors" %}</h3>
                 </div>
             </a>
 
@@ -275,41 +274,41 @@ quick access to important platform features and upcoming matches
 
         <div class="ag-service-grid">
             <a href="/{{ LANGUAGE_CODE }}/services/" class="ag-service-card ag-reveal">
-                <img src="{% static 'image/footbal.png' %}" alt="Restaurants">
+                <img src="{% static 'image/restraurant.png' %}" alt="Restaurants">
                 <div>
                     <i class="bi bi-shop"></i>
                     <h3>{% trans "Restaurants" %}</h3>
-                    <p>{% trans "Find food options inside and around the stadium." %}</p>
+                    <p>{% trans "Discover restaurants near you" %}</p>
                     <span>{% trans "View" %}</span>
                 </div>
             </a>
 
             <a href="/{{ LANGUAGE_CODE }}/services/" class="ag-service-card ag-reveal">
-                <img src="{% static 'image/footbal.png' %}" alt="Cafes">
+                <img src="{% static 'image/coffee.png' %}" alt="Cafes">
                 <div>
                     <i class="bi bi-cup-hot"></i>
                     <h3>{% trans "Cafes" %}</h3>
-                    <p>{% trans "Discover cafes for before and after the match." %}</p>
+                    <p>{% trans "Discover cafes near you" %}</p>
                     <span>{% trans "View" %}</span>
                 </div>
             </a>
 
             <a href="/{{ LANGUAGE_CODE }}/services/" class="ag-service-card ag-reveal">
-                <img src="{% static 'image/footbal.png' %}" alt="Events">
+                <img src="{% static 'image/event.png' %}" alt="Events">
                 <div>
                     <i class="bi bi-calendar2-event"></i>
                     <h3>{% trans "Events" %}</h3>
-                    <p>{% trans "Explore match-day activities and events." %}</p>
+                    <p>{% trans "Explore top events and activities" %}</p>
                     <span>{% trans "View" %}</span>
                 </div>
             </a>
 
             <a href="/{{ LANGUAGE_CODE }}/services/" class="ag-service-card ag-reveal">
-                <img src="{% static 'image/footbal.png' %}" alt="Emergency">
+                <img src="{% static 'image/sos.png' %}" alt="Emergency">
                 <div>
                     <i class="bi bi-hospital"></i>
                     <h3>{% trans "Emergency" %}</h3>
-                    <p>{% trans "Quick access to urgent help and support." %}</p>
+                    <p>{% trans "Quick access to emergency and support teams" %}</p>
                     <span>{% trans "View" %}</span>
                 </div>
             </a>

@@ -8,7 +8,7 @@
     All public pages extend this template to maintain a consistent
     user interface and responsive experience across the platform.
 -->
-    
+
 {% load static %}
 {% load i18n %}
 {% get_current_language as LANGUAGE_CODE %}
@@ -184,7 +184,7 @@
                     <img src="{% static 'image/logo.png' %}" alt="ArenaGuide Logo">
                     <span>ArenaGuide</span>
                 </a>
-                <p>{% trans "A smart stadium platform that helps visitors book tickets, explore services, and enjoy a better match-day experience." %}</p>
+                <p>{% trans "The Unified National Digital Platform for Football Matches" %}</p>
                 <div class="arena-footer__social"><a href="#"><i class="bi bi-twitter-x"></i></a>
                     <a href="#"><i class="bi bi-instagram"></i></a>
                     <a href="#"><i class="bi bi-linkedin"></i></a>
@@ -210,9 +210,9 @@
 
             <div class="arena-footer__column">
                 <h6>{% trans "Contact" %}</h6>
-                <a href="#"><i class="bi bi-geo-alt"></i>{% trans "Saudi Arabia" %}</a>
-                <a href="#"><i class="bi bi-envelope"></i>support@arenaguide.com</a>
-                <a href="#"><i class="bi bi-headset"></i>{% trans "Help Center" %}</a>
+                <a href="#">{% trans "Saudi Arabia" %}</a>
+                <a href="#">support@arenaguide.com</a>
+                <a href="#">{% trans "Help Center" %}</a>
             </div>
         </div>
 

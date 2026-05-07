@@ -204,6 +204,16 @@ body.dashboard-body {
     color: #fff;
     font-size: 22px;
 }
+.logout-link{
+    background: none;
+    border: none;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    cursor: pointer;
+}
 
 @media (max-width: 991px) {
     .dashboard-shell {

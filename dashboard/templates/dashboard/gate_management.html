@@ -1,0 +1,85 @@
+{% extends "dashboard/dashboard_base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}Gates{% endblock %}
+{% block dashboard_title %}Gate Management{% endblock %}
+
+{% block dashboard_extra_css %}
+    <link rel="stylesheet" href="{% static 'css/gate_managment.css' %}">
+{% endblock %}
+
+{% block dashboard_content %}
+
+<div class="gates-page">
+    <div class="gates-header">
+        <h2>Stadium Gates</h2>
+        <p>Manage stadium gates and monitor their current status.</p>
+    </div>
+
+    <div class="gates-grid">
+        {% for gate in gates %}
+        <div class="gate-card">
+            <div class="gate-top">
+                <div>
+                    <h3>{{ gate.name }}</h3>
+                    <span>{{ gate.stadium.name }}</span>
+                </div>
+                <div class="gate-status
+                    {% if gate.status == 'open' %}
+                        open
+                    {% elif gate.status == 'closed' %}
+                        closed
+                    {% else %}
+                        maintenance
+                    {% endif %}
+                ">
+                    {{ gate.status }}
+                </div>
+            </div>
+        <div class="gates-grid">
+            {% for gate in gates %}
+                <div class="gate-card">
+                    <div class="gate-header">
+                        <h3>{{ gate.name }}</h3>
+                        <span class="gate-status {{ gate.status }}">
+                            {{ gate.status }}
+                        </span>
+                    </div>
+
+                    <div class="gate-info">
+                        <p><strong>Stadium:</strong> {{ gate.stadium.name }}</p>
+                    </div>
+
+                    <form method="POST"
+                        action="{% url 'dashboard:update_gate_status' gate.id %}">
+                        {% csrf_token %}
+                        {% if gate.status == "open" %}
+                            <button type="submit"
+                                    name="status"
+                                    value="closed"
+                                    class="close-btn">
+                                Close Gate
+                            </button>
+                        {% else %}
+                            <button type="submit"
+                                    name="status"
+                                    value="open"
+                                    class="open-btn">
+                                Open Gate
+                            </button>
+                        {% endif %}
+                    </form>
+                </div>
+            {% empty %}
+                <div class="empty-state">
+                    <p>No gates found.</p>
+                </div>
+            {% endfor %}
+        </div>
+
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

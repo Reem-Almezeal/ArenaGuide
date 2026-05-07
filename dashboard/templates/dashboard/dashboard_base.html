@@ -32,42 +32,36 @@
 
         <nav class="dashboard-nav">
             <a href="{% url 'dashboard:organizer_dashboard' %}">
-                <i class="bi bi-grid-1x2"></i>
                 <span>{% trans "Dashboard" %}</span>
             </a>
 
-            <a href="#">
-                <i class="bi bi-door-open"></i>
+            <a href="{% url 'dashboard:gate_management' %}">
                 <span>{% trans "Gates" %}</span>
             </a>
 
             <a href="{% url 'dashboard:verify_visitor' %}">
-                <i class="bi bi-person-check"></i>
                 <span>{% trans "Verify Visitor" %}</span>
             </a>
 
             <a href="#">
-                <i class="bi bi-people"></i>
                 <span>{% trans "Crowd Monitor" %}</span>
             </a>
 
             <a href="#">
-                <i class="bi bi-bell"></i>
                 <span>{% trans "Notifications" %}</span>
             </a>
 
             <a href="#" class="danger-link">
-                <i class="bi bi-exclamation-triangle"></i>
                 <span>{% trans "Emergency" %}</span>
             </a>
         </nav>
 
-        <div class="sidebar-bottom">
-            <a href="{% url 'core:logout' %}" class="logout-link">
-                <i class="bi bi-box-arrow-right"></i>
+        <form action="{% url 'account:logout' %}" method="POST" class="sidebar-bottom">
+            {% csrf_token %}
+            <button type="submit" class="logout-link">
                 <span>{% trans "Logout" %}</span>
-            </a>
-        </div>
+            </button>
+        </form>
     </aside>
 
     <main class="dashboard-main">

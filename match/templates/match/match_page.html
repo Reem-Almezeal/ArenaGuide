@@ -28,7 +28,7 @@ Context:
         <article class="arenaguide-slide is-active" style="--slide-bg: url('{% static 'image/matches-hero-1.jpg' %}');">
             <div class="arenaguide-slide-overlay"></div>
             <div class="arenaguide-slide-content">
-                <h1>{% trans "Book your seat for the next big match" %}</h1>
+                <h1>{% trans "Book your seat for the next match" %}</h1>
                 <p>{% trans "Explore live matches, upcoming games, tickets, stadium services, and match details from one official platform." %}</p>
                 <a href="#tickets" class="arenaguide-btn arenaguide-btn-solid">
                     {% trans "Explore Tickets" %}
@@ -154,7 +154,7 @@ Context:
                 {% if featured_match.image %}
                     <img src="{{ featured_match.image.url }}" alt="{{ featured_match }}">
                 {% else %}
-                    <img src="{% static 'image/footbal.png' %}" alt="Featured match">
+                    <img src="{% static 'image/match_vs.png' %}" alt="Featured match">
                 {% endif %}
             </div>
 
@@ -191,7 +191,7 @@ Context:
     <div class="arenaguide-container">
         <div class="arenaguide-ticket-header arenaguide-reveal">
 
-            <h2>{% trans "Book tickets for upcoming games" %}</h2>
+            <h2>{% trans "Book your tickets for upcoming matches" %}</h2>
 
             <div class="arenaguide-ticket-filter">
 

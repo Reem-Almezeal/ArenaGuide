@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpRequest,HttpResponse
 from django.utils.translation import gettext as _
+from match.models import Match
 
 
 def home_view(request:HttpRequest):
@@ -13,5 +14,6 @@ def home_view(request:HttpRequest):
 def about_view(request:HttpRequest):
     return render(request, 'core/about.html')
 
-from match.models import Match
+
+
 
