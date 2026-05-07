@@ -54,6 +54,8 @@ INSTALLED_APPS = [
     'payment',
 ]
 
+ALLOWED_HOSTS = [".railway.app", "localhost", "127.0.0.1"]
+
 
 AUTH_USER_MODEL = "account.User"
 LOGIN_URL = "account:login"
@@ -65,14 +67,12 @@ MOYASAR_PUBLISHABLE_KEY = os.getenv("MOYASAR_PUBLISHABLE_KEY")
 
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-
 EMAIL_HOST = "smtp.sendgrid.net"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 EMAIL_HOST_USER = "apikey"
 EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
-
 DEFAULT_FROM_EMAIL = f"{config('EMAIL_FROM_NAME')} <{config('DEFAULT_FROM_EMAIL')}>"
 
 MIDDLEWARE = [
