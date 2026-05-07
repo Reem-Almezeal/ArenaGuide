@@ -28,9 +28,17 @@ load_dotenv()
 SECRET_KEY = 'django-insecure-8v$aw_j=4lfsegc9cd*65)bh%b)!*$$=6e%4ymdhyjz9z6=7^@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+    "web-production-b4886.up.railway.app",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://web-production-b4886.up.railway.app",
+]
 
 
 # Application definition
