@@ -28,7 +28,7 @@ load_dotenv()
 SECRET_KEY = 'django-insecure-8v$aw_j=4lfsegc9cd*65)bh%b)!*$$=6e%4ymdhyjz9z6=7^@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
@@ -162,9 +162,6 @@ USE_L10N = True
 
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [
-    BASE_DIR / 'assets',
-]
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
