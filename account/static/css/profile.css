@@ -1,0 +1,402 @@
+.profile-page {
+    min-height: calc(100vh - 90px);
+    padding: 130px 7% 70px;
+    background:
+        radial-gradient(circle at top left, rgba(198, 163, 69, 0.18), transparent 35%),
+        linear-gradient(135deg, #f8f9f5, #eef1ec);
+}
+
+.profile-card {
+    max-width: 850px;
+    margin: auto;
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid rgba(18, 58, 39, 0.1);
+    border-radius: 30px;
+    padding: 42px;
+    box-shadow: 0 25px 65px rgba(20, 45, 32, 0.12);
+    backdrop-filter: blur(16px);
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    margin-bottom: 35px;
+}
+
+.profile-avatar {
+    width: 86px;
+    height: 86px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #22c55e, #13b878, #c9a227);
+    color: #fff;
+    display: grid;
+    place-items: center;
+    font-size: 36px;
+    font-weight: 800;
+    box-shadow: 0 15px 35px rgba(18, 58, 39, 0.25);
+}
+
+.profile-header h1 {
+    font-size: 38px;
+    color: #123a27;
+    margin-bottom: 8px;
+}
+
+.profile-header p {
+    color: #6d746f;
+}
+
+.profile-info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.info-item {
+    padding: 20px;
+    border-radius: 18px;
+    background: #f7f8f4;
+    border: 1px solid rgba(18, 58, 39, 0.08);
+}
+
+.info-item span {
+    display: block;
+    font-size: 13px;
+    color: #7a827d;
+    margin-bottom: 8px;
+}
+
+.info-item strong {
+    color: #1f2d25;
+    font-size: 16px;
+}
+
+.status-active {
+    color: #15803d !important;
+}
+
+.profile-actions {
+    display: flex;
+    gap: 14px;
+    margin-top: 32px;
+}
+
+.btn-primary,
+.btn-secondary {
+    padding: 14px 24px;
+    border-radius: 14px;
+    text-decoration: none;
+    font-weight: 800;
+    transition: 0.3s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg,#007a4d,#13b878);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(18, 58, 39, 0.22);
+}
+
+.btn-secondary {
+    background: rgba(220, 38, 38, 0.10);
+    color: #dc2626;
+    border: none;
+}
+.btn-secondary:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(220, 38, 38, 0.10);
+}
+.profile-card {
+    transition: all 0.3s ease;
+}
+
+.profile-card:hover {
+    transform: translateY(-4px);
+}
+
+.btn-secondary:hover {
+    background: #e2e6df;
+}
+
+.profile-info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+.logout-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 20, 15, 0.55);
+    backdrop-filter: blur(8px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 999999;
+    padding: 20px;
+}
+
+.logout-modal-overlay.show {
+    display: flex;
+}
+
+.logout-modal {
+    width: 100%;
+    max-width: 420px;
+    background: #fff;
+    border-radius: 20px;
+    padding: 28px;
+    text-align: center;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+    transform: scale(0.9);
+    opacity: 0;
+    transition: all 0.25s ease;
+}
+
+.logout-modal-overlay.show .logout-modal {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.logout-modal h3 {
+    color: #1a2e22;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.logout-modal p {
+    color: #6b7280;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.logout-modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.btn-cancel {
+    background: #f3f4f6;
+    color: #374151;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-cancel:hover {
+    background: #e5e7eb;
+    transform: translateY(-1px);
+}
+
+.btn-danger {
+    background: rgba(220, 38, 38, 0.12);
+    color: #dc2626;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+
+body.arena-body.is-dark .logout-modal-overlay {
+    background: rgba(0, 0, 0, 0.78) !important;
+    backdrop-filter: blur(12px) !important;
+}
+
+body.arena-body.is-dark .logout-modal {
+    background: #151c18 !important;
+    border: 1px solid rgba(255, 255, 255, 0.10) !important;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.65) !important;
+}
+
+body.arena-body.is-dark .logout-modal h3 {
+    color: #f5f7f3 !important;
+}
+
+body.arena-body.is-dark .logout-modal p {
+    color: #aeb8b1 !important;
+}
+
+body.arena-body.is-dark .btn-cancel {
+    background: #26322b !important;
+    color: #f5f7f3 !important;
+    border: 1px solid rgba(255, 255, 255, 0.10) !important;
+}
+
+body.arena-body.is-dark .logout-modal .btn-secondary {
+    background: rgba(220, 38, 38, 0.22) !important;
+    color: #f87171 !important;
+}
+
+body.arena-body.is-dark .logout-modal .btn-secondary:hover {
+    background: rgba(220, 38, 38, 0.35) !important;
+}
+
+body.arena-body.is-dark .profile-page {
+    background:
+        radial-gradient(circle at top left, rgba(201, 162, 39, 0.12), transparent 35%),
+        linear-gradient(135deg, #070a10, #0d1511) !important;
+}
+
+body.arena-body.is-dark .profile-card {
+    background: rgba(18, 24, 22, 0.88) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.55) !important;
+}
+
+body.arena-body.is-dark .profile-header h1 {
+    color: #f8fafc !important;
+}
+
+body.arena-body.is-dark .profile-header p {
+    color: #b6c0bb !important;
+}
+
+body.arena-body.is-dark .info-item {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+body.arena-body.is-dark .info-item span {
+    color: #aeb8b1 !important;
+}
+
+body.arena-body.is-dark .info-item strong {
+    color: #f5f7f3 !important;
+}
+
+body.arena-body.is-dark .status-active {
+    color: #4ade80 !important;
+}
+
+body.arena-body.is-dark .btn-primary {
+    background: linear-gradient(135deg, #007a4d, #13b878) !important;
+    color: #fff !important;
+}
+
+body.arena-body.is-dark .btn-secondary {
+    background: rgba(248, 113, 113, 0.14) !important;
+    color: #f87171 !important;
+}
+
+body.arena-body.is-dark .btn-secondary:hover {
+    background: rgba(248, 113, 113, 0.24) !important;
+}
+
+body.arena-body.is-dark .logout-modal-overlay {
+    background: rgba(0, 0, 0, 0.75) !important;
+    backdrop-filter: blur(12px) !important;
+}
+
+body.arena-body.is-dark .logout-modal {
+    background: #111816 !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+body.arena-body.is-dark .logout-modal h3 {
+    color: #f8fafc !important;
+}
+
+body.arena-body.is-dark .logout-modal p {
+    color: #b6c0bb !important;
+}
+
+body.arena-body.is-dark .btn-cancel {
+    background: #232d28 !important;
+    color: #f5f7f3 !important;
+}
+
+@media (max-width: 991px) {
+
+    .profile-page {
+        padding: 120px 5% 60px;
+    }
+
+    .profile-card {
+        padding: 32px;
+    }
+
+    .profile-header {
+        gap: 16px;
+    }
+
+    .profile-header h1 {
+        font-size: 32px;
+    }
+
+    .profile-avatar {
+        width: 70px;
+        height: 70px;
+        font-size: 28px;
+    }
+}
+@media (max-width: 767px) {
+
+    .profile-info {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-actions {
+        flex-direction: column;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+        text-align: center;
+    }
+}
+@media (max-width: 480px) {
+
+    .profile-page {
+        padding: 100px 16px 40px;
+    }
+
+    .profile-card {
+        padding: 22px;
+        border-radius: 20px;
+    }
+
+    .profile-header h1 {
+        font-size: 26px;
+    }
+
+    .profile-header p {
+        font-size: 14px;
+    }
+
+    .profile-avatar {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+    }
+
+    .info-item {
+        padding: 14px;
+    }
+
+    .info-item strong {
+        font-size: 14px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        padding: 12px;
+        font-size: 14px;
+    }
+}

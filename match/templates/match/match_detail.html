@@ -1,0 +1,201 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}ArenaGuide | {{ match.home_team.name }} vs {{ match.away_team.name }}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/match_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="match-detail-hero match-status-{{ match.status }}">
+    <div class="match-detail-overlay"></div>
+    <div class="match-detail-container">
+        <div class="match-hero-card">
+
+            <div class="match-status-badge {{ match.status }}">
+                {% if match.status == "live" %}
+                {% trans "Live Now" %}
+                {% elif match.status == "upcoming" %}
+                    {% trans "Upcoming Match" %}
+                {% elif match.status == "finished" %}
+                    {% trans "Finished" %}
+                {% else %}
+                    {% trans "Canceled" %}
+                {% endif %}
+            </div>
+
+            <div class="match-hero-teams">
+                <div class="match-hero-team">
+                    {% if match.home_team.logo %}
+                        <img src="{{ match.home_team.logo.url }}" alt="{{ match.home_team.name }}">
+                    {% else %}
+                        <img src="{% static 'image/default-team.png' %}" alt="{{ match.home_team.name }}">
+                    {% endif %}
+                    <strong>{{ match.home_team.name }}</strong>
+                </div>
+
+                <div class="match-hero-score">
+                    {% if match.status == "upcoming" %}
+                        <strong>VS</strong>
+                    {% else %}
+                        <strong>{{ match.home_score }} - {{ match.away_score }}</strong>
+                    {% endif %}
+
+                    {% if match.status == "live" %}
+                        <small>{{ match.live_minute }}’</small>
+                    {% else %}
+                        <small>{{ match.get_status_display }}</small>
+                    {% endif %}
+                </div>
+
+                <div href="#" class="match-hero-team">
+                    {% if match.away_team.logo %}
+                        <img src="{{ match.away_team.logo.url }}" alt="{{ match.away_team.name }}">
+                    {% else %}
+                        <img src="{% static 'image/default-team.png' %}" alt="{{ match.away_team.name }}">
+                    {% endif %}
+                    <h2>{{ match.away_team.name }}</h2>
+                </div>
+            </div>
+
+            <div class="match-hero-meta">
+                <span> {{ match.start_datetime|date:"M d, Y - h:i A" }}</span>
+                <span> {{ match.stadium.name }}</span>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="match-detail-main">
+    <div class="match-detail-container match-detail-grid">
+        <div class="match-detail-left">
+            <div class="match-media-card reveal-item">
+                <div class="match-media-head">
+                    <div>
+                        <h3>
+                            {% if match.status == "live" %}
+                                {% trans "Live match coverage" %}
+                            {% elif match.status == "upcoming" %}
+                                {% trans "Match preview" %}
+                            {% else %}
+                                {% trans "Match highlights" %}
+                            {% endif %}
+                        </h3>
+                    </div>
+                </div>
+
+                <div class="match-img-box">
+                    <img class="match-img" src="{% static 'image/match_detail.png' %}" alt="Match image">
+                    <div class="match-video-layer"></div>
+                </div>
+            </div>
+
+            <div class="match-info-card reveal-item">
+                <h3>{% trans "Match information" %}</h3>
+
+                {% if match.description %}
+                    <p>{{ match.description }}</p>
+                {% else %}
+                    <p>{% trans "Follow the match details, stadium information, ticket availability, and team updates from this page." %}</p>
+                {% endif %}
+
+                <div class="match-info-list">
+                    <div>
+                        <div>
+                            <small>{% trans "Start" %}</small>
+                            <strong>{{ match.start_datetime|date:"M d, Y - h:i A" }}</strong>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div>
+                            <small>{% trans "End" %}</small>
+                            <strong>{{ match.end_datetime|date:"M d, Y - h:i A" }}</strong>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div>
+                            <small>{% trans "Stadium" %}</small>
+                            <strong>{{ match.stadium.name }}</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <aside class="match-detail-right">
+            <div class="match-ticket-card reveal-item">
+                <h3>{% trans "Ticket availability" %}</h3>
+                <div class="match-ticket-numbers">
+                    <div>
+                        <small>{% trans "Sold" %}</small>
+                        <strong>{{ match.sold_tickets }}</strong>
+                    </div>
+
+                    <div>
+                        <small>{% trans "Left" %}</small>
+                        <strong>{{ match.available_tickets }}</strong>
+                    </div>
+
+                    <div>
+                        <small>{% trans "Total" %}</small>
+                        <strong>{{ match.total_tickets }}</strong>
+                    </div>
+                </div>
+
+                <div class="match-ticket-progress">
+                    <div style="width: {{ match.sold_percentage }}%;"></div>
+                </div>
+
+                <p>{{ match.sold_percentage }}% {% trans "of tickets have been sold." %}</p>
+
+                {% if match.is_booking_open %}
+                    <a href="{% url 'booking:book_ticket_page' match.id %}" class="match-book-btn">
+                        {% trans "Book Ticket" %}
+                    </a>
+
+                    </a>
+                {% elif match.available_tickets <= 0 %}
+                    <span class="match-disabled-btn">{% trans "Sold Out" %}</span>
+                {% else %}
+                    <span class="match-disabled-btn">{% trans "Booking Unavailable" %}</span>
+                {% endif %}
+            </div>
+
+            <div class="match-teams-card reveal-item">
+                <h3>{% trans "Teams preview" %}</h3>
+
+                <div class="match-mini-team">
+                    {% if match.home_team.logo %}
+                        <img src="{{ match.home_team.logo.url }}" alt="{{ match.home_team.name }}">
+                    {% endif %}
+                    <div>
+                        <strong>{{ match.home_team.name }}</strong>
+                        <small>{{ match.home_team.coach }}</small>
+                    </div>
+                </div>
+
+                <div class="match-mini-team">
+                    {% if match.away_team.logo %}
+                        <img src="{{ match.away_team.logo.url }}" alt="{{ match.away_team.name }}">
+                    {% endif %}
+                    <div>
+                        <strong>{{ match.away_team.name }}</strong>
+                        <small>{{ match.away_team.coach }}</small>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/match_detail.js' %}"></script>
+{% endblock %}

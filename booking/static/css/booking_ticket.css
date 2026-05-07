@@ -1,0 +1,797 @@
+:root {
+    --booking-green: #06451f;
+    --booking-green-2: #0f7a3b;
+    --booking-green-3: #22c55e;
+    --booking-gold: #d4a62a;
+    --booking-gold-light: #f5cc55;
+
+    --booking-bg: #f7faf7;
+    --booking-card: #ffffff;
+    --booking-soft: #eef7f0;
+
+    --booking-text: #102016;
+    --booking-muted: #6b7280;
+    --booking-border: rgba(6, 69, 31, 0.12);
+
+    --booking-shadow: 0 24px 70px rgba(6, 22, 12, 0.11);
+    --booking-shadow-soft: 0 14px 40px rgba(6, 22, 12, 0.08);
+
+    --booking-gradient: linear-gradient(135deg, #06451f, #0f7a3b, #d4a62a);
+    --booking-radius: 26px;
+    --booking-transition: 0.3s ease;
+}
+
+.booking-page {
+    min-height: 100vh;
+    padding: 140px 0 90px;
+    background:
+        radial-gradient(circle at 15% 10%, rgba(34, 197, 94, 0.12), transparent 28%),
+        radial-gradient(circle at 88% 18%, rgba(212, 166, 42, 0.12), transparent 30%),
+        linear-gradient(180deg, #ffffff, var(--booking-bg));
+}
+
+.booking-page * {
+    box-sizing: border-box;
+}
+
+.booking-container,
+.booking-header,
+.booking-steps,
+.booking-layout {
+    width: min(1180px, calc(100% - 40px));
+    margin-inline: auto;
+}
+
+
+.booking-header {
+    margin-bottom: 28px;
+    text-align: center;
+    animation: bookingFadeUp 0.7s ease both;
+}
+
+.booking-header h1 {
+    margin: 0 0 12px;
+    color: var(--booking-text);
+    font-size: clamp(2.2rem, 5vw, 4.4rem);
+    line-height: 1.02;
+    font-weight: 650;
+    letter-spacing: -1.5px;
+}
+
+.booking-header p {
+    margin: 0 auto;
+    max-width: 500px;
+    color: var(--booking-muted);
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.booking-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 30px;
+    animation: bookingFadeUp 0.8s ease both;
+}
+
+.booking-steps .step {
+    position: relative;
+    min-height: 56px;
+    padding: 14px 18px;
+    border-radius: 18px;
+    color: var(--booking-muted);
+    background: rgba(255, 255, 255, 0.76);
+    border: 1px solid var(--booking-border);
+    box-shadow: var(--booking-shadow-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    backdrop-filter: blur(16px);
+}
+
+.booking-steps .step.active {
+    color: #ffffff;
+    background: var(--booking-gradient);
+    border-color: transparent;
+    box-shadow: 0 18px 45px rgba(15, 122, 59, 0.22);
+}
+
+.booking-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 370px;
+    gap: 26px;
+    align-items: start;
+    animation: bookingFadeUp 0.9s ease both;
+}
+
+.seat-section {
+    padding: 28px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid var(--booking-border);
+    box-shadow: var(--booking-shadow);
+    backdrop-filter: blur(20px);
+}
+
+.seat-category {
+    position: relative;
+    padding: 24px;
+    border-radius: 16px;
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(244, 250, 245, 0.92));
+    border: 1px solid rgba(6, 69, 31, 0.10);
+    box-shadow: var(--booking-shadow-soft);
+}
+
+.seat-category + .seat-category {
+    margin-top: 22px;
+}
+
+.seat-category h3 {
+    margin: 0 0 18px;
+    color: var(--booking-text);
+    font-size: 1.15rem;
+    line-height: 1.35;
+    font-weight: 650;
+}
+
+.seat-category h3::before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-inline-end: 9px;
+    border-radius: 50%;
+    background: var(--booking-gold);
+    vertical-align: middle;
+}
+
+.seat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(44px, 44px));
+    gap: 10px;
+}
+
+.seat {
+    position: relative;
+    min-height: 44px;
+    width: 44px;
+    height: 44px;
+    min-height: 44px;
+    border: 1px solid rgba(6, 69, 31, 0.14);
+    border-radius: 8px;
+    color: var(--booking-green);
+    background:
+        linear-gradient(180deg, #ffffff, #f1f8f3);
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--booking-transition);
+}
+
+.seat::after {
+    display: none;
+}
+
+.seat:hover {
+    transform: translateY(-4px);
+    border-color: rgba(15, 122, 59, 0.36);
+    box-shadow: 0 14px 30px rgba(15, 122, 59, 0.14);
+}
+
+.seat.selected {
+    color: #ffffff;
+    background: var(--booking-gradient);
+    border-color: transparent;
+    transform: scale(1.04);
+    box-shadow: 0 16px 36px rgba(15, 122, 59, 0.28);
+}
+
+.seat.selected::after {
+    background: rgba(255, 255, 255, 0.45);
+}
+
+.seat.booked,
+.seat:disabled {
+    color: rgba(107, 114, 128, 0.72);
+    background: #e5e7eb;
+    border-color: rgba(107, 114, 128, 0.18);
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.seat.booked::after,
+.seat:disabled::after {
+    background: rgba(107, 114, 128, 0.25);
+}
+
+.booking-summary {
+    position: sticky;
+    top: 105px;
+    padding: 26px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid var(--booking-border);
+    box-shadow: var(--booking-shadow);
+    backdrop-filter: blur(20px);
+}
+
+.booking-summary h3 {
+    margin: 0 0 18px;
+    color: var(--booking-text);
+    font-size: 1.35rem;
+    font-weight: 650;
+}
+
+#selectedSeat {
+    min-height: 135px;
+    padding: 18px;
+    border-radius: 14px;
+    background:
+        radial-gradient(circle at 90% 15%, rgba(212, 166, 42, 0.10), transparent 30%),
+        rgba(6, 69, 31, 0.055);
+    border: 1px dashed rgba(6, 69, 31, 0.18);
+}
+
+#selectedSeat p {
+    margin: 0;
+    color: var(--booking-muted);
+    line-height: 1.7;
+}
+
+.selected-seat-card {
+    animation: bookingPop 0.28s ease both;
+}
+
+.selected-seat-card span {
+    display: inline-flex;
+    margin-bottom: 10px;
+    padding: 6px 0px;
+    border-radius: 14px;
+    color: var(--booking-gradien);
+    font-size: 0.75rem;
+    font-weight: 650;
+}
+
+.selected-seat-card h4 {
+    margin: 0 0 12px;
+    color: var(--booking-text);
+    font-size: 1rem;
+    line-height: 1.45;
+    font-weight: 650;
+}
+
+.selected-seat-card p {
+    margin: 0 0 4px !important;
+    color: var(--booking-muted);
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.selected-seat-card strong {
+    display: block;
+    color: var(--booking-green);
+    font-size: 1.5rem;
+    font-weight: 900;
+}
+
+.parking-section {
+    margin: 18px 0;
+    padding: 18px;
+    border-radius: 14px;
+    background: #ffffff;
+    border: 1px solid rgba(6, 69, 31, 0.10);
+    box-shadow: 0 12px 30px rgba(6, 22, 12, 0.06);
+}
+
+.parking-section label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+    color: var(--booking-text);
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.parking-section input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--booking-green-2);
+}
+
+.parking-section select {
+    width: 100%;
+    min-height: 48px;
+    padding: 0 14px;
+    border-radius: 15px;
+    color: var(--booking-text);
+    background: #f8fbf8;
+    border: 1px solid rgba(6, 69, 31, 0.12);
+    font-weight: 750;
+    outline: none;
+    transition: var(--booking-transition);
+}
+
+.parking-section select:focus,
+.parking-section select.active {
+    border-color: rgba(15, 122, 59, 0.42);
+    box-shadow: 0 0 0 4px rgba(15, 122, 59, 0.10);
+}
+
+.parking-section select:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.booking-summary form {
+    margin-top: 18px;
+}
+
+.btn {width: 100%;
+    min-height: 50px;
+    border: 0;
+    border-radius: 17px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-weight: 650;
+    transition: var(--booking-transition);
+}
+
+.btn.primary {
+    color: #ffffff;
+    background: var(--booking-gradient);
+    box-shadow: 0 16px 36px rgba(15, 122, 59, 0.24);
+    cursor: pointer;
+}
+
+.btn.primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 48px rgba(15, 122, 59, 0.30);
+}
+
+.btn.primary:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.btn.primary.ready {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.btn.disabled {
+    background: linear-gradient(135deg, #9ca3af, #6b7280);
+    color: white;
+    font-weight: 600;
+    border-radius: 12px;
+    opacity: 1;
+}
+
+.seat-section::before {
+    content: "Select your preferred seat";
+    display: block;
+    margin-bottom: 18px;
+    color: var(--booking-gold);
+    font-size: 0.9rem;
+    font-weight: 850;
+}
+.seat-detail-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 14px 0;
+}
+
+.seat-detail-list div {
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(6, 69, 31, 0.055);
+}
+
+.seat-detail-list small {
+    display: block;
+    margin-bottom: 4px;
+    color: var(--booking-muted);
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+
+.seat-detail-list strong {
+    display: block;
+    color: var(--booking-text);
+    font-size: 0.82rem;
+    font-weight: 600;
+}
+
+.seat-price-row {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(6, 69, 31, 0.10);
+}
+
+.seat-price-row small {
+    display: block;
+    color: var(--booking-muted);
+    font-weight: 500;
+}
+
+.seat-price-row strong {
+    display: block;
+    color: var(--booking-green);
+    font-size: 1.35rem;
+    font-weight: 700;
+}
+/* ===== Parking Cards Add-on ===== */
+
+.parking-toggle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    cursor: pointer;
+}
+
+.parking-toggle input {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--booking-green-2);
+}
+
+.parking-toggle span {
+    display: grid;
+    gap: 2px;
+}
+
+.parking-toggle strong {
+    color: var(--booking-text);
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.parking-toggle small {
+    color: var(--booking-muted);
+    font-size: 0.78rem;
+    font-weight: 400;
+}
+
+.parking-cards {
+    display: none;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.parking-cards.is-active {
+    display: grid;
+}
+
+.parking-card {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(6, 69, 31, 0.12);
+    background: #ffffff;
+    color: var(--booking-text);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: start;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.parking-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(15, 122, 59, 0.35);
+    box-shadow: 0 10px 24px rgba(6, 22, 12, 0.08);
+}
+
+.parking-card.selected {
+    border-color: transparent;
+    background: var(--booking-gradient);
+    color: #ffffff;
+    box-shadow: 0 14px 30px rgba(15, 122, 59, 0.20);
+}
+
+.parking-card strong {
+    display: block;
+    font-size: 0.92rem;
+    font-weight: 600;
+}
+
+.parking-card small {
+    display: block;
+    margin-top: 3px;
+    color: var(--booking-muted);
+    font-size: 0.76rem;
+}
+
+.parking-card.selected small {
+    color: rgba(255, 255, 255, 0.78);
+}
+
+.parking-card i {
+    font-size: 1.25rem;
+}
+
+.parking-empty {
+    margin: 0;
+    color: var(--booking-muted);
+    font-size: 0.85rem;
+}
+.booking-user-details {
+    display: none;
+    margin-top: 18px;
+    padding: 18px;
+    border-radius: 14px;
+    background: #ffffff;
+    border: 1px solid rgba(6, 69, 31, 0.10);
+}
+
+.booking-user-details.is-active {
+    display: block;
+    animation: bookingPop 0.3s ease both;
+}
+
+.form-group {
+    display: grid;
+    gap: 6px;
+    margin-bottom: 14px;
+}
+
+.form-group label {
+    color: var(--booking-text);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    height: 46px;
+    padding: 0 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(6, 69, 31, 0.14);
+    outline: none;
+}
+
+.form-group input:focus {
+    border-color: #0f7a3b;
+    box-shadow: 0 0 0 3px rgba(15, 122, 59, 0.10);
+}
+
+body.arena-body.is-dark .parking-toggle strong,
+body.arena-body.is-dark .parking-card {
+    color: #ffffff;
+}
+
+body.arena-body.is-dark .parking-toggle small,
+body.arena-body.is-dark .parking-card small,
+body.arena-body.is-dark .parking-empty {
+    color: rgba(255, 255, 255, 0.62);
+}
+
+body.arena-body.is-dark .parking-card {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+body.arena-body.is-dark .seat-detail-list div {
+    background: rgba(255, 255, 255, 0.07);
+}
+
+body.arena-body.is-dark .seat-detail-list strong {
+    color: #ffffff;
+}
+
+body.arena-body.is-dark .booking-page {
+    background:
+        radial-gradient(circle at 15% 10%, rgba(34, 197, 94, 0.16), transparent 28%),
+        radial-gradient(circle at 88% 18%, rgba(212, 166, 42, 0.12), transparent 30%),
+        linear-gradient(180deg, #07120d, #101d16);
+}
+
+body.arena-body.is-dark .booking-header h1,
+body.arena-body.is-dark .booking-summary h3,
+body.arena-body.is-dark .seat-category h3,
+body.arena-body.is-dark .selected-seat-card h4,
+body.arena-body.is-dark .parking-section label {
+    color: #ffffff;
+}
+
+body.arena-body.is-dark .booking-header p,
+body.arena-body.is-dark #selectedSeat p {
+    color: rgba(255, 255, 255, 0.68);
+}
+
+body.arena-body.is-dark .seat-section,
+body.arena-body.is-dark .booking-summary,
+body.arena-body.is-dark .booking-steps .step {
+    background: rgba(255, 255, 255, 0.065);
+    border-color: rgba(255, 255, 255, 0.10);
+}
+
+body.arena-body.is-dark .seat-category,
+body.arena-body.is-dark .parking-section {
+    background: rgba(255, 255, 255, 0.055);
+    border-color: rgba(255, 255, 255, 0.10);
+}
+
+body.arena-body.is-dark .seat {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+body.arena-body.is-dark .seat.booked,
+body.arena-body.is-dark .seat:disabled {
+    color: rgba(255, 255, 255, 0.38);
+    background: rgba(255, 255, 255, 0.045);
+}
+
+body.arena-body.is-dark #selectedSeat,
+body.arena-body.is-dark .parking-section select {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+body.arena-body.is-dark .parking-section select {
+    color: #ffffff;
+}
+
+body.arena-body.is-dark .selected-seat-card strong {
+    color: var(--booking-gold-light);
+}
+
+
+@keyframes bookingFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(26px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bookingPop {
+    from {
+        opacity: 0;
+        transform: scale(0.96) translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+
+@media (max-width: 991px) {
+    .booking-page {
+        padding: 125px 0 75px;
+    }
+
+    .booking-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .booking-summary {
+        position: static;
+    }
+
+    .booking-steps {
+        grid-template-columns: 1fr;
+    }
+
+    .seat-grid {
+        grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+    }
+}
+
+
+@media (max-width: 767px) {
+    .booking-container,
+    .booking-header,
+    .booking-steps,
+    .booking-layout {
+        width: calc(100% - 30px);
+    }
+
+    .booking-header h1 {
+        font-size: 2.35rem;
+        letter-spacing: -0.8px;
+    }
+
+    .seat-section,
+    .booking-summary {
+        padding: 22px;
+        border-radius: 26px;
+    }
+
+    .seat-category {
+        padding: 20px;
+        border-radius: 22px;
+    }
+
+    .seat-grid {
+        grid-template-columns: repeat(auto-fill, minmax(40px, 40px));
+    }
+
+    .seat {
+        width: 40px;
+        height: 40px;
+        min-height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .booking-page {
+        padding: 115px 0 60px;
+    }
+
+    .booking-container,
+    .booking-header,
+    .booking-steps,
+    .booking-layout {
+        width: calc(100% - 24px);
+    }
+
+    .booking-header h1 {
+        font-size: 2rem;
+    }
+
+    .booking-header p {
+        font-size: 0.92rem;
+    }
+
+    .booking-steps .step {
+        min-height: 50px;
+        font-size: 0.88rem;
+    }
+
+    .seat-section,
+    .booking-summary {
+        padding: 18px;
+        border-radius: 22px;
+    }
+
+    .seat-category {
+        padding: 16px;
+    }
+
+    .seat-category h3 {
+        font-size: 1rem;
+    }
+
+    .parking-section,
+    #selectedSeat {
+        padding: 15px;
+        border-radius: 18px;
+    }
+
+    .selected-seat-card strong {
+        font-size: 1.25rem;
+    }
+    .seat-detail-list {
+        grid-template-columns: 1fr;
+    }
+
+    .seat-grid {
+        grid-template-columns: repeat(auto-fill, minmax(38px, 38px));
+    }
+
+    .seat {
+        width: 38px;
+        height: 38px;
+        min-height: 38px;
+    }
+}
+
+

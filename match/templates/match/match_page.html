@@ -1,0 +1,328 @@
+<!--
+Displays the matches page
+This page shows the hero slider, live matches, featured match,
+and upcoming ticket booking cards.
+
+Context:
+    live_matches: List of currently live matches.
+    featured_match: Highlighted upcoming match.
+    upcoming_matches: List of upcoming matches for ticket booking.
+-->
+
+{% extends "core/base.html" %}
+{% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block title %}ArenaGuide | Matches{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/match_page.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="arenaguide-matches-hero">
+    <div class="arenaguide-slider" id="arenaguideSlider">
+
+        <article class="arenaguide-slide is-active" style="--slide-bg: url('{% static 'image/matches-hero-1.jpg' %}');">
+            <div class="arenaguide-slide-overlay"></div>
+            <div class="arenaguide-slide-content">
+                <h1>{% trans "Book your seat for the next big match" %}</h1>
+                <p>{% trans "Explore live matches, upcoming games, tickets, stadium services, and match details from one official platform." %}</p>
+                <a href="#tickets" class="arenaguide-btn arenaguide-btn-solid">
+                    {% trans "Explore Tickets" %}
+                </a>
+            </div>
+        </article>
+
+        <article class="arenaguide-slide" style="--slide-bg: url('{% static 'image/matches-hero-2.jpg' %}');">
+            <div class="arenaguide-slide-overlay"></div>
+            <div class="arenaguide-slide-content">
+                <h1>{% trans "Follow live games in real time" %}</h1>
+                <p>{% trans "Watch live matches, view scores, and open full match details." %}</p>
+                <a href="#live" class="arenaguide-btn arenaguide-btn-solid">
+                    {% trans "View Live Matches" %}
+                </a>
+            </div>
+        </article>
+
+        <article class="arenaguide-slide" style="--slide-bg: url('{% static 'image/matches-hero-3.jpg' %}');">
+            <div class="arenaguide-slide-overlay"></div>
+            <div class="arenaguide-slide-content">
+                <h1>{% trans "Reserve tickets before they run out" %}</h1>
+                <p>{% trans "Check ticket availability, stadium location, and booking options." %}</p>
+                <a href="#upcoming" class="arenaguide-btn arenaguide-btn-solid">
+                    {% trans "Book Tickets" %}
+                </a>
+            </div>
+        </article>
+
+        <button class="arenaguide-slider-btn prev" type="button" aria-label="Previous slide">
+            <i class="bi bi-chevron-left"></i>
+        </button>
+
+        <button class="arenaguide-slider-btn next" type="button" aria-label="Next slide">
+            <i class="bi bi-chevron-right"></i>
+        </button>
+
+        <div class="arenaguide-slider-dots"></div>
+    </div>
+</section>
+
+<section class="arenaguide-section" id="live">
+    <div class="arenaguide-container">
+        <div class="arenaguide-section-head arenaguide-reveal">
+            <h2>{% trans "Matches happening now" %}</h2>
+        </div>
+
+        <div class="arenaguide-live-grid">
+            {% for match in live_matches %}
+                <a href="{% url 'match:match_detail' match.id %}" class="arenaguide-live-card arenaguide-reveal">
+                <div class="arenaguide-live-media">
+                    {% if match.get_video %}
+                        <video class="arenaguide-live-video" autoplay muted loop playsinline preload="metadata">
+                            <source src="{{ match.get_video }}" type="video/mp4">
+                        </video>
+                    {% else %}
+                        <video class="arenaguide-live-video" autoplay muted loop playsinline preload="metadata">
+                            <source src="{% static 'video/default-live.mp4' %}" type="video/mp4">
+                        </video>
+                    {% endif %}
+
+                    <div class="arenaguide-live-overlay"></div>
+                    <span class="arenaguide-live-badge">
+                        <span></span>
+                        Live
+                    </span>
+
+                </div>
+                    <div class="arenaguide-live-teams"><div class="arenaguide-live-team">
+                            {% if match.home_team.logo %}
+                                <img src="{{ match.home_team.logo.url }}" alt="{{ match.home_team.name }}">
+                            {% else %}
+                                <img src="{% static 'image/default-team.png' %}" alt="{{ match.home_team.name }}">
+                            {% endif %}
+                            <strong>{{ match.home_team.name }}</strong>
+                        </div>
+
+                        <div class="arenaguide-live-score">
+                            <strong>{{ match.home_score|default:0 }} - {{ match.away_score|default:0 }}</strong>
+                            <small>{% trans "Live" %}</small>
+                        </div>
+
+                        <div class="arenaguide-live-team">
+                            {% if match.away_team.logo %}
+                                <img src="{{ match.away_team.logo.url }}" alt="{{ match.away_team.name }}">
+                            {% else %}
+                                <img src="{% static 'image/default-team.png' %}" alt="{{ match.away_team.name }}">
+                            {% endif %}
+                            <strong>{{ match.away_team.name }}</strong>
+                        </div>
+                    </div>
+
+                    <div class="arenaguide-live-meta">
+                        <span><i class="bi bi-clock"></i> {{ match.start_datetime|date:"h:i A" }}</span>
+                        <span><i class="bi bi-geo-alt"></i> {{ match.stadium.name }}</span>
+                    </div>
+
+                    <div class="arenaguide-card-actions">
+                        <span class="arenaguide-action-outline">{% trans "Details" %}</span>
+                        <span class="arenaguide-action-solid">{% trans "Watch Live" %}</span>
+                    </div>
+                </a>
+            {% empty %}
+                <div class="arenaguide-empty arenaguide-reveal">
+                    <i class="bi bi-broadcast"></i>
+                    <h3>{% trans "No live matches right now" %}</h3>
+                    <p>{% trans "Live matches will appear here when they start." %}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% if featured_match %}
+<section class="arenaguide-section arenaguide-featured-section" id="upcoming">
+    <div class="arenaguide-container">
+        <div class="arenaguide-section-head arenaguide-reveal">
+            <h2>{% trans "Upcoming match highlight" %}</h2>
+        </div>
+
+        <div class="arenaguide-featured-card arenaguide-reveal">
+            <div class="arenaguide-featured-media">
+                {% if featured_match.image %}
+                    <img src="{{ featured_match.image.url }}" alt="{{ featured_match }}">
+                {% else %}
+                    <img src="{% static 'image/footbal.png' %}" alt="Featured match">
+                {% endif %}
+            </div>
+
+            <div class="arenaguide-featured-content">
+
+                <h2>{{ featured_match.home_team.name }} vs {{ featured_match.away_team.name }}</h2>
+
+                <div class="arenaguide-featured-meta">
+                    <span><i class="bi bi-calendar-event"></i> {{ featured_match.start_datetime|date:"M d, Y - h:i A" }}</span>
+                    <span><i class="bi bi-geo-alt"></i> {{ featured_match.stadium.name }}</span>
+                    <span> {{ featured_match.available_tickets }} {% trans "tickets left" %}</span>
+                </div>
+
+                <p>{% trans "A high-demand match with limited seats. Book early and secure your match-day experience." %}</p>
+
+                    <a href="{% url 'match:match_detail' featured_match.id %}" class="arenaguide-action-outline">
+                        {% trans "Details" %}
+                    </a>
+
+                    {% if featured_match.is_booking_open %}
+                        <a href="{% url 'booking:book_ticket_page' featured_match.id %}" class="arenaguide-action-solid">{% trans "Book Ticket" %}</a>
+                    {% else %}
+                        <span class="arenaguide-action-disabled">{% trans "Booking Closed" %}</span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+
+<section class="arenaguide-section arenaguide-ticket-section" id="tickets">
+    <div class="arenaguide-container">
+        <div class="arenaguide-ticket-header arenaguide-reveal">
+
+            <h2>{% trans "Book tickets for upcoming games" %}</h2>
+
+            <div class="arenaguide-ticket-filter">
+
+                <button class="is-active" type="button" data-filter="all">
+                    {% trans "All" %}
+                </button>
+
+                <button type="button" data-filter="available">
+                    {% trans "Available" %}
+                </button>
+
+                <button type="button" data-filter="upcoming">
+                    {% trans "Upcoming" %}
+                </button>
+
+                <button type="button" data-filter="sold">
+                    {% trans "Sold Out" %}
+                </button>
+
+            </div>
+
+            <select class="arenaguide-ticket-dropdown" aria-label="Filter tickets">
+                <option value="all">{% trans "All Tickets" %}</option>
+                <option value="available">{% trans "Available" %}</option>
+                <option value="upcoming">{% trans "Upcoming" %}</option>
+                <option value="sold">{% trans "Sold Out" %}</option>
+            </select>
+
+        </div>
+
+        <div class="arenaguide-booking-list" id="booking-list">
+            {% for match in upcoming_matches %}
+                <article class="arenaguide-booking-card arenaguide-reveal"
+                    data-match-card="{% if match.available_tickets <= 0 %}sold{% elif match.is_booking_open %}available{% else %}upcoming{% endif %}">
+
+                    {% if match.available_tickets <= 0 %}
+                        <span class="arenaguide-booking-badge sold">
+                            {% trans "Sold Out" %}
+                        </span>
+                    {% elif match.is_booking_open %}
+                        <span class="arenaguide-booking-badge available">
+                            {% trans "Available" %}
+                        </span>
+                    {% else %}
+                        <span class="arenaguide-booking-badge upcoming">
+                            {% trans "Upcoming" %}
+                        </span>
+                    {% endif %}
+
+                    <div class="arenaguide-booking-teams">
+                        <div class="arenaguide-booking-team">
+                            {% if match.home_team.logo %}
+                                <img src="{{ match.home_team.logo.url }}" alt="{{ match.home_team.name }}">
+                            {% else %}
+                                <img src="{% static 'image/default-team.png' %}" alt="{{ match.home_team.name }}">
+                            {% endif %}
+                            <strong>{{ match.home_team.name }}</strong>
+                        </div>
+
+                        <span class="arenaguide-booking-vs">VS</span>
+                        <div class="arenaguide-booking-team">
+                            {% if match.away_team.logo %}
+                                <img src="{{ match.away_team.logo.url }}" alt="{{ match.away_team.name }}">
+                            {% else %}
+                                <img src="{% static 'image/default-team.png' %}" alt="{{ match.away_team.name }}">
+                            {% endif %}
+                            <strong>{{ match.away_team.name }}</strong>
+                        </div>
+
+                    </div>
+
+                    <div class="arenaguide-booking-info">
+                        <span>
+                            <i class="bi bi-calendar-event"></i>
+                            {{ match.start_datetime|date:"M d, Y - h:i A" }}
+                        </span>
+
+                        <span>
+                            <i class="bi bi-geo-alt"></i>{{ match.stadium.name }}
+                        </span>
+
+                    </div>
+
+                    <div class="arenaguide-booking-status">
+                        <div>
+                            <small>{% trans "Sold" %}</small>
+                            <strong>{{ match.sold_tickets }}</strong>
+                        </div>
+
+                        <div>
+                            <small>{% trans "Left" %}</small>
+                            <strong>{{ match.available_tickets }}</strong>
+                        </div>
+
+                    </div>
+
+                    <div class="arenaguide-booking-progress">
+                        <div style="width: {{ match.sold_percentage }}%;"></div>
+                    </div>
+
+                    <div class="arenaguide-booking-actions">
+
+                        <a href="{% url 'match:match_detail' match.id %}" class="arenaguide-action-outline">
+                            {% trans "Details" %}
+                        </a>
+
+                        {% if match.is_booking_open and match.available_tickets > 0 %}
+                            <a href="{% url 'booking:book_ticket_page' match.id %}" class="arenaguide-action-solid">
+                                {% trans "Book Ticket" %}
+                            </a>
+                        {% else %}
+                            <span class="arenaguide-action-disabled">
+                                {% trans "Unavailable" %}
+                            </span>
+
+                        {% endif %}
+                    </div>
+                </article>
+
+            {% empty %}
+                <div class="arenaguide-empty arenaguide-reveal">
+                    <i class="bi bi-calendar-x"></i>
+                    <h3>{% trans "No upcoming matches available" %}</h3>
+                    <p>{% trans "New matches will appear here soon." %}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/match_page.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,202 @@
+{% extends "dashboard/dashboard_base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Verify Visitor" %}{% endblock %}
+{% block dashboard_label %}{% trans "Organizer Control Center" %}{% endblock %}
+{% block dashboard_title %}{% trans "Verify Visitor" %}{% endblock %}
+
+{% block dashboard_extra_css %}
+<link rel="stylesheet" href="{% static 'css/verify_visitor.css' %}">
+{% endblock %}
+
+{% block dashboard_content %}
+
+<section class="verify-page">
+
+    <div class="verify-hero">
+        <div>
+            <h2>Verify Visitor Identity</h2>
+            <p>Enter the visitor identity number to check ticket ownership, seat details, and ticket status.</p>
+        </div>
+    </div>
+
+    <div class="verify-layout">
+
+        <div class="verify-card search-card">
+            <div class="card-head">
+                <div>
+                    <h3>Search Visitor</h3>
+                </div>
+            </div>
+            <form method="post" class="verify-form" id="verifyForm">
+                {% csrf_token %}
+
+                <label for="id_type">Identity Type</label>
+                <div class="input-group">
+                    <select name="id_type" id="id_type" required>
+                        <option value="">Select identity type</option>
+
+                        <option value="national_id"
+                            {% if id_type == "national_id" %}selected{% endif %}>
+                            National ID
+                        </option>
+
+                        <option value="iqama"
+                            {% if id_type == "iqama" %}selected{% endif %}>
+                            Iqama
+                        </option>
+
+                        <option value="passport"
+                            {% if id_type == "passport" %}selected{% endif %}>
+                            Passport
+                        </option>
+                    </select>
+                </div>
+
+                <label for="identity_number">Identity Number</label>
+
+                <div class="input-group">
+                    <input type="text" name="identity_number" id="identity_number" value="{{ identity_number }}" placeholder="Enter identity number" maxlength="12" autocomplete="off" required >
+                </div>
+
+                <button type="submit">
+                    Verify Visitor
+                </button>
+            </form>
+
+            {% if error_message %}
+                <div class="verify-alert error">
+                    <i class="bi bi-exclamation-triangle"></i>
+                    <span>{{ error_message }}</span>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="verify-card result-card">
+
+            {% if ticket %}
+
+                {% if ticket.status == "used" %}
+                    <div class="status-banner danger">
+                        <div>
+                            <strong>Ticket Already Used</strong>
+                            <span>This visitor should not be allowed to enter again.</span>
+                        </div>
+                    </div>
+                {% elif ticket.status == "active" %}
+                    <div class="status-banner success">
+                        <div>
+                            <strong>Valid Ticket</strong>
+                            <span>This visitor is allowed to enter.</span>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="status-banner warning">
+                        <div>
+                            <strong>{{ ticket.get_status_display }}</strong>
+                            <span>Please review the ticket status before entry.</span>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div class="visitor-profile">
+                    <div class="visitor-avatar">
+                        {{ holder.full_name|slice:":1"|upper }}
+                    </div>
+
+                    <div>
+                        <span>Visitor Name</span>
+                        <h3>{{ holder.full_name }}</h3>
+                        <p>{{ ticket.user.email|default:"No email available" }}</p>
+                    </div>
+                </div>
+
+                <div class="ticket-details">
+                    <div class="detail-item">
+                        <i class="bi bi-person-vcard"></i>
+                        <div>
+                            <span>ID Number</span>
+                            <strong>{{ identity_number }}</strong>
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <i class="bi bi-ticket-perforated"></i>
+                        <div>
+                            <span>Ticket Code</span>
+                            <strong>{{ ticket.ticket_code }}</strong>
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <i class="bi bi-grid-3x3-gap"></i>
+                        <div>
+                            <span>Seat</span>
+                            <strong>{{ ticket.seat }}</strong>
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <i class="bi bi-door-open"></i>
+                        <div>
+                            <span>Gate</span>
+                            <strong>{{ ticket.gate.name|default:"Not assigned" }}</strong>
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <i class="bi bi-shield-check"></i>
+                        <div>
+                            <span>Ticket Status</span>
+                            <strong>{{ ticket.get_status_display }}</strong>
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <i class="bi bi-calendar-event"></i>
+                        <div>
+                            <span>Issued At</span>
+                            <strong>{{ ticket.issued_at|date:"M d, Y" }}</strong>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="match-box">
+                    <span>Match Details</span>
+                    <h4>{{ ticket.match.home_team.name }} vs {{ ticket.match.away_team.name }}</h4>
+
+                    <p>
+                        <i class="bi bi-geo-alt"></i>
+                        {{ ticket.match.stadium.name }}
+                    </p>
+
+                    <p>
+                        <i class="bi bi-clock"></i>
+                        {{ ticket.match.start_datetime|date:"M d, Y - h:i A" }}
+                    </p>
+                </div>
+
+            {% else %}
+
+                <div class="empty-verification">
+                    <div>
+                        <i class="bi bi-person-badge"></i>
+                        <h3>No Visitor Selected</h3>
+                        <p>Search by identity number to display visitor, ticket, seat, and match details here.</p>
+                    </div>
+                </div>
+
+            {% endif %}
+
+        </div>
+    </div>
+
+</section>
+
+{% endblock %}
+
+{% block dashboard_extra_js %}
+<script src="{% static 'dashboard/js/verify_visitor.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,985 @@
+:root {
+    --arenaguide-green: #06451f;
+    --arenaguide-green-2: #0f7a3b;
+    --arenaguide-green-3: #22c55e;
+    --arenaguide-gold: #d4a62a;
+    --arenaguide-gold-light: #f5cc55;
+    --arenaguide-bg: #f7faf7;
+    --arenaguide-surface: #ffffff;
+    --arenaguide-text: #102016;
+    --arenaguide-muted: #6b7280;
+    --arenaguide-border: rgba(6, 69, 31, 0.12);
+    --arenaguide-shadow: 0 24px 60px rgba(6, 22, 12, 0.12);
+    --arenaguide-shadow-strong: 0 32px 85px rgba(6, 22, 12, 0.18);
+    --arenaguide-gradient: linear-gradient(135deg, #06451f 0%, #0f7a3b 48%, #d4a62a 100%);
+    --arenaguide-radius: 22px;
+    --arenaguide-transition: 0.35s ease;
+}
+
+.arenaguide-container {
+    width: min(1180px, calc(100% - 40px));
+    margin-inline: auto;
+}
+
+.arenaguide-section {
+    padding: 92px 0;
+    background: var(--arenaguide-bg);
+}
+
+.arenaguide-section-head,
+.arenaguide-ticket-header {
+    max-width: 860px;
+    margin: 0 auto 44px;
+    text-align: center;
+}
+
+.arenaguide-section-head span,
+.arenaguide-ticket-header > span {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: var(--arenaguide-gold);
+    font-weight: 900;
+}
+
+.arenaguide-section-head h2,
+.arenaguide-ticket-header h2 {
+    margin: 0 0 14px;
+    color: var(--arenaguide-text);
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    line-height: 1.1;
+    font-weight: 900;
+}
+
+.arenaguide-section-head p,
+.arenaguide-ticket-header p {
+    max-width: 620px;
+    margin: 0 auto;
+    color: var(--arenaguide-muted);
+    line-height: 1.8;
+}
+
+.arenaguide-btn,
+.arenaguide-action-solid,
+.arenaguide-action-outline,
+.arenaguide-action-disabled {
+    min-height: 44px;
+    padding: 11px 20px;
+    border-radius: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: var(--arenaguide-transition);
+}
+
+.arenaguide-btn-solid,
+.arenaguide-action-solid {
+    color: #ffffff;
+    background: var(--arenaguide-green-2);
+    box-shadow: 0 14px 34px rgba(6, 69, 31, 0.22);
+}
+
+.arenaguide-btn-solid:hover,
+.arenaguide-action-solid:hover {
+    color: #ffffff;
+    background: var(--arenaguide-gradient);
+    transform: translateY(-3px);
+}
+
+.arenaguide-action-outline {
+    color: var(--arenaguide-green-2);
+    background: rgba(15, 122, 59, 0.06);
+    border: 1px solid rgba(15, 122, 59, 0.34);
+}
+
+.arenaguide-action-outline:hover {
+    color: #ffffff;
+    background: var(--arenaguide-gradient);
+    border-color: transparent;
+    transform: translateY(-3px);
+}
+
+.arenaguide-action-disabled {
+    color: #6b7280;
+    background: #d1d5db;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.arenaguide-matches-hero {
+    position: relative;
+    overflow: hidden;
+}
+
+.arenaguide-slider {
+    position: relative;
+    min-height: 92vh;
+    overflow: hidden;
+    background: var(--arenaguide-green);
+}
+
+.arenaguide-slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    background-image: var(--slide-bg);
+    background-size: cover;
+    background-position: center;
+    transform: scale(1.04);
+    transition: opacity 0.8s ease, visibility 0.8s ease, transform 1.1s ease;
+}
+
+.arenaguide-slide.is-active {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}
+
+.arenaguide-slide-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 75% 42%, rgba(212, 166, 42, 0.18), transparent 32%),
+        linear-gradient(105deg, rgba(6, 69, 31, 0.86), rgba(6, 69, 31, 0.42), rgba(6, 69, 31, 0.74));
+    backdrop-filter: blur(3px) saturate(130%);
+    -webkit-backdrop-filter: blur(3px) saturate(130%);
+}
+
+.arenaguide-slide-content {
+    position: relative;
+    z-index: 2;
+    width: min(1180px, calc(100% - 40px));
+    margin-inline: auto;
+    padding-top: var(--arena-navbar-height, 82px);
+    color: #ffffff;
+}
+
+.arenaguide-slide-content h1 {
+    max-width: 780px;
+    margin: 0 0 20px;
+    font-size: clamp(3rem, 6vw, 6.2rem);
+    line-height: 0.98;
+    letter-spacing: -2px;
+    font-weight: 800;
+}
+
+.arenaguide-slide-content p {
+    max-width: 660px;
+    margin: 0 0 30px;
+    color: rgba(255, 255, 255, 0.86);
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+.arenaguide-slider-btn {
+    position: absolute;
+    top: 50%;
+    z-index: 5;
+    width: 48px;
+    height: 48px;
+    border: 0;
+    border-radius: 50%;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    cursor: pointer;
+    transition: var(--arenaguide-transition);
+}
+
+.arenaguide-slider-btn.prev {
+    inset-inline-start: 28px;
+    transform: translateY(-50%);
+}
+
+.arenaguide-slider-btn.next {
+    inset-inline-end: 28px;
+    transform: translateY(-50%);
+}
+
+.arenaguide-slider-btn:hover {
+    background: var(--arenaguide-gradient);
+}
+
+.arenaguide-slider-btn.prev:hover,
+.arenaguide-slider-btn.next:hover {
+    transform: translateY(-50%) scale(1.08);
+}
+
+.arenaguide-slider-dots {
+    position: absolute;
+    z-index: 5;
+    inset-inline: 0;
+    bottom: 34px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.arenaguide-slider-dots button {
+    width: 28px;
+    height: 5px;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.38);
+    cursor: pointer;
+    transition: var(--arenaguide-transition);
+}
+
+.arenaguide-slider-dots button.is-active {
+    width: 48px;
+    background: var(--arenaguide-gold-light);
+}
+
+.arenaguide-live-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.arenaguide-live-card {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    padding: 24px;
+    border-radius: var(--arenaguide-radius);
+    color: var(--arenaguide-text);
+    text-decoration: none;
+    background:
+        linear-gradient(#ffffff, #ffffff) padding-box,
+        linear-gradient(135deg, rgba(220, 38, 38, 0.55), rgba(15, 122, 59, 0.35)) border-box;
+    border: 2px solid transparent;
+    box-shadow: var(--arenaguide-shadow);
+    transition: var(--arenaguide-transition);
+}
+
+.arenaguide-live-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    background:
+        linear-gradient(#ffffff, #ffffff) padding-box,
+        var(--arenaguide-gradient) border-box;
+    box-shadow: var(--arenaguide-shadow-strong);
+}
+
+.arenaguide-live-media {
+    position: relative;
+    height: 165px;
+    margin: -24px -24px 22px;
+    overflow: hidden;
+    border-radius: 22px 22px 0 0;
+    background: #06120b;
+}
+
+.arenaguide-live-media video,
+.arenaguide-live-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.arenaguide-live-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.04), rgba(6, 69, 31, 0.58));
+}
+
+.arenaguide-live-badge {
+    position: absolute;
+    z-index: 2;
+    top: 14px;
+    inset-inline-start: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    color: #ffffff;
+    background: rgba(220, 38, 38, 0.9);
+    font-weight: 800;
+    font-size: 0.78rem;
+}
+
+.arenaguide-live-badge span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ffffff;
+    animation: arenaguidePulse 1.4s infinite;
+}
+
+.arenaguide-live-teams {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 14px;
+    align-items: center;
+    text-align: center;
+}
+
+.arenaguide-live-team img {
+    width: 62px;
+    height: 62px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 10px;
+}
+
+.arenaguide-live-team strong {
+    display: block;
+    font-weight: 800;
+    line-height: 1.3;
+}
+
+.arenaguide-live-score {
+    min-width: 88px;
+    padding: 12px 10px;
+    border-radius: 16px;
+    background: rgba(6, 69, 31, 0.06);
+}
+
+.arenaguide-live-score strong {
+    display: block;
+    color: var(--arenaguide-green);
+    font-size: 2rem;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.arenaguide-live-score small {
+    display: block;
+    margin-top: 7px;
+    color: #dc2626;
+    font-weight: 800;
+}
+
+.arenaguide-live-meta {
+    display: flex;justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 22px 0;
+    color: var(--arenaguide-muted);
+    font-size: 0.9rem;
+}
+
+.arenaguide-live-meta i {
+    color: var(--arenaguide-green-2);
+}
+
+.arenaguide-card-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 22px;
+}
+
+.arenaguide-featured-section {
+    background:
+        radial-gradient(circle at 12% 18%, rgba(212, 166, 42, 0.10), transparent 32%),
+        linear-gradient(180deg, #ffffff, #f2f7f3);
+}
+
+.arenaguide-featured-card {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    overflow: hidden;
+    min-height: 430px;
+    border-radius: 26px;
+    text-decoration: none;
+    background: #f4faf5;
+    border: 1px solid rgba(6, 69, 31, 0.10);
+    box-shadow: var(--arenaguide-shadow);
+    transition: var(--arenaguide-transition);
+}
+
+.arenaguide-featured-card:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: var(--arenaguide-shadow-strong);
+}
+
+.arenaguide-featured-media {
+    overflow: hidden;
+}
+
+.arenaguide-featured-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--arenaguide-transition);
+}
+
+.arenaguide-featured-card:hover .arenaguide-featured-media img {
+    transform: scale(1.06);
+}
+
+.arenaguide-featured-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 42px;
+}
+
+.arenaguide-featured-content h2 {
+    margin: 0 0 18px;
+    color: var(--arenaguide-text);
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    line-height: 1.05;
+    font-weight: 800;
+}
+
+.arenaguide-featured-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 18px;
+    color: var(--arenaguide-muted);
+    font-weight: 700;
+}
+
+.arenaguide-featured-meta i {
+    color: var(--arenaguide-green-2);
+}
+
+.arenaguide-featured-content p {
+    margin: 0 0 26px;
+    color: var(--arenaguide-muted);
+    line-height: 1.8;
+}
+.arenaguide-featured-content .arenaguide-action-outline,
+.arenaguide-featured-content .arenaguide-action-solid {
+    width: 100%;
+}
+
+.arenaguide-featured-content .arenaguide-action-solid {
+    margin-top: 12px;
+}
+
+.arenaguide-ticket-section {
+    padding: 80px 0;
+    background:
+        radial-gradient(circle at 90% 15%, rgba(34, 197, 94, 0.09), transparent 28%),
+        linear-gradient(180deg, #f8fbf8, #f2f7f3);
+}
+
+.arenaguide-ticket-header {
+    margin-bottom: 32px;
+}
+
+.arenaguide-ticket-header p {
+    margin-bottom: 20px;
+}
+
+.arenaguide-ticket-filter {
+    width: fit-content;
+    margin: 0 auto;
+    display: inline-flex;
+    gap: 6px;
+    padding: 7px;
+    border-radius: 999px;
+    background: #ffffff;
+    border: 1px solid rgba(6, 69, 31, 0.12);
+    box-shadow: 0 14px 35px rgba(6, 22, 12, 0.08);
+}
+
+.arenaguide-ticket-filter button {
+    height: 38px;
+    padding: 0 15px;
+    border: 0;
+    border-radius: 999px;
+    color: var(--arenaguide-muted);
+    background: transparent;
+    font-size: 0.88rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.arenaguide-ticket-filter button:hover,
+.arenaguide-ticket-filter button.is-active {
+    color: #ffffff;
+    background: var(--arenaguide-green-2);
+}
+
+.arenaguide-ticket-dropdown {
+    display: none;
+    width: 100%;
+    height: 48px;
+    margin-top: 18px;
+    padding: 0 15px;
+    border-radius: 16px;
+    border: 1px solid rgba(6, 69, 31, 0.16);
+    background: #ffffff;
+    color: var(--arenaguide-text);
+    font-weight: 800;
+}
+
+.arenaguide-booking-list {
+    display: grid;
+    gap: 14px;
+}
+
+.arenaguide-booking-card {
+    display: grid;
+    grid-template-columns: 1.45fr 1.25fr 0.85fr 1.25fr;
+    align-items: center;
+    gap: 18px;
+    padding: 16px 18px;
+    min-height: 116px;
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.94);
+    border: 1px solid rgba(6, 69, 31, 0.10);
+    box-shadow: 0 16px 40px rgba(6, 22, 12, 0.07);
+    position: relative;
+    overflow: hidden;
+    transition: 0.3s ease;
+}
+
+.arenaguide-booking-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(15, 122, 59, 0.28);
+    box-shadow: 0 22px 60px rgba(6, 22, 12, 0.12);
+}
+
+.arenaguide-booking-card[hidden] {
+    display: none !important;
+}
+
+.arenaguide-booking-badge {
+    position: absolute;
+    top: 14px;
+    inset-inline-end: 14px;padding: 7px 12px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 900;
+}
+
+.arenaguide-booking-badge.available {
+    color: #ffffff;
+    background: #0f7a3b;
+}
+
+.arenaguide-booking-badge.sold {
+    color: #ffffff;
+    background: #dc2626;
+}
+
+.arenaguide-booking-badge.upcoming {
+    color: #06451f;
+    background: #f5cc55;
+}
+
+.arenaguide-booking-teams {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+}
+
+.arenaguide-booking-team img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 5px;
+}
+
+.arenaguide-booking-team strong {
+    display: block;
+    color: var(--arenaguide-text);
+    font-size: 0.92rem;
+    font-weight: 900;
+    line-height: 1.25;
+}
+
+.arenaguide-booking-vs {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    background: var(--arenaguide-gradient);
+    font-size: 0.78rem;
+    font-weight: 900;
+    box-shadow: 0 10px 22px rgba(15, 122, 59, 0.24);
+}
+
+.arenaguide-booking-info {
+    display: grid;
+    gap: 8px;
+}
+
+.arenaguide-booking-info span {
+    color: var(--arenaguide-muted);
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.arenaguide-booking-info i {
+    color: var(--arenaguide-green-2);
+    margin-inline-end: 7px;
+}
+
+.arenaguide-booking-status {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.arenaguide-booking-status div {
+    padding: 10px 12px;
+    border-radius: 15px;
+    background: rgba(6, 69, 31, 0.055);
+}
+
+.arenaguide-booking-status small {
+    display: block;
+    margin-bottom: 2px;
+    color: var(--arenaguide-muted);
+    font-size: 0.72rem;
+    font-weight: 800;
+}
+
+.arenaguide-booking-status strong {
+    color: var(--arenaguide-green);
+    font-size: 1rem;
+    font-weight: 900;
+}
+
+.arenaguide-booking-progress {
+    grid-column: 1 / -1;
+    height: 6px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgba(6, 69, 31, 0.10);
+}
+
+.arenaguide-booking-progress div {
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #0f7a3b, #22c55e, #d4a62a);
+    transition: width 0.45s ease;
+}
+
+.arenaguide-booking-actions {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 8px;
+}
+
+.arenaguide-booking-actions .arenaguide-action-outline,
+.arenaguide-booking-actions .arenaguide-action-solid,
+.arenaguide-booking-actions .arenaguide-action-disabled {
+    min-height: 40px;
+    padding: 9px 14px;
+    border-radius: 14px;
+    font-size: 0.88rem;
+}
+
+.arenaguide-empty {
+    grid-column: 1 / -1;
+    padding: 44px;
+    text-align: center;
+    border-radius: 22px;
+    background: #ffffff;
+    box-shadow: var(--arenaguide-shadow);
+}
+
+.arenaguide-empty i {
+    color: var(--arenaguide-green-2);
+    font-size: 2rem;
+}
+
+.arenaguide-empty h3 {
+    margin: 14px 0 8px;
+    color: var(--arenaguide-text);
+}
+
+.arenaguide-empty p {
+    margin: 0;
+    color: var(--arenaguide-muted);
+}
+
+.arenaguide-reveal {
+    opacity: 0;
+    transform: translateY(36px);
+    transition: 0.75s ease;
+}
+
+.arenaguide-reveal.arenaguide-show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+body.arena-body.is-dark {
+    background:
+        radial-gradient(circle at 18% 8%, rgba(34, 197, 94, 0.18), transparent 28%),
+        linear-gradient(180deg, #07120d, #0b1711);
+}
+
+body.arena-body.is-dark .arenaguide-section {
+    background: linear-gradient(180deg, #0b1711, #101d16);
+}
+
+body.arena-body.is-dark .arenaguide-featured-section {
+    background:
+        radial-gradient(circle at 85% 20%, rgba(34, 197, 94, 0.15), transparent 32%),
+        linear-gradient(180deg, #111e16, #0b1711);
+}
+
+body.arena-body.is-dark .arenaguide-ticket-section {
+    background:
+        radial-gradient(circle at 90% 15%, rgba(34, 197, 94, 0.15), transparent 30%),
+        linear-gradient(180deg, #0b1711, #101d16);
+}
+
+body.arena-body.is-dark .arenaguide-section-head h2,
+body.arena-body.is-dark .arenaguide-featured-content h2,
+body.arena-body.is-dark .arenaguide-ticket-header h2,
+body.arena-body.is-dark .arenaguide-empty h3,
+body.arena-body.is-dark .arenaguide-live-team strong,
+body.arena-body.is-dark .arenaguide-booking-team strong {
+    color: #ffffff;
+}
+
+body.arena-body.is-dark .arenaguide-section-head p,
+body.arena-body.is-dark .arenaguide-featured-content p,
+body.arena-body.is-dark .arenaguide-featured-meta,
+body.arena-body.is-dark .arenaguide-ticket-header p,
+body.arena-body.is-dark .arenaguide-empty p,
+body.arena-body.is-dark .arenaguide-live-meta,
+body.arena-body.is-dark .arenaguide-booking-info span,
+body.arena-body.is-dark .arenaguide-booking-status small {
+    color: rgba(255, 255, 255, 0.68);
+}
+
+body.arena-body.is-dark .arenaguide-live-card,
+body.arena-body.is-dark .arenaguide-featured-card,
+body.arena-body.is-dark .arenaguide-empty,
+body.arena-body.is-dark .arenaguide-booking-card {
+    background: rgba(255, 255, 255, 0.065);
+    border-color: rgba(255, 255, 255, 0.10);
+    backdrop-filter: blur(18px);
+    color: #ffffff;
+}
+
+body.arena-body.is-dark .arenaguide-live-card:hover,
+body.arena-body.is-dark .arenaguide-featured-card:hover {
+    background:
+        linear-gradient(rgba(255, 255, 255, 0.065), rgba(255, 255, 255, 0.065)) padding-box,
+        var(--arenaguide-gradient) border-box;
+}
+
+body.arena-body.is-dark .arenaguide-live-score,
+body.arena-body.is-dark .arenaguide-ticket-filter,
+body.arena-body.is-dark .arenaguide-booking-status div {
+    background: rgba(255, 255, 255, 0.075);
+    border-color: rgba(255, 255, 255, 0.10);
+}
+
+body.arena-body.is-dark .arenaguide-live-score strong,
+body.arena-body.is-dark .arenaguide-booking-status strong {
+    color: var(--arenaguide-gold-light);
+}
+
+body.arena-body.is-dark .arenaguide-ticket-filter button {
+    color: #ffffff;
+}
+
+body.arena-body.is-dark .arenaguide-ticket-dropdown {
+    color: #ffffff;
+    background: #101d16;
+    border-color: rgba(255, 255, 255, 0.14);
+}
+
+body.arena-body.is-dark .arenaguide-action-outline {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.18);
+}
+
+body.arena-body.is-dark .arenaguide-action-outline:hover {
+    background: var(--arenaguide-gradient);
+    border-color: transparent;
+}
+
+@keyframes arenaguidePulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.65);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(220, 38, 38, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(220, 38, 38, 0);
+    }
+}
+
+@media (max-width: 991px) {
+    .arenaguide-section {
+        padding: 72px 0;
+    }
+
+    .arenaguide-live-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .arenaguide-featured-card {
+        grid-template-columns: 1fr;
+    }
+
+    .arenaguide-featured-media {
+        height: 330px;
+    }
+
+    .arenaguide-booking-card {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .arenaguide-booking-actions {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 767px) {
+    .arenaguide-container,
+    .arenaguide-slide-content {
+        width: min(100% - 30px, 1180px);
+    }
+
+    .arenaguide-slider {
+        min-height: 82vh;
+    }
+
+    .arenaguide-slide-content h1 {
+        font-size: clamp(2.4rem, 10vw, 3rem);
+        letter-spacing: -1px;
+    }
+
+    .arenaguide-slide-content p {
+        font-size: 0.95rem;
+    }
+
+    .arenaguide-slider-btn {
+        top: auto;
+        bottom: 28px;
+        width: 40px;
+        height: 40px;
+        transform: none;
+    }
+
+    .arenaguide-slider-btn.prev {
+        inset-inline-start: 18px;
+        transform: none;
+    }
+
+    .arenaguide-slider-btn.next {
+        inset-inline-end: 18px;
+        transform: none;
+    }
+
+    .arenaguide-slider-btn.prev:hover,
+    .arenaguide-slider-btn.next:hover {
+        transform: scale(1.08);
+    }
+
+    .arenaguide-live-grid,
+    .arenaguide-live-teams,
+    .arenaguide-booking-card,
+    .arenaguide-booking-teams {
+        grid-template-columns: 1fr;
+    }
+
+    .arenaguide-live-score {
+        width: 100%;
+    }
+
+    .arenaguide-card-actions,
+    .arenaguide-booking-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .arenaguide-featured-content {
+        padding: 28px;
+    }
+
+    .arenaguide-featured-media {
+        height: 250px;
+    }
+
+    .arenaguide-featured-meta {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .arenaguide-ticket-filter {
+        display: none;
+    }
+
+    .arenaguide-ticket-dropdown {
+        display: block;
+    }
+
+    .arenaguide-booking-card {
+        padding: 18px;
+    }
+
+    .arenaguide-booking-vs {
+        margin: 4px auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .arenaguide-container,
+    .arenaguide-slide-content {
+        width: min(100% - 24px, 1180px);
+    }
+
+    .arenaguide-section,
+    .arenaguide-ticket-section {
+        padding: 58px 0;
+    }
+
+    .arenaguide-slide-content h1 {
+        font-size: 2.25rem;
+        line-height: 1.05;
+    }
+
+    .arenaguide-slide-content p {
+        font-size: 0.92rem;
+    }
+
+    .arenaguide-section-head h2,
+    .arenaguide-ticket-header h2 {
+        font-size: 2rem;
+    }
+
+    .arenaguide-live-card,
+    .arenaguide-featured-content,
+    .arenaguide-booking-card {
+        padding: 20px;
+    }
+
+    .arenaguide-live-media {
+        margin: -20px -20px 20px;
+        height: 145px;
+    }
+
+    .arenaguide-featured-media {
+        height: 220px;
+    }
+
+    .arenaguide-booking-status {
+        grid-template-columns: 1fr;
+    }
+}

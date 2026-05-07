@@ -1,0 +1,71 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Parking Payment" %}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/payment_check.css' %}">
+<link rel="stylesheet" href="https://cdn.moyasar.com/mpf/1.14.0/moyasar.css">
+{% endblock %}
+
+{% block content %}
+
+<section class="payment-page">
+    <div class="payment-wrapper">
+
+        <div class="payment-card">
+            <div class="payment-header">
+                <h1>{% trans "Complete Parking Payment" %}</h1>
+                <p>{% trans "Your parking reservation will only be confirmed after successful payment." %}</p>
+            </div>
+
+            <div class="mysr-form"></div>
+            <a href="{% url 'booking:my_tickets' %}" class="back-link">
+                {% trans "Back to My Tickets" %}
+            </a>
+        </div>
+
+        <aside class="payment-summary-card">
+            <h3>{% trans "Parking Summary" %}</h3>
+            <div class="summary-row">
+                <span>{% trans "Match" %}</span>
+                <strong>{{ reservation.match.home_team.name }} vs {{ reservation.match.away_team.name }}</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>{% trans "Stadium" %}</span>
+                <strong>{{ reservation.stadium.name }}</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>{% trans "Ticket" %}</span>
+                <strong>{{ reservation.ticket.ticket_code }}</strong>
+            </div>
+
+            <div class="summary-total">
+                <span>{% trans "Total" %}</span>
+                <strong>{{ reservation.price }} {% trans "SAR" %}</strong>
+            </div>
+        </aside>
+    </div>
+</section>
+
+<script src="https://cdn.moyasar.com/mpf/1.14.0/moyasar.js"></script>
+
+<script>
+    Moyasar.init({
+        element: ".mysr-form",
+        amount: {{ reservation.price|floatformat:0 }} * 100,
+        currency: "SAR",
+        description: "ArenaGuide Parking Reservation",
+        publishable_api_key: "{{ moyasar_publishable_key }}",
+        callbackUrl: window.location.origin + "{% url 'payment:parking_success' reservation.id %}",
+        methods: ["creditcard"],
+        credit_card: {
+            save_card: false
+        }
+    });
+</script>
+
+{% endblock %}

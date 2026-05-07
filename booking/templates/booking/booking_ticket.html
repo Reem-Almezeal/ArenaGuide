@@ -1,0 +1,120 @@
+<!--
+Ticket Booking Page for ArenaGuide
+
+Displays match details and allows users to book a ticket.
+
+Features:
+    - Shows match info (teams, stadium, date).
+    - Seat selection grouped by categories with pricing.
+    - Booking steps UI (Select Seat → Add-ons → Review).
+    - Optional parking selection.
+    - Booking summary with selected seat.
+    - Handles user states
+Usage:
+    Renders seats dynamically and submits selected seat
+    and parking to booking confirmation endpoint.
+-->
+{% extends "core/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}Book Ticket{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/booking_ticket.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="booking-page">
+    <div class="booking-header">
+        <h1>{{ match.home_team.name }} vs {{ match.away_team.name }}</h1>
+        <p>{{ match.stadium.name }} • {{ match.start_datetime }}</p>
+    </div>
+
+    <div class="booking-steps">
+        <div class="step active">1. Select Seat</div>
+        <div class="step">2. Visitor Details</div>
+        <div class="step">3. Review & Payment</div>
+    </div>
+
+    <div class="booking-layout">
+
+        <div class="seat-section">
+            {% for category_name, data in categories.items %}
+                <div class="seat-category">
+                    <h3>{{ category_name }} - {{ data.category.base_price }} SAR</h3>
+
+                    <div class="seat-grid">
+                        {% for item in data.seats %}
+                            <button type="button" class="seat {% if item.is_booked %}booked{% endif %}" data-seat-id="{{ item.id }}" data-price="{{ item.price }}" data-section="{{ item.section }}" data-row="{{ item.row }}" data-number="{{ item.number }}" data-gate="{{ item.gate }}" data-view-quality="{{ item.view_quality }}" data-shaded="{{ item.is_shaded }}" data-sun-exposure="{{ item.sun_exposure }}" data-notes="{{ item.notes }}"
+                            {% if item.is_booked %}disabled{% endif %}>
+                                {{ item.number }}
+                            </button>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% empty %}
+                <div class="seat-category">
+                    <h3>No seats available</h3>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="booking-summary">
+            <h3>Booking Summary</h3>
+
+            <div id="selectedSeat">
+                <p>No seat selected</p>
+            </div>
+
+            <div class="parking-section">
+                <label class="parking-toggle">
+                    <input type="checkbox" id="addParking" name="add_parking">
+                    <span>
+                        <strong>Add Parking</strong>
+                        <small>Reserve a parking spot with your ticket</small>
+                    </span>
+                </label>
+
+                <div class="parking-cards" id="parkingCards">
+                    {% for p in parking_options %}
+                        <button type="button" class="parking-card" data-parking-id="{{ p.id }}" data-parking-name="{{ p.name }}">
+                        <div>
+                            <strong>{{ p.name }}</strong>
+                            <small>{{ p.location|default:"Available parking area" }}</small>
+                        </div></button>
+                    {% empty %}
+                        <p class="parking-empty">No parking areas available.</p>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <form method="POST" action="{% url 'booking:booking_details' match.id %}">
+                {% csrf_token %}
+
+                <input type="hidden" name="seat_ids" id="seatInput">
+                <input type="hidden" name="parking_id" id="parkingInput">
+                {% if not user.is_authenticated %}
+                    <a href="{% url 'account:login' %}" class="btn primary">
+                        Login to Continue
+                    </a>
+                {% elif user_has_ticket %}
+                    <button type="button" class="btn disabled">
+                        You already booked
+                    </button>
+                {% else %}
+                    <button type="submit" class="btn primary" id="nextBtn" disabled>
+                        Next
+                    </button>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/booking_ticket.js' %}"></script>
+{% endblock %}

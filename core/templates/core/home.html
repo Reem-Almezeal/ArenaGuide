@@ -1,8 +1,15 @@
-{% extends 'core/base.html' %}
+<!--
+Home page for ArenaGuide.
+Introduces the platform and highlights the main services including:
+quick access to important platform features and upcoming matches
+-->
+
+{% extends "core/base.html" %}
 {% load static %}
 {% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 
-{% block title %}{% trans "Home" %}HOME{% endblock %}
+{% block title %}ArenaGuide | Home{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
@@ -10,10 +17,323 @@
 
 {% block content %}
 
+<section class="ag-hero">
+    <div class="ag-hero-bg"></div>
+    <div class="ag-hero-glass"></div>
 
-    <h1>{% trans "hi" %}</h1>
+    <div class="ag-hero-content ag-reveal">
+        <h1>{% trans "Your Match-Day Journey Starts Here" %}</h1>
+
+        <div class="ag-hero-stats">
+            <a href="{% url 'match:matches' %}" class="ag-stat-card">
+                <strong id="worldCupCountdown">000</strong>
+                <span>{% trans "Days to World Cup 2034" %}</span>
+            </a>
+
+            <a href="{% url 'match:matches' %}" class="ag-stat-card">
+                <strong id="ticketsSold">128,400</strong>
+                <span>{% trans "Tickets Sold" %}</span>
+            </a>
+
+            <a href="{% url 'match:matches' %}" class="ag-stat-card">
+                <strong id="ticketsLeft">21,600</strong>
+                <span>{% trans "Tickets Left" %}</span>
+            </a>
+        </div>
+
+        <div class="ag-hero-actions">
+            <a href="#matches" class="ag-btn ag-btn-primary">
+                {% trans "Explore Matches" %}
+                <i class="bi bi-arrow-right"></i>
+            </a>
+
+            <a href="#services" class="ag-btn ag-btn-glass">
+                {% trans "Explore Services" %}
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="ag-partners">
+    <div class="ag-partners-track">
+        <span>Saudi Pro League</span>
+        <span>Ministry of Sport</span>
+        <span>FIFA World Cup 2034</span>
+        <span>Riyadh Season</span>
+        <span>Saudi Tourism</span>
+        <span>STC</span>
+        <span>Stadium Operators</span>
+
+        <span>Saudi Pro League</span>
+        <span>Ministry of Sport</span>
+        <span>FIFA World Cup 2034</span>
+        <span>Riyadh Season</span>
+        <span>Saudi Tourism</span>
+        <span>STC</span>
+        <span>Stadium Operators</span>
+    </div>
+</section>
+
+<section class="ag-section ag-featured-section">
+    <div class="ag-container">
+
+        <div class="ag-section-head ag-reveal">
+            <h2>{% trans "The next big match is almost here" %}</h2>
+        </div>
+
+        {% if featured_match %}
+        <a href="{% url 'match:matches' %}" class="ag-featured-card ag-reveal">
+            <div class="ag-featured-media">
+                {% if featured_match.poster %}
+                    <img src="{{ featured_match.poster.url }}" alt="{{ featured_match }}">
+                {% else %}
+                    <img src="{% static 'image/footbal.png' %}" alt="Featured match">
+                {% endif %}
+            </div>
+
+            <div class="ag-featured-content">
+                <h3>
+                    {{ featured_match.home_team.name }}
+                    vs
+                    {{ featured_match.away_team.name }}
+                </h3>
+
+                <div class="ag-featured-meta">
+                    <span>
+                        <i class="bi bi-geo-alt"></i>
+                        {{ featured_match.stadium.name }}
+                    </span>
+
+                    <span>
+                        <i class="bi bi-calendar-event"></i>
+                        {{ featured_match.start_datetime|date:"D, M d - h:i A" }}
+                    </span>
+                </div>
+
+                <p>
+                    {% trans "A high-demand match with limited seats and parking availability" %}
+                </p>
+
+                <div class="ag-featured-actions">
+                    <span class="ag-action-btn">
+                        {% trans "Book Now" %}
+                    </span>
+                </div>
+            </div>
+        </a>
+        {% endif %}
+
+        <div class="ag-more ag-reveal">
+            <a href="{% url 'match:matches' %}">
+                {% trans "View More Upcoming Matches" %}
+                <i class="bi bi-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="ag-section" id="matches">
+    <div class="ag-container">
+        <div class="ag-section-head ag-reveal">
+            <h2>{% trans "Live and available matches" %}</h2>
+        </div>
+
+        <div class="ag-match-grid">
+            <a href="{% url 'match:matches' %}" class="ag-match-card ag-reveal">
+                <div class="ag-match-media">
+                    <video autoplay muted loop playsinline poster="{% static 'image/match-1.jpg' %}">
+                        <source src="{% static 'video/match.mp4' %}" type="video/mp4">
+                    </video>
+                    <span class="ag-status live">{% trans "Live Now" %}</span>
+                </div>
+
+                <div class="ag-match-body">
+                    <h3>Al Hilal vs Al Nassr</h3>
+                    <p><i class="bi bi-geo-alt"></i> King Fahd Stadium</p>
+                    <p><i class="bi bi-calendar-event"></i> Today, 8:00 PM</p>
+
+                    <div class="ag-card-actions">
+                        <span class="ag-action-btn ag-action-btn-outline">{% trans "Details" %}</span>
+                        <span class="ag-action-btn ag-disabled">{% trans "Booking Closed" %}</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="{% url 'match:matches' %}" class="ag-match-card ag-reveal">
+                <div class="ag-match-media">
+                    <img src="{% static 'image/footbal.png' %}" alt="Match">
+                    <span class="ag-status available">{% trans "Available" %}</span>
+                </div>
+
+                <div class="ag-match-body">
+                    <h3>Al Ittihad vs Al Ahli</h3>
+                    <p><i class="bi bi-geo-alt"></i> King Abdullah Sports City</p>
+                    <p><i class="bi bi-calendar-event"></i> Monday, 9:00 PM</p>
+
+                    <div class="ag-card-actions">
+                        <span class="ag-action-btn ag-action-btn-outline">{% trans "Details" %}</span>
+                        <span class="ag-action-btn">{% trans "Book Now" %}</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="{% url 'match:matches' %}" class="ag-match-card ag-reveal">
+                <div class="ag-match-media">
+                    <img src="{% static 'image/footbal.png' %}" alt="Match">
+                    <span class="ag-status upcoming">{% trans "Upcoming" %}</span>
+                </div>
+
+                <div class="ag-match-body">
+                    <h3>Saudi Arabia vs Japan</h3>
+                    <p><i class="bi bi-geo-alt"></i> Riyadh Stadium</p>
+                    <p><i class="bi bi-calendar-event"></i> Friday, 7:30 PM</p>
+
+                    <div class="ag-card-actions">
+                        <span class="ag-action-btn ag-action-btn-outline">{% trans "Details" %}</span>
+                        <span class="ag-action-btn">{% trans "Book Now" %}</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="ag-more ag-reveal">
+            <a href="{% url 'match:matches' %}">
+                {% trans "View More Matches" %}
+                <i class="bi bi-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="ag-section ag-about" id="about">
+    <div class="ag-container ag-about-wrap">
+        <div class="ag-about-text ag-reveal">
+            <span>{% trans "About ArenaGuide" %}</span>
+            <h2>{% trans "A complete platform for every stadium visitor." %}</h2>
+            <p>
+                {% trans "ArenaGuide brings matches, tickets, parking, restaurants, cafes, events, and emergency services into one smooth experience." %}
+            </p>
+            <a href="/{{ LANGUAGE_CODE }}/about/" class="ag-btn ag-btn-primary">{% trans "Learn More" %}</a>
+        </div>
+
+        <div class="ag-about-media ag-reveal">
+            <img src="{% static 'image/logo.png' %}" alt="ArenaGuide">
+        </div>
+    </div>
+</section>
+
+<section class="ag-section ag-news">
+    <div class="ag-container">
+        <div class="ag-section-head ag-reveal">
+            <h2>{% trans "Important match-day updates" %}</h2>
+        </div>
+
+        <div class="ag-news-layout">
+            <a href="#" class="ag-news-main ag-reveal">
+                <img src="{% static 'image/footbal.png' %}" alt="News">
+                <div>
+                    <span>{% trans "World Cup 2034" %}</span>
+                    <h3>{% trans "New stadium services prepared for international visitors" %}</h3>
+                    <p>{% trans "ArenaGuide introduces smarter ticket, parking, and visitor support experiences." %}</p>
+                </div>
+            </a>
+
+            <div class="ag-news-side">
+                <a href="#" class="ag-news-mini ag-reveal">
+                    <span>{% trans "Tickets" %}</span>
+                    <h3>{% trans "High demand expected for the next Riyadh derby" %}</h3>
+                </a>
+
+                <a href="#" class="ag-news-mini ag-reveal">
+                    <span>{% trans "Services" %}</span>
+                    <h3>{% trans "More cafes and restaurants added near stadium gates" %}</h3>
+                </a>
+
+                <a href="#" class="ag-news-mini ag-reveal">
+                    <span>{% trans "Safety" %}</span>
+                    <h3>{% trans "Emergency points are now easier to find through stadium maps" %}</h3>
+                </a>
+            </div>
+        </div>
+
+        <div class="ag-more ag-reveal">
+            <a href="/{{ LANGUAGE_CODE }}/news/">
+                {% trans "View More News" %}
+                <i class="bi bi-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+
+<section class="ag-section" id="services">
+    <div class="ag-container">
+        <div class="ag-section-head ag-reveal">
+
+            <h2>{% trans "Everything around your match" %}</h2>
+        </div>
+
+        <div class="ag-service-grid">
+            <a href="/{{ LANGUAGE_CODE }}/services/" class="ag-service-card ag-reveal">
+                <img src="{% static 'image/footbal.png' %}" alt="Restaurants">
+                <div>
+                    <i class="bi bi-shop"></i>
+                    <h3>{% trans "Restaurants" %}</h3>
+                    <p>{% trans "Find food options inside and around the stadium." %}</p>
+                    <span>{% trans "View" %}</span>
+                </div>
+            </a>
+
+            <a href="/{{ LANGUAGE_CODE }}/services/" class="ag-service-card ag-reveal">
+                <img src="{% static 'image/footbal.png' %}" alt="Cafes">
+                <div>
+                    <i class="bi bi-cup-hot"></i>
+                    <h3>{% trans "Cafes" %}</h3>
+                    <p>{% trans "Discover cafes for before and after the match." %}</p>
+                    <span>{% trans "View" %}</span>
+                </div>
+            </a>
+
+            <a href="/{{ LANGUAGE_CODE }}/services/" class="ag-service-card ag-reveal">
+                <img src="{% static 'image/footbal.png' %}" alt="Events">
+                <div>
+                    <i class="bi bi-calendar2-event"></i>
+                    <h3>{% trans "Events" %}</h3>
+                    <p>{% trans "Explore match-day activities and events." %}</p>
+                    <span>{% trans "View" %}</span>
+                </div>
+            </a>
+
+            <a href="/{{ LANGUAGE_CODE }}/services/" class="ag-service-card ag-reveal">
+                <img src="{% static 'image/footbal.png' %}" alt="Emergency">
+                <div>
+                    <i class="bi bi-hospital"></i>
+                    <h3>{% trans "Emergency" %}</h3>
+                    <p>{% trans "Quick access to urgent help and support." %}</p>
+                    <span>{% trans "View" %}</span>
+                </div>
+            </a>
+        </div>
+
+        <div class="ag-more ag-reveal"><a href="/{{ LANGUAGE_CODE }}/services/">
+                {% trans "View More Services" %}
+                <i class="bi bi-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+
+<section class="ag-final">
+    <div class="ag-container ag-reveal">
+        <h2>{% trans "Ready for your next match?" %}</h2>
+        <p>{% trans "Start exploring matches, tickets, parking, and services now." %}</p>
+        <a href="{% url 'match:matches' %}" class="ag-btn ag-btn-primary">{% trans "Get Started" %}</a>
+    </div>
+</section>
+
+{% endblock %}
 
 {% block extra_js %}
-<link rel="stylesheet" href="{% static 'js/home.js' %}">
-{% endblock %}
+<script src="{% static 'js/home.js' %}"></script>
 {% endblock %}

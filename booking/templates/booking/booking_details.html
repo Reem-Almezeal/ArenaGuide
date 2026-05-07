@@ -1,0 +1,200 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}Booking Details{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/booking_details.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="booking-details-page">
+    <div class="booking-details-container">
+        <div class="booking-details-header">
+            <span>Visitor Verification</span>
+            <h1>Complete your booking details</h1>
+            <p>Enter accurate information for each ticket holder before payment.</p>
+        </div>
+
+        <div class="booking-details-steps">
+            <div class="step done">1. Select Seats</div>
+            <div class="step active">2. Visitor Details</div>
+            <div class="step">3. Payment</div>
+        </div>
+
+        {% if messages %}
+        <div class="toast-container">
+            {% for message in messages %}
+                <div class="toast-message {{ message.tags }}">
+                    <span class="toast-icon"><i class="bi bi-exclamation-triangle-fill"></i></span>
+                    <span>{{ message }}</span>
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="booking-details-layout">
+            <form class="visitor-form" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <input type="hidden" name="booking_details_submit" value="1">
+                {% for seat in seats %}
+                    <input type="hidden" name="seat_ids" value="{{ seat.id }}">
+                {% endfor %}
+
+                {% if parking %}
+                    <input type="hidden" name="parking_id" value="{{ parking.id }}">
+                {% endif %}
+
+                <div class="form-card">
+                    <h2>Ticket Holders</h2>
+
+                    {% for seat in seats %}
+                        <div class="ticket-holder-card">
+
+                            <div class="ticket-holder-head">
+                                <h4>Ticket {{ forloop.counter }} : <span>Section {{ seat.section }} • Row {{ seat.row }} • Seat {{ seat.number }}</span></h4>          
+                            </div>
+                            <br>
+
+                            <div class="form-grid">
+
+                                <div class="form-group full">
+                                    <label>Full Name</label>
+                                    <input type="text" name="full_name_{{ forloop.counter }}" placeholder="Enter full name">
+                                    <small>Use the same name shown on ID or passport.</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Holder Type</label>
+                                    <select name="holder_type_{{ forloop.counter }}">
+                                        <option value="mr">Mr</option>
+                                        <option value="ms">Ms</option>
+                                        <option value="child">Child</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Date of Birth</label>
+                                    <input type="date" name="date_of_birth_{{ forloop.counter }}" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>ID Type</label>
+                                    <select name="id_type_{{ forloop.counter }}" required>
+                                        <option value="national_id">National ID</option>
+                                        <option value="iqama">Iqama</option>
+                                        <option value="passport">Passport</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>ID / Iqama / Passport Number</label>
+                                    <input type="text"name="id_number_{{ forloop.counter }}"maxlength="10"placeholder="Enter ID number"required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>ID / Passport Last 4 Digits</label>
+                                    <input  type="text"name="id_last4_{{ forloop.counter }}"maxlength="4"placeholder="1234"required>
+                                </div>
+                                <div class="form-group">
+                                    <label>ID Document Optional</label>
+                                    <input type="file"name="id_document_{{ forloop.counter }}"accept="image/png, image/jpeg, image/jpg">
+                                </div>
+                                                                <br>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    <div class="contact-details-card">
+                        <h2>Contact Details</h2>
+                        <div class="form-grid">
+
+                            <div class="form-group">
+                                <label>Email Address</label><input type="email" name="email" id="email" placeholder="example@email.com">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="tel" name="phone" id="phone" placeholder="05xxxxxxxx">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="verification-note">
+                        <p>
+                            This prototype uses local validation and a mock identity verification layer.
+                            Uploading ID images is optional for easier testing and privacy.
+                            The verification layer is prepared for future integration with providers such as Veriff, Sumsub, Onfido, or Nafath.
+                        </p>
+                    </div>
+
+                    <button type="submit" class="details-submit-btn" id="detailsSubmitBtn" >
+                        Verify Details & Continue
+                    </button>
+                </div>
+            </form>
+
+            <aside class="booking-review-card">
+                <h3>Booking Review</h3>
+
+                <div class="review-match">
+                    <strong>{{ match.home_team.name }} vs {{ match.away_team.name }}</strong>
+                    <span>{{ match.stadium.name }}</span>
+                    <span>{{ match.start_datetime|date:"M d, Y - h:i A" }}</span>
+                </div>
+
+                <div class="review-seat">
+                    <span>Selected Seats</span>
+                    {% for seat in seats %}
+                        <div class="review-seat-item">
+                            <strong>Section {{ seat.section }} • Row {{ seat.row }} • Seat {{ seat.number }}</strong>
+                            <div class="review-details">
+
+                                <div>
+                                    <small>View</small>
+                                    <b>{{ seat.get_view_quality_display }}</b>
+                                </div>
+
+                                <div>
+                                    <small>Shade</small>
+                                    <b>{% if seat.is_shaded %}Yes{% else %}No{% endif %}</b>
+                                </div>
+
+                                <div>
+                                    <small>Sun</small>
+                                    <b>{{ seat.get_sun_exposure_display }}</b>
+                                </div>
+
+                                <div>
+                                    <small>Gate</small>
+                                    <b>{% if seat.gate %}{{ seat.gate.name }}{% else %}N/A{% endif %}</b>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                {% if parking %}
+                    <div class="review-parking">
+                        <span>Parking Add-on</span>
+                        <strong>{{ parking.name }}</strong>
+                        <small>{{ parking.location }}</small>
+                    </div>
+                {% endif %}
+
+                <div class="review-total">
+                    <span>Total</span>
+                    <strong>{{ total_price }} SAR</strong>
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+{% block extra_js %}
+<script src="{% static 'js/booking_details.js' %}"></script>
+{% endblock %}

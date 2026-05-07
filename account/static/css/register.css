@@ -1,0 +1,96 @@
+.register-compact h1 {
+    font-size: 1.38rem;
+    margin-bottom: 6px;
+}
+
+.register-compact p {
+    font-size: 0.84rem;
+    margin-bottom: 14px;
+}
+
+.register-compact .auth-tabs {
+    height: 46px;
+    margin-bottom: 14px;
+}
+
+.register-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.register-form .full {
+    grid-column: span 2;
+}
+
+.register-form .auth-input {
+    height: 42px;
+}
+
+.register-form .auth-field label {
+    margin-bottom: 6px;
+    font-size: 0.8rem;
+}
+
+.register-form .auth-submit {
+    height: 46px;
+    margin-top: 2px;
+}
+
+
+@media (max-width: 991px) {
+    .register-form {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+    .register-form .full {
+        grid-column: span 2;
+    }
+}
+
+
+@media (max-width: 767px) {
+    .register-form {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .register-form .full {
+        grid-column: span 1;
+    }
+
+    .register-compact h1 {
+        font-size: 1.3rem;
+    }
+
+    .register-compact p {
+        font-size: 0.8rem;
+    }
+}
+@media (max-width: 480px) {
+    .register-compact h1 {
+        font-size: 1.2rem;
+    }
+
+    .register-compact p {
+        font-size: 0.76rem;
+        margin-bottom: 12px;
+    }
+
+    .register-compact .auth-tabs {
+        height: 42px;
+    }
+
+    .register-form {
+        gap: 10px;
+    }
+
+    .register-form .auth-input {
+        height: 40px;
+    }
+
+    .register-form .auth-submit {
+        height: 44px;
+    }
+}

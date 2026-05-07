@@ -1,0 +1,59 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Payment Success" %}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/payment_success.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="payment-success-page">
+    <div class="success-container">
+        <div class="success-card">
+
+            <div class="success-icon">
+                <i class="bi bi-check2-all"></i>
+            </div>
+
+            <h1>{% trans "Payment Successful" %}</h1>
+            <p>{% trans "Your booking has been confirmed successfully." %}</p>
+
+            <div class="success-details">
+                <p>
+                    <strong>{% trans "Match:" %}</strong>
+                    {{ booking.match.home_team.name }} {% trans "vs" %} {{ booking.match.away_team.name }}
+                </p>
+
+                <p>
+                    <strong>{% trans "Stadium:" %}</strong>
+                    {{ booking.match.stadium.name }}
+                </p>
+
+                <p>
+                    <strong>{% trans "Date:" %}</strong>
+                    {{ booking.match.start_datetime|date:"M d, Y - h:i A" }}
+                </p>
+
+                <p>
+                    <strong>{% trans "Total Paid:" %}</strong>
+                    {{ booking.total_price }} {% trans "SAR" %}
+                </p>
+                
+            </div>
+
+            <div class="success-actions">
+                <a href="{% url 'match:matches' %}" class="btn-outline">
+                    {% trans "Back To The Matches" %}
+                </a>
+                <a href="{% url 'booking:my_tickets'  %}" class="btn-primary">
+                    {% trans "View My Ticket" %}
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

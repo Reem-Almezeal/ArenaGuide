@@ -1,11 +1,30 @@
 from django.contrib import admin
-from .models import Payment
+from .models import PaymentTransaction
 
 
-@admin.register(Payment)
-class PaymentAdmin(admin.ModelAdmin):
-    list_display = ("booking", "amount", "payment_method", "payment_status", "paid_at")
-    list_filter = ("payment_status", "payment_method", "paid_at")
-    search_fields = ("booking__booking_code", "transaction_id")
-    ordering = ("-paid_at",)
-    readonly_fields = ("transaction_id", "paid_at")
+@admin.register(PaymentTransaction)
+class PaymentTransactionAdmin(admin.ModelAdmin):
+    list_display = (
+        "transaction_code",
+        "booking",
+        "user",
+        "amount",
+        "currency",
+        "status",
+        "provider",
+        "created_at",
+        "paid_at",
+    )
+
+    list_filter = ("status", "provider")
+
+    search_fields = (
+        "transaction_code",
+        "provider_reference",
+        "booking__id",
+        "user__username",
+    )
+
+    ordering = ("-created_at",)
+
+    readonly_fields = ("transaction_code", "paid_at", "created_at", "updated_at")
