@@ -12,9 +12,13 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
+from decouple import config
+from dotenv import load_dotenv
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv()
 
 
 # Quick-start development settings - unsuitable for production
@@ -52,6 +56,24 @@ INSTALLED_APPS = [
 
 
 AUTH_USER_MODEL = "account.User"
+LOGIN_URL = "account:login"
+LOGIN_REDIRECT_URL = "core:home"
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+MOYASAR_PUBLISHABLE_KEY = os.getenv("MOYASAR_PUBLISHABLE_KEY")
+
+
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+
+EMAIL_HOST = "smtp.sendgrid.net"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+EMAIL_HOST_USER = "apikey"
+EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
+
+DEFAULT_FROM_EMAIL = f"{config('EMAIL_FROM_NAME')} <{config('DEFAULT_FROM_EMAIL')}>"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
