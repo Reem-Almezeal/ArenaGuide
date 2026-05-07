@@ -109,8 +109,9 @@ Activate virtual environment:
 
 # Project Documentation
 
-[View Case Study]([Add-Case-Study-Link-Here](https://drive.google.com/file/d/1vXzB4MCTwjcIpTztSGVZqePEFLMdmxsv/view?usp=sharing))
-[View UML Diagram](Add-UML-Link-Here)
+[View Case Study](https://drive.google.com/file/d/1vXzB4MCTwjcIpTztSGVZqePEFLMdmxsv/view?usp=sharing)
+<br>
+[View UML Diagram](https://drive.google.com/file/d/1sJ5_iXtAtPGbIiwYItiOOqRMHlJUKr3j/view?usp=sharing)
 
 
 ### Developed By
