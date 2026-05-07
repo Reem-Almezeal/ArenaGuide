@@ -194,7 +194,9 @@ body.arena-body.is-dark .map-mark {
 
 body.arena-body.is-dark .info-box span {
     color: #aeb8b1 !important;
-}body.arena-body.is-dark .info-box strong,
+}
+
+body.arena-body.is-dark .info-box strong,
 body.arena-body.is-dark .announcement-list div {
     color: #f5f7f3 !important;
 }
@@ -262,8 +264,6 @@ body.arena-body.is-dark .map-mark {
         width: 100%;
     }
 }
-
-/* 480 */
 @media (max-width: 480px) {
     .seat-page {
         padding: 95px 16px 45px;

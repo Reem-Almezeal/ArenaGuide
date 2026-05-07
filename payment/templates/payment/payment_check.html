@@ -1,0 +1,88 @@
+<!--
+    Secure payment page for ArenaGuide ticket bookings.
+    This page integrates Moyasar payment gateway to process
+    ticket payments securely. It displays booking details,
+    match information, stadium, date, and total price before
+    completing the transaction.
+
+    Features:
+    - Moyasar payment integration
+    - Secure card payment form
+    - Booking summary display
+    - Match and stadium information
+    - Payment success redirection
+-->
+
+{% extends "core/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Secure Payment" %}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/payment_check.css' %}">
+<link rel="stylesheet" href="https://cdn.moyasar.com/mpf/1.14.0/moyasar.css">
+{% endblock %}
+
+{% block content %}
+
+<section class="payment-page">
+    <div class="payment-wrapper">
+
+        <div class="payment-card">
+            <div class="payment-header">
+                <h1>{% trans "Complete Your Payment" %}</h1>
+                <p>{% trans "Your seat will only be confirmed after successful payment." %}</p>
+            </div>
+
+            <div class="mysr-form"></div>
+            <a href="{% url 'booking:book_ticket_page' booking.match.id %}" class="back-link">
+                {% trans "Back to seat selection" %}
+            </a>
+        </div>
+
+        <aside class="payment-summary-card">
+            <h3>{% trans "Booking Summary" %}</h3>
+
+            <div class="summary-row">
+                <span>{% trans "Match" %}</span>
+                <strong>{{ booking.match.home_team.name }} vs {{ booking.match.away_team.name }}</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>{% trans "Stadium" %}</span>
+                <strong>{{ booking.match.stadium.name }}</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>{% trans "Date" %}</span>
+                <strong>{{ booking.match.start_datetime|date:"M d, Y - h:i A" }}</strong>
+            </div>
+
+            <div class="summary-total">
+                <span>{% trans "Total" %}</span>
+                <strong>{{ booking.total_price }} {% trans "SAR" %}</strong>
+            </div>
+
+        </aside>
+    </div>
+</section>
+
+{% endblock %}
+{% block extra_js %}
+<script src="https://cdn.moyasar.com/mpf/1.14.0/moyasar.js"></script>
+<script>
+    Moyasar.init({
+        element: ".mysr-form",
+        amount: {{ booking.total_price|floatformat:0 }} * 100,
+        currency: "SAR",
+        description: "ArenaGuide Ticket Booking",
+        publishable_api_key: "{{ moyasar_publishable_key }}",
+        callback_url: "{{ callback_url }}",
+        methods: ["creditcard"],
+        credit_card: {
+            save_card: false
+        }
+    });
+</script>
+{% endblock %}

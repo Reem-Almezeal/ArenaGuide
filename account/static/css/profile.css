@@ -340,8 +340,6 @@ body.arena-body.is-dark .btn-cancel {
         font-size: 28px;
     }
 }
-
-
 @media (max-width: 767px) {
 
     .profile-info {
@@ -363,7 +361,6 @@ body.arena-body.is-dark .btn-cancel {
         text-align: center;
     }
 }
-
 @media (max-width: 480px) {
 
     .profile-page {

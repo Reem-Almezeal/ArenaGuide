@@ -4,12 +4,12 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from .forms import LoginForm, RegisterForm
 from django.contrib.auth import logout
-
+from django.http import HttpRequest,HttpResponse
 
 User = get_user_model()
 
 
-def register_view(request):
+def register_view(request:HttpRequest):
     if request.user.is_authenticated:
         return redirect("core:home")
 
@@ -32,7 +32,7 @@ def register_view(request):
     return render(request, "account/register.html", {"form": form})
 
 
-def login_view(request):
+def login_view(request:HttpRequest):
     if request.user.is_authenticated:
         return redirect("core:home")
 
@@ -66,7 +66,7 @@ def login_view(request):
 
 
 @login_required(login_url="account:login")
-def profile_view(request):
+def profile_view(request:HttpRequest):
     if request.user.status != User.Status.ACTIVE:
         messages.error(request, "Your account is not active.")
         return redirect("account:login")
@@ -74,7 +74,7 @@ def profile_view(request):
 
 
 @login_required(login_url="account:login")
-def organizer_dashboard_view(request):
+def organizer_dashboard_view(request:HttpRequest):
     if not request.user.is_organizer():
         messages.error(request, "You do not have permission to access this page.")
         return redirect("core:home")
@@ -82,7 +82,7 @@ def organizer_dashboard_view(request):
 
 
 @login_required(login_url="account:login")
-def it_dashboard_view(request):
+def it_dashboard_view(request:HttpRequest):
     if not request.user.is_it():
         messages.error(request, "You do not have permission to access this page.")
         return redirect("core:home")
@@ -91,7 +91,7 @@ def it_dashboard_view(request):
 
 
 @login_required
-def logout_view(request):
+def logout_view(request:HttpRequest):
     if request.method == "POST":
         logout(request)
         messages.success(request, "Logged out successfully.")

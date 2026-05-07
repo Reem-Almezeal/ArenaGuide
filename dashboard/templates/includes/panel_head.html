@@ -1,0 +1,14 @@
+<div class="panel-head">
+
+    <div>
+        <p>{{ label }}</p>
+        <h3>{{ title }}</h3>
+    </div>
+
+    {% if url %}
+        <a href="{{ url }}">
+            {{ action_text }}
+        </a>
+    {% endif %}
+
+</div>

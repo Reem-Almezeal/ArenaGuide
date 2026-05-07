@@ -1,116 +1,118 @@
 # ArenaGuide
+ArenaGuide is a Saudi national digital platform developed to create a unified ecosystem for football matches, stadium services, and crowd operations management.
 
-ArenaGuide is a Saudi national digital platform designed to transform the way people experience stadiums, matches, and large-scale sports events. The platform aims to enhance fan engagement, streamline booking processes, and support efficient crowd management through a unified, intelligent system.
+The platform aims to transform the sports event experience by combining ticket booking, visitor verification, stadium services, and organizer operations into one centralized intelligent system.
 
-## Overview
+ArenaGuide contributes to enhancing sports tourism, supporting digital transformation, improving fan experiences, and helping Saudi Arabia host major international sporting events efficiently and securely.
 
-ArenaGuide provides a modern solution for discovering stadiums, booking matches, and managing event-related services within a single platform. It is built to elevate the overall match-day experience by making it more organized, accessible, and enjoyable for users.
+# Vision
 
-The platform also plays a strategic role in supporting Saudi Arabia’s growing sports sector by improving tourism experiences, optimizing crowd flow, and contributing to the successful hosting of major international events, including the FIFA World Cup 2034.
+ArenaGuide was designed to support the future of smart stadiums and large-scale sporting events by providing:
 
-## Vision and Impact
+- A unified national platform for football matches and stadium services
+- Secure digital ticket management
+- Organized crowd flow and entry operations
+- Improved visitor experience before and during events
+- Smart operational tools for organizers and stadium management
 
-ArenaGuide aligns with national digital transformation goals by offering a scalable solution that:
+The platform also addresses critical event challenges such as ticket fraud and black-market resale through identity-linked ticket validation and visitor verification systems.
 
-- Enhances sports tourism by providing seamless access to stadiums and events  
+# Key Features
 
-- Improves crowd management through structured booking and user flow  
+- Secure authentication and role-based access
+- Dedicated dashboards for both visitors and organizers
+- Match discovery and online ticket booking
+- Stadium seat selection and reservation system
+- Parking reservation management
+- Secure digital payment integration using Moyasar
+- Visitor identity verification system for organizers
+- Crowd monitoring and gate management dashboard
+- Arabic and English multilingual support using Django i18n
+- Responsive modern UI for desktop and mobile devices
+- Automated email notifications using SendGrid
+- Booking and payment confirmation emails
 
-- Elevates the fan experience before, during, and after matches  
+# Crowd Management & Security
 
-- Supports large-scale event hosting with organized and efficient systems  
+ArenaGuide helps improve stadium operations and public safety through:
 
-- Contributes to Saudi Arabia’s readiness for global sporting events  
+- Identity-linked ticket ownership verification
+- Visitor validation before stadium entry
+- Reduced ticket duplication and black-market resale
+- Better crowd distribution and gate organization
+- Faster entry procedures for large audiences
+- Support for future smart access technologies such as QR verification
 
-## Core Features
 
-- Multilingual support (Arabic and English) using Django i18n  
+# User Roles
 
-- Secure user authentication and account management  
+## 1-Visitor
+Visitors can:
+- Create accounts and log in
+- Browse matches and stadiums
+- Reserve seats and parking
+- Complete ticket payments
+- View booked tickets and reservations
+- Manage personal profile information
 
-- Stadium discovery with detailed information  
+## 2-Organizer
+Organizers can:
+- Access the organizer dashboard
+- Verify visitor identities before entry
+- Monitor crowd and gate activity
+- Manage operational event workflows
 
-- Booking system for matches and stadium access  
+### Organizer Login Credentials
 
-- Administrative dashboard for system control  
+ Email: organizer@gmail.com 
+ Password: Organizer_staff123 
 
-- Notification system for updates and alerts  
 
-- Support module for handling user inquiries  
 
-## Architecture
+# Technology Stack
 
-The application is built using Django with a modular architecture. Each functional domain is separated into independent apps, improving scalability, maintainability, and development efficiency.
+- Python
+- Django
+- SQLite
+- HTML5
+- CSS3
+- JavaScript
+- Bootstrap
+- Moyasar Payment Gateway
+- Twilio SendGrid
 
-## Project Structure
 
-ArenaGuide/
+# Installation
 
-│
+Clone the repository:
 
-├── account/        # User authentication and profile management  
+bash id="o3kqv2" git clone https://github.com/Reem-Almezeal/ArenaGuide.git cd ArenaGuide 
 
-├── booking/        # Booking workflows and logic  
+Create virtual environment:
 
-├── dashboard/      # Administrative interfaces  
+bash id="7oy0qf" python -m venv venv 
 
-├── match/          # Match management  
+Activate virtual environment:
 
-├── notification/   # Notifications and alerts  
+# Future Enhancements
 
-├── service/        # Additional services  
+- Integration with official identity verification APIs
+- AI-based crowd analysis and congestion prediction
+- Real-time live match updates and notifications
+- Cloud deployment using Azure or AWS
+- QR-based smart stadium entry system
+- Advanced analytics dashboard for organizers
+- Smart emergency and evacuation management
+- Online food ordering and stadium services
+- Enhanced anti-scalping and ticket fraud protection systems
 
-├── stadium/        # Stadium data and browsing  
 
-├── support/        # User support system  
+# Project Documentation
 
-├── core/           # Shared core functionality  
+[View Case Study](Add-Case-Study-Link-Here)
+[View UML Diagram](Add-UML-Link-Here)
 
-├── locale/         # Translation files  
 
-├── manage.py
-
-## Installation and Setup
-
-Clone the repository and navigate into the project directory:
-
-git clone https://github.com/Reem-Almezeal/ArenaGuide.git 
-cd ArenaGuide  
-
-Create and activate a virtual environment:
-
-python -m venv venv  
-source venv/bin/activate  
-venv\Scripts\activate  
-
-Install dependencies:
-
-pip install -r requirements.txt  
-
-Apply database migrations:
-
-python manage.py migrate  
-
-Run the development server:
-
-python manage.py runserver  
-   
-## Future Enhancements
-
-- Deployment to cloud platforms such as Azure or AWS  
-- Integration of payment gateways  
-- UI/UX improvements for better user experience  
-- Implementation of real-time features (e.g., live notifications)  
-
-## Project Documentation
-
-This section includes the main analysis and design documents prepared for ArenaGuide.
-
-- Class Diagram: [View Class Diagram](link)
-- Case Study: [View Case Study](link)
-- Wireframe: [View Wireframe](link)
-
-## Authors
-
-Eng.Reem Almezeal
-Eng.Atheer   
+### Developed By
+- Eng. Reem Almezeal
+- Eng. Atheer Alshahrani

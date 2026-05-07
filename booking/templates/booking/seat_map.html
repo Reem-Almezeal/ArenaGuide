@@ -12,7 +12,6 @@
 
 <section class="seat-page">
     <div class="seat-container">
-
         <div class="seat-card info-card">
             <h1>{{ ticket.match.home_team.name }} vs {{ ticket.match.away_team.name }}</h1>
             <p class="subtitle">{{ ticket.match.stadium.name }}</p>
@@ -51,21 +50,16 @@
         </div>
 
         <div class="seat-card announcement-card">
-
             <div class="map-mark">⌖</div>
-
             <h2>{% trans "Interactive Stadium Map" %}</h2>
-
             <p>
                 {% trans "Stay tuned for an interactive map experience that will help visitors navigate from the gate directly to their seats inside the stadium." %}
             </p>
-
             <p class="note">
                 {% trans "This feature will be available in a future ArenaGuide update." %}
             </p>
             <h4 class="soon-badge">{% trans "Coming Soon...." %}</h4>
         </div>
-
     </div>
 </section>
 

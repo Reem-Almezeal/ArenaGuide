@@ -1,0 +1,55 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block title %}Reserve Parking{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/reserve_parking.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="parking-page">
+
+    <div class="parking-container">
+        <div class="parking-card info-card">
+            <h2>{{ ticket.match.home_team.name }} vs {{ ticket.match.away_team.name }}</h2>
+
+            <div class="info-box">
+                <p><strong>Stadium:</strong> {{ ticket.match.stadium.name }}</p>
+                <p><strong>Gate:</strong> {{ ticket.gate.name|default:"N/A" }}</p>
+                <p><strong>Seat:</strong> {{ ticket.seat }}</p>
+            </div>
+
+            <div class="suggestion">
+                <p> Suggested Parking:</p>
+                <strong>{{ suggested_parking.name|default:"Will be assigned automatically" }}</strong>
+            </div>
+        </div>
+
+        <div class="parking-card form-card">
+            <h3>Select Parking Type</h3>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="parking-options">
+                    <label class="option">
+                        <input type="radio" name="parking_type" value="vip">
+                        <span>VIP Parking</span>
+                    </label>
+
+                    <label class="option">
+                        <input type="radio" name="parking_type" value="regular">
+                        <span>Regular Parking</span>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-primary">
+                    Confirm Reservation
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

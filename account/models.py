@@ -14,16 +14,8 @@ class User(AbstractUser):
         SUSPENDED = "suspended", "Suspended"
 
     phone = models.CharField(max_length=20, blank=True, null=True)
-    role = models.CharField(
-        max_length=20,
-        choices=Role.choices,
-        default=Role.CUSTOMER
-    )
-    status = models.CharField(
-        max_length=20,
-        choices=Status.choices,
-        default=Status.ACTIVE
-    )
+    role = models.CharField(max_length=20,choices=Role.choices,default=Role.CUSTOMER)
+    status = models.CharField(max_length=20,choices=Status.choices,default=Status.ACTIVE)
 
     def is_customer(self):
         return self.role == self.Role.CUSTOMER

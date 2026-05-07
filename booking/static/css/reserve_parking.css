@@ -1,0 +1,123 @@
+.parking-page {
+    padding: 120px 6% 60px;
+    min-height: 100vh;
+}
+
+.parking-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.parking-card {
+    background: #ffffff;
+    border-radius: 22px;
+    padding: 30px;
+    border: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+}
+
+.info-card h2 {
+    margin-bottom: 20px;
+}
+
+.info-box p {
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.suggestion {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 12px;
+    background: #f4f6f5;
+}
+
+.form-card h3 {
+    margin-bottom: 20px;
+}
+
+.parking-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.option {
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.option:hover {
+    border-color: #22c55e;
+}
+
+.option input {
+    margin-right: 10px;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    background: linear-gradient(135deg,#16a34a,#22c55e);
+    color: #fff;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+body.is-dark .parking-card {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+body.is-dark .info-box p,
+body.is-dark h2,
+body.is-dark h3 {
+    color: #e5e7eb;
+}
+
+body.is-dark .suggestion {
+    background: rgba(255,255,255,0.05);
+}
+
+body.is-dark .option {
+    border-color: rgba(255,255,255,0.1);
+}
+
+body.is-dark .option:hover {
+    border-color: #22c55e;
+}
+
+@media (max-width: 991px) {
+    .parking-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 767px) {
+    .parking-page {
+        padding: 100px 5% 50px;
+    }
+
+    .parking-card {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .parking-card {
+        border-radius: 16px;
+    }
+
+    .btn-primary {
+        font-size: 14px;
+        padding: 12px;
+    }
+}

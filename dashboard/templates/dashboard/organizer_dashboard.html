@@ -1,0 +1,165 @@
+{% extends "dashboard/dashboard_base.html" %}
+{% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block title %}{% trans "Organizer Dashboard" %}{% endblock %}
+{% block dashboard_label %}{% trans "Organizer Control Center" %}{% endblock %}
+{% block dashboard_title %}{% trans "Dashboard Overview" %}{% endblock %}
+
+{% block dashboard_extra_css %}
+    <link rel="stylesheet" href="{% static 'css/organizer_dashboard.css' %}">
+{% endblock %}
+{% block dashboard_content %}
+
+<section class="organizer-dashboard">
+    <div class="dashboard-stats">
+        {% include "includes/stat_card.html" with icon="bi bi-door-open" color="green" title="Open Gates" value=open_count description="Currently operating normally" %}
+        {% include "includes/stat_card.html" with icon="bi bi-people" color="orange" title="Crowded Gates" value=crowded_count description="Require crowd monitoring" %}
+        {% include "includes/stat_card.html" with icon="bi bi-exclamation-triangle" color="red" title="Emergency Alerts" value=emergency_count description="Needs immediate attention" %}
+        {% include "includes/stat_card.html" with icon="bi bi-ticket-perforated" color="blue" title="Active Tickets" value=active_tickets description="Valid tickets in the system" %}
+    </div>
+
+    <div class="dashboard-grid">
+        <div class="dashboard-panel large-panel">
+            {% url 'dashboard:gate_management' as gate_management_url %}
+            {% include "includes/panel_head.html" with label="Live Gate Status" title="Latest Gate Updates" url=gate_management_url action_text="Manage All" %}
+            <div class="gate-status-list">
+                {% for update in latest_updates %}
+                    <div class="gate-status-card {{ update.status }}">
+
+                        <div>
+                            <strong>{{ update.gate.name }}</strong>
+                            <small>
+                                {{ update.match.home_team.name }}
+                                vs
+                                {{ update.match.away_team.name }}
+                            </small>
+
+                            {% if update.alternative_gate %}
+                                <small>
+                                    {% trans "Alternative Gate" %}:
+                                    {{ update.alternative_gate.name }}
+                                </small>
+                            {% endif %}
+                        </div>
+
+                        <span>
+                            {{ update.get_status_display }}
+                        </span>
+                    </div>
+
+                {% empty %}
+                    {% include "includes/empty_state.html" with icon="bi bi-door-open" title="No gate updates yet" message="Gate updates will appear here." %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="dashboard-panel">
+            {% include "includes/panel_head.html" with label="Quick Actions" title="Organizer Tools" %}
+            <div class="quick-actions">
+                {% url 'dashboard:send_notification' as send_notification_url %}
+                {% include "includes/quick_action_btn.html" with url=send_notification_url icon="bi bi-bell" text="Send Alert" %}
+
+                {% url 'dashboard:create_gate_status_update' as create_update_url %}
+                {% include "includes/quick_action_btn.html" with url=create_update_url icon="bi bi-door-open" text="Update Gate" %}
+
+                {% url 'dashboard:verify_visitor' as verify_url %}
+                {% include "includes/quick_action_btn.html" with url=verify_url icon="bi bi-search" text="Verify Visitor" %}
+
+                {% url 'dashboard:emergency_control' as emergency_url %}
+                {% include "includes/quick_action_btn.html" with url=emergency_url icon="bi bi-exclamation-octagon" text="Emergency Mode" extra_class="danger" %}
+
+            </div>
+        </div>
+    </div>
+
+    <div class="dashboard-grid">
+        <div class="dashboard-panel">
+            {% url 'dashboard:activity_logs' as logs_url %}
+            {% include "includes/panel_head.html" with label="Recent Activity" title="Organizer Logs" url=logs_url action_text="View Logs" %}
+
+            <div class="activity-list">
+                {% for update in latest_updates|slice:":4" %}
+
+                    <div class="activity-item">
+
+                        {% if update.status == "open" %}
+                            <i class="bi bi-check-circle-fill green-text"></i>
+                        {% elif update.status == "crowded" %}
+                            <i class="bi bi-people-fill orange-text"></i>
+                        {% elif update.status == "emergency" %}
+                            <i class="bi bi-exclamation-circle-fill red-text"></i>
+                        {% else %}
+                            <i class="bi bi-info-circle-fill gray-text"></i>
+                        {% endif %}
+
+                        <div>
+                            <strong>
+                                {{ update.gate.name }}
+                                -
+                                {{ update.get_status_display }}
+                            </strong>
+
+                            <small>
+                                {{ update.created_at|date:"M d, Y - h:i A" }}
+                            </small>
+                        </div>
+                    </div>
+
+                {% empty %}
+                    {% include "includes/empty_state.html" with title="No activity yet" message="Recent organizer activity will appear here." %}
+                {% endfor %}
+
+            </div>
+        </div>
+        <div class="dashboard-panel">
+            {% include "includes/panel_head.html" with label="Match Overview" title="Current Match" %}
+            {% if current_match %}
+
+                <div class="match-overview">
+                    <div class="match-score">
+                        <strong>
+                            {{ current_match.home_team.name }}
+                        </strong>
+
+                        <div class="score-box">
+                            <span>{{ current_match.home_score|default:0 }}</span>
+                            <small>VS</small>
+                            <span>{{ current_match.away_score|default:0 }}</span>
+                        </div>
+
+                        <strong>
+                            {{ current_match.away_team.name }}
+                        </strong>
+
+                    </div>
+                    <div class="match-meta">
+
+                        <span>
+                            <i class="bi bi-geo-alt"></i>
+                            {{ current_match.stadium.name }}
+                        </span>
+
+                        <span>
+                            <i class="bi bi-clock"></i>
+                            {{ current_match.start_datetime|date:"M d, Y - h:i A" }}
+                        </span>
+
+                        <span>
+                            <i class="bi bi-ticket-perforated"></i>
+                            {% trans "Tickets" %}:
+                            {{ total_tickets|default:0 }}
+                        </span>
+                    </div>
+                </div>
+
+            {% else %}
+                {% include "includes/empty_state.html" with title="No match available" message="Add matches from the admin panel." %}
+            {% endif %}
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

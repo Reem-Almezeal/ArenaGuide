@@ -24,7 +24,8 @@ from django.conf.urls.i18n import i18n_patterns
 urlpatterns = [
     path('i18n/', include('django.conf.urls.i18n')),
 ]
-
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += i18n_patterns(
     path('admin/', admin.site.urls),
@@ -32,12 +33,13 @@ urlpatterns += i18n_patterns(
     path('', include('core.urls')),
     path('account/', include('account.urls')),
     path('booking/', include('booking.urls')),
-    path('dashboard/', include('dashboard.urls')),
+    path("dashboard/", include("dashboard.urls")),
     path('match/', include('match.urls')),
     path('notification/', include('notification.urls')),
     path('service/', include('service.urls')),
     path('stadium/', include('stadium.urls')),
     path('support/', include('support.urls')),
+    path("payment/", include(("payment.urls", "payment"), namespace="payment"))
 )
 
 

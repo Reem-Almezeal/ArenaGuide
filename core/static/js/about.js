@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", () => {
     const revealItems = document.querySelectorAll(".about-reveal");
 

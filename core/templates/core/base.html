@@ -1,39 +1,229 @@
+<!--
+    Base template for ArenaGuide.
+
+    Provides the main shared layout used across the website including:
+    navigation bar, footer, global styles, responsive structure,
+    theme support, language switcher.
+
+    All public pages extend this template to maintain a consistent
+    user interface and responsive experience across the platform.
+-->
+    
 {% load static %}
 {% load i18n %}
-
 {% get_current_language as LANGUAGE_CODE %}
 
 <!DOCTYPE html>
-<html lang="{{ LANGUAGE_CODE }}"
-      dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}"
-      data-theme="light">
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}ArenaGuide{% endblock %}</title>
 
-    <title>{% block title %}{% trans "ArenaGuide" %}{% endblock %}</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% block extra_css %}{% endblock %}
 </head>
 
-<body>
-    {% block content %}
+<body class="arena-body">
+<header class="arena-header" id="arenaHeader">
+    <nav class="arena-navbar">
+        <div class="arena-container arena-navbar__inner">
 
-    {% endblock %}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-    <script src="{% static 'js/base.js' %}"></script>
-    {% block extra_js %}{% endblock %}
+            <a href="{% url 'core:home' %}" class="arena-brand">
+                <img src="{% static 'image/logo.png' %}" alt="ArenaGuide Logo">
+                <span>ArenaGuide</span>
+            </a>
+
+            <ul class="arena-navbar__links">
+                <li><a href="{% url 'core:home' %}">{% trans "Home" %}</a></li>
+                <li><a href="{% url 'core:about' %}">{% trans "About" %}</a></li>
+                <li><a href="{% url 'match:matches' %}">{% trans "Matches" %}</a></li>
+                <li><a href="#services">{% trans "Services" %}</a></li>
+                <li><a href="#support">{% trans "Support" %}</a></li>
+            </ul>
+
+            <div class="arena-navbar__actions">
+                <div class="arena-search-inline" id="arenaSearchInline">
+                    <button class="arena-icon-btn" id="arenaSearchBtn" type="button" aria-label="Search">
+                        <i class="bi bi-search"></i>
+                    </button>
+                    <input type="text" placeholder="{% trans 'Search matches, stadiums...' %}">
+                </div>
+
+                <button class="arena-icon-btn" id="arenaAccountBtn" type="button" aria-label="Account">
+                    <i class="bi bi-person"></i>
+                </button>
+
+                <button class="arena-icon-btn" id="arenaMenuBtn" type="button" aria-label="Menu">
+                    <i class="bi bi-list"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="arena-account-menu" id="arenaAccountMenu">
+        {% if user.is_authenticated %}
+            <div class="arena-account-card">
+                <div class="arena-account-avatar">
+                    <i class="bi bi-person-circle"></i>
+                </div>
+                <div>
+                    <h4>{{ user.username }}</h4>
+                    <p>{% trans "Welcome back" %}</p>
+                </div>
+            </div>
+
+            <div class="arena-account-links">
+                <a href="{% url 'account:profile' %}">{% trans "Profile" %}</a>
+                <a href="{% url 'booking:my_tickets' %}">{% trans "My Tickets" %}</a>
+
+                <form method="post" action="{% url 'account:logout' %}" class="arena-logout-form">
+                    {% csrf_token %}
+                    <button type="submit" class="arena-account-logout">
+                        {% trans "Logout" %}
+                    </button>
+                </form>
+            </div>
+        {% else %}
+
+            <div class="arena-account-card">
+                <div class="arena-account-avatar">
+                    <i class="bi bi-person-circle"></i>
+                </div>
+                <div>
+                    <h4>{% trans "Welcome" %}</h4>
+                    <p>{% trans "Login to manage your tickets and services." %}</p>
+                </div>
+            </div>
+
+            <div class="arena-account-links"><a href="{% url 'account:login' %}" class="arena-account-login">
+                {% trans "Login" %}
+                </a>
+                <a href="{% url 'account:register' %}" class="arena-account-register">
+                    {% trans "Create Account" %}
+                </a>
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="arena-main-menu" id="arenaMainMenu">
+        <div class="arena-main-menu__grid">
+
+            <div class="arena-main-menu__group">
+                <h6>{% trans "Main" %}</h6>
+                <a href="{% url 'core:home' %}">{% trans "Home" %}</a>
+                <a href="{% url 'core:about' %}">{% trans "About" %}</a>
+                <a href="{% url 'match:matches' %}">{% trans "Matches" %}</a>
+                <a href="#services">{% trans "Services" %}</a>
+            </div>
+
+            <div class="arena-main-menu__group">
+                <h6>{% trans "Matches" %}</h6>
+                <a href="#matches">{% trans "Live Matches" %}</a>
+                <a href="# matches #booking-list">{% trans "Available Matches" %}</a>
+                <a href="#booking-list">{% trans "Ticket Booking" %}</a>
+            </div>
+
+            <div class="arena-main-menu__group">
+                <h6>{% trans "Services" %}</h6>
+                <a href="#services">{% trans "Restaurants" %}</a>
+                <a href="#services">{% trans "Cafes" %}</a>
+                <a href="#services">{% trans "Events" %}</a>
+                <a href="#services">{% trans "Emergency Services" %}</a>
+            </div>
+
+            <div class="arena-main-menu__group">
+                <h6>{% trans "Account" %}</h6>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'account:profile' %}">{% trans "Profile" %}</a>
+                    <a href="#">{% trans "My Tickets" %}</a>
+                    <a href="#">{% trans "My Parking" %}</a>
+                {% else %}
+                    <a href="{% url 'account:login' %}">{% trans "Login" %}</a>
+                    <a href="{% url 'account:register' %}">{% trans "Create Account" %}</a>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="arena-main-menu__bottom">
+            {% if LANGUAGE_CODE == 'ar' %}
+                <a href="/en{{ request.path|slice:'3:' }}{% if request.GET.urlencode %}?{{ request.GET.urlencode }}{% endif %}"
+                class="arena-menu-control"
+                aria-label="Change language">
+                    <i class="bi bi-translate"></i>
+                </a>
+            {% else %}
+                <a href="/ar{{ request.path|slice:'3:' }}{% if request.GET.urlencode %}?{{ request.GET.urlencode }}{% endif %}"
+                class="arena-menu-control"
+                aria-label="Change language">
+                    <i class="bi bi-translate"></i>
+                </a>
+            {% endif %}
+
+            <button class="arena-menu-control" id="arenaThemeBtn" type="button" aria-label="Toggle theme">
+                <i class="bi bi-moon-stars-fill"></i>
+            </button>
+        </div>
+
+    </div>
+</header>
+
+<main class="arena-main">
+    {% block content %}{% endblock %}
+</main>
+
+<footer class="arena-footer" id="support">
+    <div class="arena-container">
+        <div class="arena-footer__top">
+
+            <div class="arena-footer__about">
+                <a href="{% url 'core:home' %}" class="arena-footer__brand">
+                    <img src="{% static 'image/logo.png' %}" alt="ArenaGuide Logo">
+                    <span>ArenaGuide</span>
+                </a>
+                <p>{% trans "A smart stadium platform that helps visitors book tickets, explore services, and enjoy a better match-day experience." %}</p>
+                <div class="arena-footer__social"><a href="#"><i class="bi bi-twitter-x"></i></a>
+                    <a href="#"><i class="bi bi-instagram"></i></a>
+                    <a href="#"><i class="bi bi-linkedin"></i></a>
+                    <a href="#"><i class="bi bi-github"></i></a>
+                </div>
+            </div>
+
+            <div class="arena-footer__column">
+                <h6>{% trans "Explore" %}</h6>
+                <a href="{% url 'core:about' %}">{% trans "About" %}</a>
+                <a href="{% url 'match:matches' %}">{% trans "Matches" %}</a>
+                <a href="#services">{% trans "Services" %}</a>
+                <a href="#support">{% trans "Support" %}</a>
+            </div>
+
+            <div class="arena-footer__column">
+                <h6>{% trans "Services" %}</h6>
+                <a href="#matches">{% trans "Ticket Booking" %}</a>
+                <a href="#matches">{% trans "Parking Reservation" %}</a>
+                <a href="#services">{% trans "Restaurants" %}</a>
+                <a href="#services">{% trans "Cafes" %}</a>
+            </div>
+
+            <div class="arena-footer__column">
+                <h6>{% trans "Contact" %}</h6>
+                <a href="#"><i class="bi bi-geo-alt"></i>{% trans "Saudi Arabia" %}</a>
+                <a href="#"><i class="bi bi-envelope"></i>support@arenaguide.com</a>
+                <a href="#"><i class="bi bi-headset"></i>{% trans "Help Center" %}</a>
+            </div>
+        </div>
+
+        <div class="arena-footer__bottom">
+            <p>© 2026 ArenaGuide. {% trans "All rights reserved" %}</p>
+            <span>{% trans "Designed for better stadium experiences" %}</span>
+        </div>
+    </div>
+</footer>
+
+<script src="{% static 'js/base.js' %}"></script>
+{% block extra_js %}{% endblock %}
 </body>
 </html>

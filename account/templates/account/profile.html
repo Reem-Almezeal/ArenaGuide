@@ -1,3 +1,5 @@
+<!-- User profile page to display personal account information-->
+
 {% extends "core/base.html" %}
 {% load static %}
 {% load i18n %}
@@ -21,11 +23,9 @@
                 <h1>{% trans "My Profile" %}</h1>
                 <p>{% trans "Manage your ArenaGuide account information." %}</p>
             </div>
-
         </div>
 
         <div class="profile-info">
-
             <div class="info-item">
                 <span>{% trans "Username" %}</span>
                 <strong>{{ request.user.username }}</strong>
@@ -47,22 +47,21 @@
                 <span>{% trans "Account Status" %}</span>
                 <strong class="status-active">{% trans "Active" %}</strong>
             </div>
-
         </div>
+
         <div class="profile-actions">
             <a href="{% url 'core:home' %}" class="btn-primary">Back</a>
-
             <button type="button" class="btn-secondary" id="openLogoutModal">
                 Logout
             </button>
         </div>
     </div>
 </section>
+
 <div class="logout-modal-overlay" id="logoutModal">
     <div class="logout-modal">
         <h3>Confirm Logout</h3>
         <p>Are you sure you want to log out of your account?</p>
-
         <div class="logout-modal-actions">
             <button type="button" class="btn-cancel" id="closeLogoutModal">
                 Cancel

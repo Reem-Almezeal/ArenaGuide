@@ -1,0 +1,183 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "My Tickets" %}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/my_tickets.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="tickets-page" id="my_ticket">
+    <div class="tickets-container">
+
+        <div class="tickets-header">
+            <h1>{% trans "My Tickets" %}</h1>
+        </div>
+
+        <form method="GET" class="tickets-filters">
+            <div class="filter-group">
+                <label>{% trans "Search" %}</label>
+                <input type="text" name="search" placeholder="Team, stadium, ticket code..." value="{{ search }}">
+            </div>
+
+            <div class="filter-group">
+                <label>{% trans "Status" %}</label>
+                <select name="status">
+                    <option value="">{% trans "All Statuses" %}</option>
+                    <option value="active" {% if status == "active" %}selected{% endif %}>{% trans "Active" %}</option>
+                    <option value="used" {% if status == "used" %}selected{% endif %}>{% trans "Used" %}</option>
+                    <option value="cancelled" {% if status == "cancelled" %}selected{% endif %}>{% trans "Cancelled" %}</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>{% trans "Date" %}</label>
+                <select name="date">
+                    <option value="">{% trans "All Dates" %}</option>
+                    <option value="today" {% if date_filter == "today" %}selected{% endif %}>{% trans "Today" %}</option>
+                    <option value="upcoming" {% if date_filter == "upcoming" %}selected{% endif %}>{% trans "Upcoming" %}</option>
+                    <option value="past" {% if date_filter == "past" %}selected{% endif %}>{% trans "Past" %}</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>{% trans "Sort By" %}</label>
+                <select name="sort">
+                    <option value="newest" {% if sort == "newest" %}selected{% endif %}>{% trans "Newest" %}</option>
+                    <option value="oldest" {% if sort == "oldest" %}selected{% endif %}>{% trans "Oldest" %}</option>
+                    <option value="match_date" {% if sort == "match_date" %}selected{% endif %}>{% trans "Match Date" %}</option>
+                </select>
+            </div>
+
+            <div class="filter-actions">
+                <button type="submit" class="btn-apply">{% trans "Apply" %}</button>
+                <a href="{% url 'booking:my_tickets' %}" class="btn-reset">{% trans "Reset" %}</a>
+            </div>
+        </form>
+
+        {% if tickets %}
+            <div class="tickets-grid">
+                {% for ticket in tickets %}
+                    <article class="ticket-card">
+
+                        <div class="ticket-main">
+                            <div class="ticket-top">
+                                <div>
+                                    <span class="ticket-code">#{{ ticket.ticket_code }}</span>
+                                    <h2>
+                                        {{ ticket.match.home_team.name }} vs {{ ticket.match.away_team.name }}
+                                    </h2>
+                                </div>
+
+                                <span class="status-badge status-{{ ticket.status }}">
+                                    {{ ticket.get_status_display }}
+                                </span>
+                            </div>
+
+                            <div class="ticket-details">
+                                <div>
+                                    <span>{% trans "Holder Name" %}</span>
+                                    <strong>
+                                        {% if ticket.user.get_full_name %}
+                                            {{ ticket.user.get_full_name }}
+                                        {% else %}
+                                            {{ ticket.user.username }}
+                                        {% endif %}
+                                    </strong>
+                                </div>
+                                                                <div>
+                                    <span>{% trans "Stadium" %}</span>
+                                    <strong>{{ ticket.match.stadium.name }}</strong>
+                                </div><div>
+                                    <span>{% trans "Date" %}</span>
+                                    <strong>{{ ticket.match.start_datetime|date:"M d, Y - h:i A" }}</strong>
+                                </div>
+
+                                <div>
+                                    <span>{% trans "Seat" %}</span>
+                                    <strong>
+                                        {{ ticket.seat.section }} • Row {{ ticket.seat.row }} • Seat {{ ticket.seat.number }}
+                                    </strong>
+                                </div>
+
+                                <div>
+                                    <span>{% trans "Gate" %}</span>
+                                    <strong>
+                                        {% if ticket.gate %}
+                                            {{ ticket.gate.name }}
+                                        {% else %}
+                                            {% trans "N/A" %}
+                                        {% endif %}
+                                    </strong>
+                                </div>
+
+                                <div>
+                                    <span>{% trans "Price" %}</span>
+                                    <strong>{{ ticket.price }} SAR</strong>
+                                </div>
+
+                                <div>
+                                    <span>{% trans "Parking" %}</span>
+                                    <strong>
+                                    {% if ticket.parking_reservation %}
+                                        <strong>Parking Reserved</strong>
+                                    {% else %}
+                                        <strong>Not reserved</strong>
+                                    {% endif %}
+                                    </strong>
+                                </div>
+                            </div>
+
+                            <div class="ticket-actions">
+                                {% if ticket.status == "active" %}
+                                    <a href="{% url 'booking:seat_map' ticket.id %}" class="btn-ticket">
+                                        View Seat Map
+                                    </a>
+                                {% elif ticket.status == "used" %}
+                                    <span class="btn-disabled">Ticket Used</span>
+                                {% else %}
+                                    <span class="btn-disabled">Cancelled</span>
+                                {% endif %}
+
+                                {% if ticket.parking_reservation %}
+                                    <span class="parking-reserved">Parking Reserved</span>
+                                {% else %}
+                                    <a href="{% url 'booking:reserve_parking' ticket.id %}" class="btn-outline">
+                                        Reserve Parking
+                                    </a>
+                                {% endif %}
+
+                                {% if ticket.match.start_datetime.date == today %}
+                                    <a href="#" class="btn-route">
+                                        {% trans "Shortest Route to My Seat" %}
+                                    </a>
+                                {% else %}
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="ticket-qr">
+                            <img
+                                src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data={{ ticket.ticket_code }}"
+                                alt="Ticket QR Code"
+                            >
+                            <span>{% trans "Scan at gate" %}</span>
+                        </div>
+                    </article>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="empty-tickets">
+                <h2>{% trans "No tickets found" %}</h2>
+                <p>{% trans "You do not have any tickets matching your filters yet." %}</p>
+                <a href="{% url 'match:matches' %}" class="btn-ticket">
+                    {% trans "Browse Matches" %}
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

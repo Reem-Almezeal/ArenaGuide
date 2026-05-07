@@ -1,0 +1,81 @@
+<!---
+Base Authentication Template (ArenaGuide)
+Reusable layout for authentication pages (login, register, etc.).
+-->
+
+{%load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArenaGuide | {% block auth_title %}{% trans "Account" %}{% endblock %}</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{% static 'css/base_auth.css' %}">
+
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body class="auth-body">
+    <section class="auth-page">
+        <div class="auth-form-section">
+
+            <div class="auth-actions">
+                <a href="{% url 'core:home' %}" class="auth-icon-btn" title="{% trans 'Back' %}">
+                    {% if LANGUAGE_CODE == 'ar' %}
+                        <i class="bi bi-arrow-right"></i>
+                    {% else %}
+                        <i class="bi bi-arrow-left"></i>
+                    {% endif %}
+                </a>
+
+                <form action="{% url 'set_language' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ request.get_full_path }}">
+
+                    {% if LANGUAGE_CODE == 'ar' %}
+                        <input type="hidden" name="language" value="en">
+                        <button type="submit" class="auth-icon-btn auth-lang-btn">
+                            <span>EN</span>
+                        </button>
+                    {% else %}
+                        <input type="hidden" name="language" value="ar">
+                        <button type="submit" class="auth-icon-btn auth-lang-btn">
+                            <span>AR</span>
+                        </button>
+                    {% endif %}
+                </form>
+            </div>
+
+            <a href="{% url 'core:home' %}" class="auth-brand">
+                <img src="{% static 'image/logo.png' %}" alt="ArenaGuide Logo">
+                <span>ArenaGuide</span>
+            </a>
+
+            <div class="auth-content">
+                {% block auth_content %}
+                {% endblock %}
+            </div>
+
+            <div class="auth-footer">
+                <span>© 2026 ArenaGuide</span>
+                <a href="#">{% trans "Terms" %}</a>
+                <a href="#">{% trans "Privacy" %}</a>
+            </div>
+        </div>
+
+        <div class="auth-image-section">
+            {% block auth_image %}
+                <img src="{% static 'image/login.png' %}" alt="Stadium">
+            {% endblock %}
+        </div>
+    </section>
+{% block extra_js %}{% endblock %}
+</body>
+</html>

@@ -201,7 +201,9 @@
     font-size: 2.2rem;
     line-height: 1;
     font-weight: 800;
-}.about-stat span {
+}
+
+.about-stat span {
     color: var(--about-muted);
     font-weight: 700;
 }
@@ -382,7 +384,9 @@ body.arena-body.is-dark .about-value-card p,
 body.arena-body.is-dark .about-testimonial span,
 body.arena-body.is-dark .about-stat span {
     color: rgba(255, 255, 255, 0.68);
-}body.arena-body.is-dark .about-stat,
+}
+
+body.arena-body.is-dark .about-stat,
 body.arena-body.is-dark .about-value-card,
 body.arena-body.is-dark .about-testimonial {
     background: rgba(255, 255, 255, 0.055);
