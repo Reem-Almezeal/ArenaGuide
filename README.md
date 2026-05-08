@@ -87,7 +87,8 @@ Organizers can:
 
 Clone the repository:
 
-git clone https://github.com/Reem-Almezeal/ArenaGuide.git cd ArenaGuide 
+git clone https://github.com/Reem-Almezeal/ArenaGuide.git 
+cd ArenaGuide 
 
 Create virtual environment:
 
