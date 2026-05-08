@@ -65,6 +65,7 @@ Organizers can:
 ### Organizer Login Credentials
 
  Email: organizer@gmail.com 
+
  Password: Organizer_staff123 
 
 
