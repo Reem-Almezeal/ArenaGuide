@@ -86,11 +86,11 @@ Organizers can:
 
 Clone the repository:
 
-bash id="o3kqv2" git clone https://github.com/Reem-Almezeal/ArenaGuide.git cd ArenaGuide 
+git clone https://github.com/Reem-Almezeal/ArenaGuide.git cd ArenaGuide 
 
 Create virtual environment:
 
-bash id="7oy0qf" python -m venv venv 
+python -m venv venv 
 
 Activate virtual environment:
 
