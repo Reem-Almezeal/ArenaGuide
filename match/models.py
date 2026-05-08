@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from stadium.models import Stadium
 from django.core.exceptions import ValidationError
+from django.templatetags.static import static
 
 
 class Team(models.Model):
@@ -63,12 +64,14 @@ class Match(models.Model):
     status = models.CharField(max_length=20,choices=Status.choices,default=Status.UPCOMING)
 
 
+
+
+    @property
     def get_video(self):
         if self.video_file:
             return self.video_file.url
-        if self.video_url:
-            return self.video_url
-        return "/static/video/default-live.mp4"
+
+        return static("video/default-live.mp4")
 
     def is_upcoming(self):
         return self.start_datetime > timezone.now()

@@ -17,6 +17,7 @@ from django.shortcuts import render
 from decimal import Decimal
 from django.db.models import Q
 from payment.views import checkout
+from django.urls import reverse
 
 
 def make_identity_hash(id_type, id_number:HttpRequest):
@@ -439,17 +440,23 @@ def seat_map_page(request, ticket_id:HttpRequest):
     return render(request, "booking/seat_map.html", {
         "ticket": ticket,
     })
-
-
 @login_required
-def reserve_parking(request, ticket_id:HttpRequest):
-    ticket = get_object_or_404(Ticket.objects.select_related("booking","match","match__home_team","match__away_team","match__stadium","seat","seat__gate","gate",),
+def reserve_parking(request, ticket_id):
+    ticket = get_object_or_404(
+        Ticket.objects.select_related("booking", "match", "match__stadium", "seat", "gate"),
         id=ticket_id,
-        user=request.user,
-        status=Ticket.Status.ACTIVE,
+        user=request.user
     )
 
     gate = ticket.gate or ticket.seat.gate
+    existing_reservation = ParkingReservation.objects.filter(
+        user=request.user,
+        match=ticket.match
+    ).first()
+
+    if existing_reservation:
+        messages.error(request, "You already have a parking reservation for this match.")
+        return redirect("booking:my_tickets")
 
     if request.method == "POST":
         parking_type = request.POST.get("parking_type")
@@ -460,48 +467,45 @@ def reserve_parking(request, ticket_id:HttpRequest):
 
         price = 75 if parking_type == "vip" else 40
 
-        reservation, created = ParkingReservation.objects.get_or_create(
+        reservation = ParkingReservation.objects.create(
             ticket=ticket,
-            defaults={
-                "user": request.user,
-                "match": ticket.match,
-                "stadium": ticket.match.stadium,
-                "reservation_time": timezone.now(),
-                "price": price,
-                "paid": False,
-                "status": ParkingReservation.Status.PENDING,
-            }
+            user=request.user,
+            match=ticket.match,
+            stadium=ticket.match.stadium,
+            reservation_time=timezone.now(),
+            price=price,
+            paid=False,
+            status=ParkingReservation.Status.PENDING,
         )
 
-        reservation.price = price
-        reservation.paid = False
-        reservation.status = ParkingReservation.Status.PENDING
-        reservation.save()
-
-        return checkout(request, reservation.id)
+        return redirect("booking:parking_checkout", reservation_id=reservation.id)
 
     return render(request, "booking/reserve_parking.html", {
         "ticket": ticket,
         "gate": gate,
     })
 
-
 @login_required
-def parking_checkout(request, reservation_id:HttpRequest):
+def parking_checkout(request, reservation_id):
     reservation = get_object_or_404(
-        ParkingReservation.objects.select_related("user","ticket","match","stadium",),
+        ParkingReservation.objects.select_related("user", "ticket", "match", "stadium"),
         id=reservation_id,
         user=request.user,
         status=ParkingReservation.Status.PENDING,
+    )
+
+    callback_url = request.build_absolute_uri(
+        reverse("booking:parking_success", args=[reservation.id])
     )
 
     if reservation.paid:
         messages.info(request, "Parking payment already completed.")
         return redirect("booking:my_tickets")
 
-    return render(request, "payment/parking_checkout.html", {
+    return render(request, "payment/parking_check.html", {
         "reservation": reservation,
         "moyasar_publishable_key": settings.MOYASAR_PUBLISHABLE_KEY,
+        "callback_url": callback_url,
     })
 
 
@@ -517,7 +521,7 @@ def parking_success(request, reservation_id:HttpRequest):
 
     if status != "paid":
         messages.error(request, "Parking payment was not completed.")
-        return checkout(request, reservation.id)
+        return redirect("booking:parking_checkout", reservation_id=reservation.id)
 
     reservation.paid = True
     reservation.status = ParkingReservation.Status.ACTIVE

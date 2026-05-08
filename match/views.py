@@ -7,9 +7,21 @@ from django.db.models import Q
 
 
 
-def matches_page(request:HttpRequest):
-    live_matches = (Match.objects.filter(status=Match.Status.LIVE).select_related("home_team", "away_team", "stadium").order_by("start_datetime"))
-    upcoming_matches = (Match.objects.filter(status=Match.Status.UPCOMING, start_datetime__gte=timezone.now()).select_related("home_team", "away_team", "stadium").order_by("start_datetime"))
+def matches_page(request: HttpRequest):
+    live_matches = (
+        Match.objects
+        .filter(status=Match.Status.LIVE)
+        .select_related("home_team", "away_team", "stadium")
+        .order_by("start_datetime")[:3]
+    )
+
+    upcoming_matches = (
+        Match.objects
+        .filter(status=Match.Status.UPCOMING, start_datetime__gte=timezone.now())
+        .select_related("home_team", "away_team", "stadium")
+        .order_by("start_datetime")
+    )
+
     featured_match = upcoming_matches.first()
 
     context = {
@@ -19,6 +31,7 @@ def matches_page(request:HttpRequest):
     }
 
     return render(request, "match/match_page.html", context)
+
 
 
 def match_detail(request, match_id:HttpRequest):

@@ -25,7 +25,7 @@ Context:
 <section class="arenaguide-matches-hero">
     <div class="arenaguide-slider" id="arenaguideSlider">
 
-        <article class="arenaguide-slide is-active" style="--slide-bg: url('{% static 'image/matches-hero-1.jpg' %}');">
+        <article class="arenaguide-slide is-active" style="--slide-bg: url('{% static 'image/match_hero.png' %}');">
             <div class="arenaguide-slide-overlay"></div>
             <div class="arenaguide-slide-content">
                 <h1>{% trans "Book your seat for the next match" %}</h1>
@@ -36,7 +36,7 @@ Context:
             </div>
         </article>
 
-        <article class="arenaguide-slide" style="--slide-bg: url('{% static 'image/matches-hero-2.jpg' %}');">
+        <article class="arenaguide-slide" style="--slide-bg: url('{% static 'image/match_hero2.png' %}');">
             <div class="arenaguide-slide-overlay"></div>
             <div class="arenaguide-slide-content">
                 <h1>{% trans "Follow live games in real time" %}</h1>
@@ -47,7 +47,7 @@ Context:
             </div>
         </article>
 
-        <article class="arenaguide-slide" style="--slide-bg: url('{% static 'image/matches-hero-3.jpg' %}');">
+        <article class="arenaguide-slide" style="--slide-bg: url('{% static 'image/match_hero3.png' %}');">
             <div class="arenaguide-slide-overlay"></div>
             <div class="arenaguide-slide-content">
                 <h1>{% trans "Reserve tickets before they run out" %}</h1>
@@ -128,7 +128,6 @@ Context:
 
                     <div class="arenaguide-card-actions">
                         <span class="arenaguide-action-outline">{% trans "Details" %}</span>
-                        <span class="arenaguide-action-solid">{% trans "Watch Live" %}</span>
                     </div>
                 </a>
             {% empty %}

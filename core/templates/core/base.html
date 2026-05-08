@@ -63,6 +63,15 @@
             </div>
         </div>
     </nav>
+    {% if messages %}
+    <div class="messages-wrapper">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
 
     <div class="arena-account-menu" id="arenaAccountMenu">
         {% if user.is_authenticated %}

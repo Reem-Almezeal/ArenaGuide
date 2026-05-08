@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const mainMenu = document.getElementById("arenaMainMenu");
     const themeBtn = document.getElementById("arenaThemeBtn");
     const savedTheme = localStorage.getItem("arenaTheme");
-    
+
     if (savedTheme === "dark") {
         body.classList.add("is-dark");
     }
@@ -91,4 +91,14 @@ document.addEventListener("DOMContentLoaded", () => {
             closeMenus();
         }
     });
+    setTimeout(() => {
+        const alerts = document.querySelectorAll(".alert");
+        alerts.forEach(alert => {
+            alert.style.transition = "opacity 0.5s ease";
+            alert.style.opacity = "0";
+            setTimeout(() => {
+                alert.remove();
+            }, 500);
+        });
+    }, 30000);
 });
