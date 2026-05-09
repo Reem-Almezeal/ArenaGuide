@@ -1,0 +1,50 @@
+{% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+<section class="ag-section" id="services">
+    <div class="ag-container">
+        <div class="ag-service-grid">
+            <a href="{% url 'service:services_page' %}" class="ag-service-card ag-reveal">
+                <img src="{% static 'image/restraurant.png' %}" alt="Restaurants">
+                <div>
+                    <i class="bi bi-shop"></i>
+                    <h3>{% trans "Restaurants" %}</h3>
+                    <p>{% trans "Discover restaurants near you" %}</p>
+                    <span>{% trans "Coming Sooniew" %}</span>
+
+                </div>
+            </a>
+
+            <a href="{% url 'service:services_page' %}" class="ag-service-card ag-reveal">
+                <img src="{% static 'image/coffee.png' %}" alt="Cafes">
+                <div>
+                    <i class="bi bi-cup-hot"></i>
+                    <h3>{% trans "Cafes" %}</h3>
+                    <p>{% trans "Discover cafes near you" %}</p>
+                    <span>{% trans "Coming Sooniew" %}</span>
+                </div>
+            </a>
+
+            <a href="{% url 'service:services_page' %}" class="ag-service-card ag-reveal">
+                <img src="{% static 'image/event.png' %}" alt="Events">
+                <div>
+                    <i class="bi bi-calendar2-event"></i>
+                    <h3>{% trans "Events" %}</h3>
+                    <p>{% trans "Explore top events and activities" %}</p>
+                    <span>{% trans "Coming Soon" %}</span>
+                </div>
+            </a>
+
+            <a href="{% url 'service:services_page' %}" class="ag-service-card ag-reveal">
+                <img src="{% static 'image/sos.png' %}" alt="Emergency">
+                <div>
+                    <i class="bi bi-hospital"></i>
+                    <h3>{% trans "Emergency" %}</h3>
+                    <p>{% trans "Quick access to emergency and support teams" %}</p>
+                    <span>{% trans "Coming Soon" %}</span>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>

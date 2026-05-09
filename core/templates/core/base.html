@@ -41,7 +41,7 @@
                 <li><a href="{% url 'core:home' %}">{% trans "Home" %}</a></li>
                 <li><a href="{% url 'core:about' %}">{% trans "About" %}</a></li>
                 <li><a href="{% url 'match:matches' %}">{% trans "Matches" %}</a></li>
-                <li><a href="#services">{% trans "Services" %}</a></li>
+                <li><a href="{% url 'service:services_page' %}">{% trans "Services" %}</a></li>
                 <li><a href="#support">{% trans "Support" %}</a></li>
             </ul>
 
@@ -126,7 +126,7 @@
                 <a href="{% url 'core:home' %}">{% trans "Home" %}</a>
                 <a href="{% url 'core:about' %}">{% trans "About" %}</a>
                 <a href="{% url 'match:matches' %}">{% trans "Matches" %}</a>
-                <a href="#services">{% trans "Services" %}</a>
+                <a href="{% url 'service:services_page' %}">{% trans "Services" %}</a>
             </div>
 
             <div class="arena-main-menu__group">
@@ -138,10 +138,10 @@
 
             <div class="arena-main-menu__group">
                 <h6>{% trans "Services" %}</h6>
-                <a href="#services">{% trans "Restaurants" %}</a>
-                <a href="#services">{% trans "Cafes" %}</a>
-                <a href="#services">{% trans "Events" %}</a>
-                <a href="#services">{% trans "Emergency Services" %}</a>
+                <a href="{% url 'service:services_page' %}">{% trans "Restaurants" %}</a>
+                <a href="{% url 'service:services_page' %}">{% trans "Cafes" %}</a>
+                <a href="{% url 'service:services_page' %}">{% trans "Events" %}</a>
+                <a href="{% url 'service:services_page' %}">{% trans "Emergency Services" %}</a>
             </div>
 
             <div class="arena-main-menu__group">
@@ -205,7 +205,7 @@
                 <h6>{% trans "Explore" %}</h6>
                 <a href="{% url 'core:about' %}">{% trans "About" %}</a>
                 <a href="{% url 'match:matches' %}">{% trans "Matches" %}</a>
-                <a href="#services">{% trans "Services" %}</a>
+                <a href="{% url 'service:services_page' %}">{% trans "Services" %}</a>
                 <a href="#support">{% trans "Support" %}</a>
             </div>
 
@@ -213,8 +213,8 @@
                 <h6>{% trans "Services" %}</h6>
                 <a href="#matches">{% trans "Ticket Booking" %}</a>
                 <a href="#matches">{% trans "Parking Reservation" %}</a>
-                <a href="#services">{% trans "Restaurants" %}</a>
-                <a href="#services">{% trans "Cafes" %}</a>
+                <a href="{% url 'service:services_page' %}">{% trans "Restaurants" %}</a>
+                <a href="{% url 'service:services_page' %}">{% trans "Cafes" %}</a>
             </div>
 
             <div class="arena-footer__column">

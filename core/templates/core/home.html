@@ -264,75 +264,18 @@ quick access to important platform features and upcoming matches
     </div>
 </section>
 
-
-<section class="ag-section" id="services">
-    <div class="ag-container">
         <div class="ag-section-head ag-reveal">
-
             <h2>{% trans "Everything around your match" %}</h2>
         </div>
-
-        <div class="ag-service-grid">
-            <a href="/{{ LANGUAGE_CODE }}/services/" class="ag-service-card ag-reveal">
-                <img src="{% static 'image/restraurant.png' %}" alt="Restaurants">
-                <div>
-                    <i class="bi bi-shop"></i>
-                    <h3>{% trans "Restaurants" %}</h3>
-                    <p>{% trans "Discover restaurants near you" %}</p>
-                    <span>{% trans "View" %}</span>
-                </div>
-            </a>
-
-            <a href="/{{ LANGUAGE_CODE }}/services/" class="ag-service-card ag-reveal">
-                <img src="{% static 'image/coffee.png' %}" alt="Cafes">
-                <div>
-                    <i class="bi bi-cup-hot"></i>
-                    <h3>{% trans "Cafes" %}</h3>
-                    <p>{% trans "Discover cafes near you" %}</p>
-                    <span>{% trans "View" %}</span>
-                </div>
-            </a>
-
-            <a href="/{{ LANGUAGE_CODE }}/services/" class="ag-service-card ag-reveal">
-                <img src="{% static 'image/event.png' %}" alt="Events">
-                <div>
-                    <i class="bi bi-calendar2-event"></i>
-                    <h3>{% trans "Events" %}</h3>
-                    <p>{% trans "Explore top events and activities" %}</p>
-                    <span>{% trans "View" %}</span>
-                </div>
-            </a>
-
-            <a href="/{{ LANGUAGE_CODE }}/services/" class="ag-service-card ag-reveal">
-                <img src="{% static 'image/sos.png' %}" alt="Emergency">
-                <div>
-                    <i class="bi bi-hospital"></i>
-                    <h3>{% trans "Emergency" %}</h3>
-                    <p>{% trans "Quick access to emergency and support teams" %}</p>
-                    <span>{% trans "View" %}</span>
-                </div>
-            </a>
-        </div>
-
-        <div class="ag-more ag-reveal"><a href="/{{ LANGUAGE_CODE }}/services/">
+        {% include "includes/services_section.html" %}
+        
+<!--      <div class="ag-more ag-reveal">
+            <a href="{% url 'service:services_page' %}">
                 {% trans "View More Services" %}
                 <i class="bi bi-arrow-right"></i>
             </a>
-        </div>
-    </div>
-</section>
-
-
-<section class="ag-final">
-    <div class="ag-container ag-reveal">
-        <h2>{% trans "Ready for your next match?" %}</h2>
-        <p>{% trans "Start exploring matches, tickets, parking, and services now." %}</p>
-        <a href="{% url 'match:matches' %}" class="ag-btn ag-btn-primary">{% trans "Get Started" %}</a>
-    </div>
-</section>
-
+        </div>--> 
 {% endblock %}
-
 {% block extra_js %}
 <script src="{% static 'js/home.js' %}"></script>
 {% endblock %}

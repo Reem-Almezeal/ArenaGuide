@@ -687,9 +687,6 @@ msgstr ""
 msgid "Unknown"
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\forms\widgets.py:870
-msgid "Yes"
-msgstr ""
 
 #: .\venv\Lib\site-packages\django\forms\widgets.py:871
 msgid "No"
@@ -1280,12 +1277,8 @@ msgstr ""
 msgid "Connect, get help, or contribute"
 msgstr ""
 
-
 msgid "The Unified National Digital Platform for Football Matches"
 msgstr "المنصة الرقمية الوطنية الموحدة لمباريات كرة القدم"
-
-msgid "A comprehensive digital experience that brings together everything a visitor needs in one place, easily and reliably"
-msgstr "تجربة رقمية متكاملة تجمع كل ما يحتاجه الزائر في مكان واحد بسهولة وموثوقية"
 
 msgid "About The Platform"
 msgstr "عن المنصة"
@@ -1293,95 +1286,80 @@ msgstr "عن المنصة"
 msgid "The Next Match"
 msgstr "المباراة التالية"
 
-msgid "Quick access to emergency and support teams"
-msgstr "للوصول السريع إلى فرق المساعدة والطوارئ"
-
-msgid "Explore top events and activities"
-msgstr "استعرض أبرز الفعاليات والأحداث"
-
-msgid "Discover restaurants near you"
-msgstr "اكتشف المطاعم القريبة منك"
-
-msgid "Discover cafes near you"
-msgstr "اكتشف المقاهي القريبة منك"
-
-msgid "New stadium services prepared for visitors"
-msgstr "خدمات جديدة في الملاعب تم تجهيزها للزوار"
-
 msgid "Your Match-Day Journey Starts From Here"
 msgstr "رحلتك ليوم المباراة تبدأ من هنا"
+
+msgid "Support"
+msgstr "الدعم"
+
+msgid "Services"
+msgstr "الخدمات"
+
+msgid "Matches"
+msgstr "المباريات"
+
+msgid "Main"
+msgstr "الرئيسية"
 
 msgid "About"
 msgstr "عن المنصة"
 
-msgid "Integrated Digital Sports Platform"
-msgstr "منصة رقمية رياضية متكاملة"
+msgid "Explore Services"
+msgstr "استكشف الخدمات"
 
-msgid "Bringing everything visitors need together in one place"
-msgstr "تجمع كل ما يحتاجه الزائر في مكان واحد"
+msgid "Explore Matches"
+msgstr "استكشف المباريات"
 
-msgid "A smart platform designed to enhance visitor experience and crowd management"
-msgstr "منصة ذكية صُممت لتحسين تجربة الزوار وإدارة الحشود"
+msgid "Explore Tickets"
+msgstr "استكشف التذاكر"
 
-msgid "Providing an integrated digital experience that offers fans and visitors a smoother and more organized journey"
-msgstr "توفر تجربة رقمية متكاملة تمنح الجماهير والزوار تجربة أكثر سلاسة وتنظيمًا"
+msgid "Learn More"
+msgstr "اعرف المزيد"
 
-msgid "Everything visitors need in one platform"
-msgstr "كل ما يحتاجه الزائر في منصة واحدة"
+msgid "Get Started"
+msgstr "ابدأ الآن"
 
-msgid "What visitors say about the platform"
-msgstr "ماذا يقول الزوار عن المنصة"
+msgid "Apply"
+msgstr "تطبيق"
 
-msgid "To become the trusted digital companion for stadium visitors inside and outside Saudi Arabia"
-msgstr "أن نكون المرافق الرقمي المعتمد لزوار الملاعب داخل السعودية وخارجها"
+msgid "Reset"
+msgstr "إعادة تعيين"
 
-msgid "With major sporting events, we designed the platform to support local and international fans while providing a smoother and safer experience"
-msgstr "مع الأحداث الرياضية الكبرى، قمنا بتصميم المنصة لدعم الجماهير المحليين والدوليين وتوفير تجربة أكثر سلاسة وأمانًا"
+msgid "Back"
+msgstr "رجوع"
 
-msgid "Matches happening now"
-msgstr "المباريات المباشرة "
+msgid "Next"
+msgstr "التالي"
 
-msgid "Book your tickets for upcoming matches"
-msgstr "احجز تذاكرك للمباريات القادمة"
+msgid "Details"
+msgstr "التفاصيل"
 
-msgid "Watch Live"
-msgstr "شاهد مباشر"
+msgid "View"
+msgstr "المزيد"
 
-msgid "No upcoming matches available"
-msgstr "لا توجد مباريات قادمة متاحة"
+msgid "Active"
+msgstr "نشطة"
 
-msgid "New matches will appear here soon"
-msgstr "ستظهر مباريات جديدة هنا قريبًا"
+msgid "N/A"
+msgstr "غير متوفر"
 
-msgid "Ticket availability"
-msgstr "توفر التذاكر"
+msgid "Yes"
+msgstr "نعم"
+
+msgid "Good"
+msgstr "جيدة"
+
+msgid "Medium"
+msgstr "متوسطة"
 
 msgid "Total"
 msgstr "الإجمالي"
 
-msgid "Left"
-msgstr "المتبقي"
-
 msgid "Sold"
 msgstr "المباع"
 
-msgid "Booking Unavailable"
-msgstr "الحجز غير متاح"
-
-msgid "Teams preview"
-msgstr "استعراض الفرق"
-
-msgid "Live match coverage"
-msgstr "تغطية مباشرة للمباراة"
-
-msgid "Match information"
-msgstr "معلومات المباراة"
-
-msgid "Follow the match details, stadium information, ticket availability, and team updates from this page."
-msgstr "تابع تفاصيل المباراة، ومعلومات الملعب، وتوفر التذاكر، وآخر تحديثات الفرق من هذه الصفحة."
-
-msgid "Stadium"
-msgstr "الملعب"
+msgid "Left"
+msgstr "المتبقي"
 
 msgid "Start"
 msgstr "البداية"
@@ -1392,83 +1370,428 @@ msgstr "النهاية"
 msgid "Match"
 msgstr "المباراة"
 
-msgid "Date"
-msgstr "التاريخ"
-
-msgid "Complete Your Payment"
-msgstr "أكمل عملية الدفع"
-
-msgid "Your seat will only be confirmed after successful payment."
-msgstr "لن يتم تأكيد مقعدك إلا بعد إتمام عملية الدفع بنجاح."
-
-msgid "Cardholder Name"
-msgstr "الاسم على البطاقة"
-
-msgid "Card Information"
-msgstr "معلومات البطاقة"
-
-msgid "Payment service is provided for demo purposes."
-msgstr "خدمة الدفع مقدمة لأغراض تجريبية."
-
-msgid "Test payment gateways are enabled. Please do not use in production."
-msgstr "بوابات الدفع التجريبية مفعلة. يرجى عدم استخدامها في بيئة التشغيل."
-
-msgid "Back to seat selection"
-msgstr "العودة لاختيار المقاعد"
-
-msgid "Select Parking Type"
-msgstr "اختر نوع الموقف"
-
-msgid "VIP Parking"
-msgstr "مواقف كبار الشخصيات"
-
-msgid "Regular Parking"
-msgstr "المواقف العادية"
-
-msgid "Confirm Reservation"
-msgstr "تأكيد الحجز"
-
-msgid "Gate"
-msgstr "البوابة"
+msgid "Stadium"
+msgstr "الملعب"
 
 msgid "Seat"
 msgstr "المقعد"
 
-msgid "Suggested Parking"
-msgstr "الموقف المقترح"
+msgid "Gate"
+msgstr "البوابة"
 
-msgid "Will be assigned automatically"
-msgstr "سيتم التعيين تلقائيًا"
+msgid "Status"
+msgstr "الحالة"
 
-msgid "Interactive Stadium Map"
-msgstr "الخريطة التفاعلية للملعب"
+msgid "Account"
+msgstr "الحساب"
 
-msgid "Stay tuned for an interactive map experience that will help visitors navigate from the gate directly to their seats inside the stadium."
-msgstr "ترقبوا تجربة خريطة تفاعلية تساعد الزوار على الوصول من البوابة مباشرة إلى مقاعدهم داخل الملعب."
+msgid "Profile"
+msgstr "الملف الشخصي"
 
-msgid "This feature will be available in a future ArenaGuide update."
-msgstr "ستتوفر هذه الميزة في تحديث قادم لـ ArenaGuide."
+msgid "My Tickets"
+msgstr "تذاكري"
 
-msgid "Coming Soon"
-msgstr "قريبًا"
+msgid "My Parking"
+msgstr "مواقفي"
 
-msgid "Back to My Tickets"
-msgstr "العودة إلى تذاكري"
+msgid "Logout"
+msgstr "تسجيل الخروج"
 
-msgid "Reset"
-msgstr "إعادة تعيين"
+msgid "organizer"
+msgstr "منظم"
 
-msgid "Apply"
-msgstr "تطبيق"
+msgid "Welcome back."
+msgstr "مرحبًا بعودتك."
 
-msgid "Active"
-msgstr "نشطة"
+msgid "Username"
+msgstr "اسم المستخدم"
 
-msgid "Scan at gate"
-msgstr "امسح الرمز عند البوابة"
+msgid "Email"
+msgstr "البريد الإلكتروني"
 
-msgid "Select Seat"
-msgstr "اختيار المقعد"
+msgid "Password"
+msgstr "كلمة المرور"
+
+msgid "Confirm Password"
+msgstr "تأكيد كلمة المرور"
+
+msgid "Phone Number"
+msgstr "رقم الجوال"
+
+msgid "Email Address"
+msgstr "البريد الإلكتروني"
+
+msgid "Full Name"
+msgstr "الاسم الكامل"
+
+msgid "Not provided"
+msgstr "غير متوفر"
+
+msgid "Account Status"
+msgstr "حالة الحساب"
+
+msgid "My Profile"
+msgstr "ملفي الشخصي"
+
+msgid "Manage your ArenaGuide account information"
+msgstr "إدارة معلومات حسابك في ArenaGuide"
+
+msgid "Login"
+msgstr "تسجيل الدخول"
+
+msgid "Create Account"
+msgstr "إنشاء حساب"
+
+msgid "Sign Up"
+msgstr "إنشاء حساب"
+
+msgid "Sign In"
+msgstr "تسجيل الدخول"
+
+msgid "Forgot password?"
+msgstr "نسيت كلمة المرور؟"
+
+msgid "Forgot Password?"
+msgstr "نسيت كلمة المرور؟"
+
+msgid "Welcome to ArenaGuide"
+msgstr "مرحبًا بك في ArenaGuide"
+
+msgid "Start your experience by signing in or creating an account"
+msgstr "ابدأ تجربتك عبر تسجيل الدخول أو إنشاء حساب"
+
+msgid "Enter your email and we will send you a reset link."
+msgstr "أدخل بريدك الإلكتروني وسنرسل لك رابط إعادة تعيين كلمة المرور."
+
+msgid "Send Reset Link"
+msgstr "إرسال رابط إعادة التعيين"
+
+msgid "Back to Login"
+msgstr "العودة لتسجيل الدخول"
+
+msgid "Privacy"
+msgstr "الخصوصية"
+
+msgid "Terms"
+msgstr "الشروط"
+
+msgid "Contact"
+msgstr "التواصل"
+
+msgid "Saudi Arabia"
+msgstr "المملكة العربية السعودية"
+
+msgid "Help Center"
+msgstr "مركز المساعدة"
+
+msgid "Explore"
+msgstr "استكشف"
+
+msgid "Designed for better stadium experiences"
+msgstr "مصمم لتجارب ملاعب أفضل"
+
+msgid "All rights reserved"
+msgstr "جميع الحقوق محفوظة"
+
+msgid "Restaurants"
+msgstr "المطاعم"
+
+msgid "Cafes"
+msgstr "المقاهي"
+
+msgid "Events"
+msgstr "الفعاليات"
+
+msgid "Emergency"
+msgstr "الطوارئ"
+
+msgid "Emergency Services"
+msgstr "خدمات الطوارئ"
+
+msgid "Parking"
+msgstr "المواقف"
+
+msgid "Parking Reservation"
+msgstr "حجز المواقف"
+
+msgid "Ticket Booking"
+msgstr "حجز التذاكر"
+
+msgid "Tickets"
+msgstr "التذاكر"
+
+msgid "Live Matches"
+msgstr "المباريات المباشرة"
+
+msgid "Available Matches"
+msgstr "المباريات المتاحة"
+
+msgid "Upcoming Match"
+msgstr "المباراة القادمة"
+
+msgid "Upcoming"
+msgstr "قادمة"
+
+msgid "Available"
+msgstr "متاحة"
+
+msgid "Live"
+msgstr "مباشر"
+
+msgid "Live Now"
+msgstr "مباشر الآن"
+
+msgid "Watch Live"
+msgstr "شاهد مباشر"
+
+msgid "View Live Matches"
+msgstr "عرض المباريات المباشرة"
+
+msgid "Matches happening now"
+msgstr "المباريات المباشرة"
+
+msgid "Live match coverage"
+msgstr "تغطية مباشرة للمباراة"
+
+msgid "Book Now"
+msgstr "احجز الآن"
+
+msgid "Book Tickets"
+msgstr "احجز التذاكر"
+
+msgid "Booking Closed"
+msgstr "الحجز مغلق"
+
+msgid "Booking Unavailable"
+msgstr "الحجز غير متاح"
+
+msgid "No upcoming matches available"
+msgstr "لا توجد مباريات قادمة متاحة"
+
+msgid "New matches will appear here soon"
+msgstr "ستظهر مباريات جديدة هنا قريبًا"
+
+msgid "View More Matches"
+msgstr "عرض المزيد من المباريات"
+
+msgid "View More Upcoming Matches"
+msgstr "عرض المزيد من المباريات القادمة"
+
+msgid "View More Services"
+msgstr "عرض المزيد من الخدمات"
+
+msgid "Tickets Left"
+msgstr "التذاكر المتبقية"
+
+msgid "Tickets Sold"
+msgstr "التذاكر المباعة"
+
+msgid "Ticket availability"
+msgstr "توفر التذاكر"
+
+msgid "Ticket Availability"
+msgstr "توفر التذاكر"
+
+msgid "Days to World Cup 2034"
+msgstr "يومًا على كأس العالم 2034"
+
+msgid "World Cup 2034"
+msgstr "كأس العالم 2034"
+
+msgid "Book your tickets for upcoming matches"
+msgstr "احجز تذاكرك للمباريات القادمة"
+
+msgid "Reserve tickets before they run out"
+msgstr "احجز التذاكر قبل نفادها"
+
+msgid "Book your seat for the next match"
+msgstr "احجز مقعدك للمباراة القادمة"
+
+msgid "Follow live games in real time"
+msgstr "تابع المباريات المباشرة لحظة بلحظة"
+
+msgid "Al Ittihad vs Al Hilal"
+msgstr "الاتحاد ضد الهلال"
+
+msgid "Al Ittihad vs Al Ahli"
+msgstr "الاتحاد ضد الأهلي"
+
+msgid "Al Hilal vs Al Nassr"
+msgstr "الهلال ضد النصر"
+
+msgid "Saudi Arabia vs Japan"
+msgstr "السعودية ضد اليابان"
+
+msgid "King Fahd Stadium"
+msgstr "ملعب الملك فهد"
+
+msgid "King Abdullah Sports City"
+msgstr "مدينة الملك عبدالله الرياضية"
+
+msgid "Riyadh Stadium"
+msgstr "ملعب الرياض"
+
+msgid "Friday, 7:30 PM"
+msgstr "الجمعة، 7:30 مساءً"
+
+msgid "Monday, 9:00 PM"
+msgstr "الإثنين، 9:00 مساءً"
+
+msgid "Today, 8:00 PM"
+msgstr "اليوم، 8:00 مساءً"
+
+msgid "Who We Are"
+msgstr "من نحن"
+
+msgid "Integrated Digital Sports Platform"
+msgstr "منصة رقمية رياضية متكاملة"
+
+msgid "A smart platform designed to enhance visitor experience and crowd management"
+msgstr "منصة ذكية صُممت لتحسين تجربة الزوار وإدارة الحشود"
+
+msgid "A smart platform designed to improve visitor experience and crowd management"
+msgstr "منصة ذكية صُممت لتحسين تجربة الزوار وإدارة الحشود"
+
+msgid "A comprehensive digital experience that brings together everything a visitor needs in one place, easily and reliably"
+msgstr "تجربة رقمية متكاملة تجمع كل ما يحتاجه الزائر في مكان واحد بسهولة وموثوقية"
+
+msgid "An integrated digital experience that gives fans and visitors a smoother and more organized journey"
+msgstr "تجربة رقمية متكاملة تمنح الجماهير والزوار تجربة أكثر سلاسة وتنظيمًا"
+
+msgid "Providing an integrated digital experience that offers fans and visitors a smoother and more organized journey"
+msgstr "توفر تجربة رقمية متكاملة تمنح الجماهير والزوار تجربة أكثر سلاسة وتنظيمًا"
+
+msgid "Bringing everything visitors need together in one place"
+msgstr "تجمع كل ما يحتاجه الزائر في مكان واحد"
+
+msgid "Everything visitors need in one platform"
+msgstr "كل ما يحتاجه الزائر في منصة واحدة"
+
+msgid "Everything the visitor needs in one platform"
+msgstr "كل ما يحتاجه الزائر في منصة واحدة"
+
+msgid "Everything around your match"
+msgstr "كل ما تحتاجه حول مباراتك"
+
+msgid "What visitors say about the platform"
+msgstr "ماذا يقول الزوار عن المنصة"
+
+msgid "Our Vision"
+msgstr "رؤيتنا"
+
+msgid "To become the trusted digital companion for stadium visitors inside and outside Saudi Arabia"
+msgstr "أن نكون المرافق الرقمي المعتمد لزوار الملاعب داخل السعودية وخارجها"
+
+msgid "We designed the platform to support local and international fans during major sporting events while providing a smoother and safer experience"
+msgstr "صممنا المنصة لدعم الجماهير المحلية والدولية خلال الفعاليات الرياضية الكبرى مع توفير تجربة أكثر سلاسة وأمانًا"
+
+msgid "With major sporting events, we designed the platform to support local and international fans while providing a smoother and safer experience"
+msgstr "مع الأحداث الرياضية الكبرى، صممنا المنصة لدعم الجماهير المحلية والدولية وتوفير تجربة أكثر سلاسة وأمانًا"
+
+msgid "Safety"
+msgstr "السلامة"
+
+msgid "Safety First"
+msgstr "السلامة أولاً"
+
+msgid "Access emergency services and support when needed"
+msgstr "الوصول إلى خدمات الطوارئ والدعم عند الحاجة"
+
+msgid "Quick access to emergency teams"
+msgstr "وصول سريع إلى فرق الطوارئ"
+
+msgid "Quick access to emergency and support teams"
+msgstr "وصول سريع إلى فرق الطوارئ والدعم"
+
+msgid "Clear Navigation"
+msgstr "تنقل واضح"
+
+msgid "Explore gates, seats, restaurants, cafes, and emergency points"
+msgstr "استكشف البوابات والمقاعد والمطاعم والمقاهي ونقاط الطوارئ"
+
+msgid "Parking Ready"
+msgstr "مواقف جاهزة"
+
+msgid "Reserve parking before arriving and reduce match-day stress"
+msgstr "احجز موقفك قبل الوصول وقلل من ضغط يوم المباراة"
+
+msgid "Easy Booking"
+msgstr "حجز سهل"
+
+msgid "Find matches, book tickets, and manage your plans smoothly"
+msgstr "اعثر على المباريات واحجز التذاكر وأدر خططك بسهولة"
+
+msgid "A professional idea that improves the whole visitor journey"
+msgstr "فكرة احترافية تحسن تجربة الزائر بالكامل"
+
+msgid "Event Attendee"
+msgstr "حاضر فعالية"
+
+msgid "The services and stadium information were clear and easy to access"
+msgstr "الخدمات ومعلومات الملاعب كانت واضحة وسهلة الوصول"
+
+msgid "Stadium Visitor"
+msgstr "زائر ملعب"
+
+msgid "Booking my ticket and parking in one place made match day much easier"
+msgstr "حجز التذكرة والموقف في مكان واحد جعل يوم المباراة أسهل بكثير"
+
+msgid "Football Fan"
+msgstr "مشجع كرة قدم"
+
+msgid "Parking Reservations"
+msgstr "حجوزات المواقف"
+
+msgid "Tickets Managed"
+msgstr "التذاكر المُدارة"
+
+msgid "Matches Covered"
+msgstr "المباريات المغطاة"
+
+msgid "Visitors Supported"
+msgstr "الزوار المخدومون"
+
+msgid "Latest News"
+msgstr "آخر الأخبار"
+
+msgid "High demand expected for the next Riyadh derby"
+msgstr "إقبال مرتفع متوقع لديربي الرياض القادم"
+
+msgid "More cafes and restaurants added near stadium gates"
+msgstr "إضافة المزيد من المقاهي والمطاعم بالقرب من بوابات الملعب"
+
+msgid "Emergency points are now easier to find through stadium maps"
+msgstr "أصبحت نقاط الطوارئ أسهل للوصول عبر خرائط الملعب"
+
+msgid "New stadium services prepared for visitors"
+msgstr "خدمات جديدة في الملاعب تم تجهيزها للزوار"
+
+msgid "New services have been prepared in stadiums for visitors"
+msgstr "تم تجهيز خدمات جديدة في الملاعب للزوار"
+
+msgid "Discover restaurants near you"
+msgstr "اكتشف المطاعم القريبة منك"
+
+msgid "Discover nearby restaurants"
+msgstr "اكتشف المطاعم القريبة منك"
+
+msgid "Discover cafes near you"
+msgstr "اكتشف المقاهي القريبة منك"
+
+msgid "Discover nearby cafes"
+msgstr "اكتشف المقاهي القريبة منك"
+
+msgid "Explore top events and activities"
+msgstr "استعرض أبرز الفعاليات والأحداث"
+
+msgid "Explore the latest events and activities"
+msgstr "استعرض أبرز الفعاليات والأحداث"
+
+msgid "Ready for your next match?"
+msgstr "جاهز لمباراتك القادمة؟"
+
+msgid "Start exploring matches, tickets, parking, and services now"
+msgstr "ابدأ باستكشاف المباريات والتذاكر والمواقف والخدمات الآن"
 
 msgid "Visitor Details"
 msgstr "بيانات الزائر"
@@ -1495,13 +1818,10 @@ msgid "No seat selected"
 msgstr "لم يتم اختيار أي مقعد"
 
 msgid "Add Parking"
-msgstr "إضافة موقف سيارة"
+msgstr "إضافة موقف"
 
 msgid "Reserve a parking spot with your ticket"
 msgstr "احجز موقفًا مع تذكرتك"
-
-msgid "Next"
-msgstr "التالي"
 
 msgid "Selected Seats"
 msgstr "المقاعد المختارة"
@@ -1509,33 +1829,11 @@ msgstr "المقاعد المختارة"
 msgid "1 seat(s) selected"
 msgstr "تم اختيار مقعد واحد"
 
-msgid "View"
-msgstr "الإطلالة"
-
-msgid "Good"
-msgstr "جيدة"
-
 msgid "Shade"
 msgstr "الظل"
 
-
-msgid "Medium"
-msgstr "متوسط"
-
-msgid "N/A"
-msgstr "غير متوفر"
-
 msgid "Ticket Holders"
 msgstr "حاملو التذاكر"
-
-msgid "Full Name"
-msgstr "الاسم الكامل"
-
-msgid "Enter full name"
-msgstr "أدخل الاسم الكامل"
-
-msgid "Use the same name shown on ID or passport"
-msgstr "استخدم نفس الاسم الموجود في الهوية أو جواز السفر"
 
 msgid "Holder Type"
 msgstr "نوع حامل التذكرة"
@@ -1567,17 +1865,14 @@ msgstr "اختر ملفًا"
 msgid "No file chosen"
 msgstr "لم يتم اختيار ملف"
 
+msgid "Enter full name"
+msgstr "أدخل الاسم الكامل"
+
+msgid "Use the same name shown on ID or passport"
+msgstr "استخدم نفس الاسم الموجود في الهوية أو جواز السفر"
+
 msgid "Contact Details"
 msgstr "بيانات التواصل"
-
-msgid "Email Address"
-msgstr "البريد الإلكتروني"
-
-msgid "Phone Number"
-msgstr "رقم الجوال"
-
-msgid "This prototype uses local validation and a mock identity verification layer. Uploading ID images is optional for easing and privacy. The verification layer is prepared for future integration with providers such as Veriff, Sumsub, Onfido, or Nafath."
-msgstr "يستخدم هذا النموذج التجريبي نظام تحقق محلي وطبقة تجريبية للتحقق من الهوية. رفع صور الهوية اختياري لتسهيل الاستخدام والحفاظ على الخصوصية. وتم تجهيز نظام التحقق ليدعم مستقبلاً التكامل مع مزودي خدمات مثل Veriff وSumsub وOnfido أو نفاذ."
 
 msgid "Verify Details & Continue"
 msgstr "تحقق من البيانات والمتابعة"
@@ -1586,11 +1881,274 @@ msgid "Booking Review"
 msgstr "مراجعة الحجز"
 
 msgid "Parking Add-on"
-msgstr "إضافة موقف سيارة"
+msgstr "إضافة موقف"
 
 msgid "Standard Parking"
+msgstr "موقف عادي"
+
+msgid "VIP Parking"
+msgstr "موقف كبار الشخصيات"
+
+msgid "Regular Parking"
 msgstr "موقف عادي"
 
 msgid "Near Gate 1"
 msgstr "بالقرب من البوابة 1"
 
+msgid "VIP Entrance"
+msgstr "مدخل كبار الشخصيات"
+
+msgid "Select Parking Type"
+msgstr "اختر نوع الموقف"
+
+msgid "Confirm Reservation"
+msgstr "تأكيد الحجز"
+
+msgid "Suggested Parking"
+msgstr "الموقف المقترح"
+
+msgid "Will be assigned automatically"
+msgstr "سيتم التعيين تلقائيًا"
+
+msgid "Payment Successful"
+msgstr "تم الدفع بنجاح"
+
+msgid "Payment successful. Your ticket has been confirmed."
+msgstr "تم الدفع بنجاح. تم تأكيد تذكرتك."
+
+msgid "Your booking has been confirmed successfully."
+msgstr "تم تأكيد حجزك بنجاح."
+
+msgid "Total Paid"
+msgstr "إجمالي المبلغ المدفوع"
+
+msgid "View My Ticket"
+msgstr "عرض تذكرتي"
+
+msgid "Back To The Matches"
+msgstr "العودة إلى المباريات"
+
+msgid "Complete Your Payment"
+msgstr "أكمل عملية الدفع"
+
+msgid "Your seat will only be confirmed after successful payment."
+msgstr "لن يتم تأكيد مقعدك إلا بعد إتمام عملية الدفع بنجاح."
+
+msgid "Complete Parking Payment"
+msgstr "إكمال دفع الموقف"
+
+msgid "Your parking reservation will be confirmed after successful payment."
+msgstr "سيتم تأكيد حجز الموقف بعد إتمام الدفع بنجاح."
+
+msgid "Parking Summary"
+msgstr "ملخص الموقف"
+
+msgid "Cardholder Name"
+msgstr "الاسم على البطاقة"
+
+msgid "Name on card"
+msgstr "الاسم على البطاقة"
+
+msgid "Card Information"
+msgstr "معلومات البطاقة"
+
+msgid "Payment service is provided for demo purposes."
+msgstr "خدمة الدفع مقدمة لأغراض تجريبية."
+
+msgid "Payment service provided for demo purposes only"
+msgstr "خدمة الدفع مقدمة لأغراض تجريبية فقط"
+
+msgid "Test payment gateways are enabled. Please do not use in production."
+msgstr "بوابات الدفع التجريبية مفعلة. يرجى عدم استخدامها في بيئة التشغيل."
+
+msgid "Dummy payment gateways are used in the development environment"
+msgstr "يتم استخدام بوابات دفع تجريبية في بيئة التطوير"
+
+msgid "Back to seat selection"
+msgstr "العودة لاختيار المقاعد"
+
+msgid "Back to my tickets"
+msgstr "العودة إلى تذاكري"
+
+msgid "Back to My Tickets"
+msgstr "العودة إلى تذاكري"
+
+msgid "Return To My Tickets"
+msgstr "العودة إلى تذاكري"
+
+msgid "Newest"
+msgstr "الأحدث"
+
+msgid "All Dates"
+msgstr "كل التواريخ"
+
+msgid "All Statuses"
+msgstr "كل الحالات"
+
+msgid "Team, stadium, ticket code"
+msgstr "الفريق، الملعب، رمز التذكرة"
+
+msgid "Scan at gate"
+msgstr "امسح الرمز عند البوابة"
+
+msgid "Scan code at gate"
+msgstr "امسح الرمز عند البوابة"
+
+msgid "Holder Name"
+msgstr "اسم حامل التذكرة"
+
+msgid "Not reserved"
+msgstr "غير محجوز"
+
+msgid "Reserve Parking"
+msgstr "حجز موقف"
+
+msgid "View Seat Map"
+msgstr "عرض خريطة المقعد"
+
+msgid "Ticket Code"
+msgstr "رمز التذكرة"
+
+msgid "Gate not assigned"
+msgstr "لم يتم تحديد البوابة"
+
+msgid "Interactive Seat Map"
+msgstr "الخريطة التفاعلية للمقاعد"
+
+msgid "Interactive Stadium Map"
+msgstr "الخريطة التفاعلية للملعب"
+
+msgid "Coming Soon"
+msgstr "قريبًا"
+
+msgid "This feature will be available in a future ArenaGuide update."
+msgstr "ستتوفر هذه الميزة في تحديث قادم لـ ArenaGuide."
+
+msgid "An interactive experimental map that helps visitors reach the gate directly and navigate inside the stadium."
+msgstr "خريطة تجريبية تفاعلية تساعد الزوار على الوصول مباشرة إلى البوابة والتنقل داخل الملعب."
+
+msgid "Stay tuned for an interactive map experience that will help visitors navigate from the gate directly to their seats inside the stadium."
+msgstr "ترقبوا تجربة خريطة تفاعلية تساعد الزوار على الوصول من البوابة مباشرة إلى مقاعدهم داخل الملعب."
+
+msgid "This prototype uses local validation and a mock identity verification layer. Uploading ID images is optional for easier testing and privacy. The verification layer is prepared for future integration with providers such as Veriff, Sumsub, Onfido, or Nafath"
+msgstr "يستخدم هذا النموذج التجريبي نظام تحقق محلي وطبقة تجريبية للتحقق من الهوية. رفع صور الهوية اختياري لتسهيل الاستخدام والحفاظ على الخصوصية. وتم تجهيز نظام التحقق ليدعم مستقبلاً التكامل مع مزودي خدمات مثل Veriff وSumsub وOnfido أو نفاذ"
+
+msgid "Upcoming match highlight"
+msgstr "أبرز المباريات القادمة"
+
+msgid "Explore live matches, upcoming games, tickets, stadium services, and match details from one official platform"
+msgstr "استكشف المباريات المباشرة والمباريات القادمة والتذاكر وخدمات الملاعب وتفاصيل المباريات من منصة واحدة"
+
+msgid "Check ticket availability, stadium location, and booking options"
+msgstr "تحقق من توفر التذاكر وموقع الملعب وخيارات الحجز"
+
+msgid "Watch live matches, view scores, and open full match details"
+msgstr "شاهد المباريات المباشرة وتابع النتائج واستعرض تفاصيل المباراة كاملة"
+
+msgid "Book Ticket"
+msgstr "احجز التذكرة"
+
+msgid "Unavailable"
+msgstr "غير متاح"
+
+msgid "Login to manage your tickets and services"
+msgstr "سجل الدخول لإدارة تذاكرك وخدماتك"
+
+msgid "Phone"
+msgstr "رقم الجوال"
+
+msgid "Sold Out"
+msgstr "نفدت التذاكر"
+
+msgid "Book your seat for upcoming matches"
+msgstr "احجز مقعدك للمباريات القادمة"
+
+msgid "Follow live matches instantly"
+msgstr "تابع المباريات المباشرة لحظة بلحظة"
+
+msgid "Discover tickets and match details"
+msgstr "استكشف التذاكر وتفاصيل المباريات"
+
+
+msgid "Match-day experience"
+msgstr "تجربة يوم المباراة"
+
+msgid "Book early and secure your match-day experience"
+msgstr "احجز مبكرًا واستمتع بتجربة مباراة أكثر سلاسة"
+
+msgid "Tickets left"
+msgstr "التذاكر المتبقية"
+
+
+msgid "Upcoming Matches"
+msgstr "المباريات القادمة"
+
+msgid "Official digital platform for football fans"
+msgstr "المنصة الرقمية الرسمية لعشاق كرة القدم"
+
+msgid "Everything you need before and during the match"
+msgstr "كل ما تحتاجه قبل وأثناء المباراة"
+
+msgid "Access stadium services, tickets, navigation, and live coverage"
+msgstr "الوصول إلى خدمات الملاعب والتذاكر والتنقل والتغطية المباشرة"
+
+msgid "One platform for a smarter stadium experience"
+msgstr "منصة واحدة لتجربة ملاعب أكثر ذكاءً"
+
+msgid "Secure your seat now"
+msgstr "احجز مقعدك الآن"
+
+msgid "View Match Details"
+msgstr "عرض تفاصيل المباراة"
+
+
+msgid "Parking Reserved"
+msgstr "تم حجز موقف"
+
+msgid "Ticket Holder Name"
+msgstr "اسم حامل التذكرة"
+
+msgid "Gate Unavailable"
+msgstr "البوابة غير متوفرة"
+
+msgid "Date"
+msgstr "التاريخ"
+
+msgid "Live and available matches"
+msgstr "المباريات المباشرة والمتاحة"
+
+msgid "Match information"
+msgstr "معلومات المباراة"
+
+msgid "Follow the match details, stadium information, ticket availability, and team updates from this page."
+msgstr "تابع تفاصيل المباراة ومعلومات الملعب وتوفر التذاكر وآخر تحديثات الفرق من هذه الصفحة."
+
+msgid "Select Seat"
+msgstr "اختيار المقعد"
+
+msgid "seat(s) selected"
+msgstr "تم اختيار مقعد"
+
+msgid "Section"
+msgstr "القسم"
+
+msgid "Row"
+msgstr "الصف"
+
+msgid "Total Ticket Price"
+msgstr "إجمالي سعر التذكرة"
+
+msgid "SAR"
+msgstr "ريال سعودي"
+
+msgid "Available parking area"
+msgstr "منطقة مواقف متاحة"
+
+msgid "No parking areas available."
+msgstr "لا توجد مواقف متاحة."
+
+msgid "Login to Continue"
+msgstr "سجّل الدخول للمتابعة"
+
+msgid "You already booked"
+msgstr "لقد قمت بالحجز مسبقًا"

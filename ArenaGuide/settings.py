@@ -33,10 +33,11 @@ DEBUG = True
 ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
-    "web-production-b4886.up.railway.app",
+    "arenaguide.up.railway.app",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
+    "https://arenaguide.up.railway.app",
     "https://web-production-b4886.up.railway.app",
 ]
 

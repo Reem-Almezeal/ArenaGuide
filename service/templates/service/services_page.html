@@ -1,0 +1,29 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Services" %}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<link rel="stylesheet" href="{% static 'css/service_page.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="services-hero">
+    <div class="services-overlay"></div>
+    <div class="services-content">
+        <h1>
+            {% trans "Everything You Need Around The Stadium" %}
+        </h1>
+    </div>
+</section>
+
+{% include "includes/services_section.html" %}
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/service_page.js' %}"></script>
+{% endblock %}

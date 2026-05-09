@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     revealItems.forEach((item) => revealObserver.observe(item));
 
     const countdown = document.getElementById("worldCupCountdown");
+
     function updateCountdown() {
         if (!countdown) return;
 
@@ -29,7 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     updateCountdown();
     setInterval(updateCountdown, 1000 * 60 * 60);
-
 
     const soldElement = document.getElementById("ticketsSold");
     const leftElement = document.getElementById("ticketsLeft");
@@ -49,4 +49,67 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     setInterval(updateTickets, 2800);
+
+    const slides = document.querySelectorAll(".hero-slide");
+    const dots = document.querySelectorAll(".hero-dot");
+    const nextBtn = document.querySelector(".hero-next");
+    const prevBtn = document.querySelector(".hero-prev");
+
+    let currentSlide = 0;
+    let sliderTimer;
+
+    function showSlide(index) {
+        if (!slides.length) return;
+
+        currentSlide = (index + slides.length) % slides.length;
+
+        slides.forEach((slide, i) => {
+            slide.classList.toggle("active", i === currentSlide);
+        });
+
+        dots.forEach((dot, i) => {
+            dot.classList.toggle("active", i === currentSlide);
+        });
+    }
+
+    function nextSlide() {
+        showSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+        showSlide(currentSlide - 1);
+    }
+
+    function startSlider() {
+        sliderTimer = setInterval(nextSlide, 5000);
+    }
+
+    function resetSlider() {
+        clearInterval(sliderTimer);
+        startSlider();
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener("click", () => {
+            nextSlide();
+            resetSlider();
+        });
+    }
+
+    if (prevBtn) {
+        prevBtn.addEventListener("click", () => {
+            prevSlide();
+            resetSlider();
+        });
+    }
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+            showSlide(index);
+            resetSlider();
+        });
+    });
+
+    showSlide(0);
+    startSlider();
 });
