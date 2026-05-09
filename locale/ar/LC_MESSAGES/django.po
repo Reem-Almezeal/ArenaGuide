@@ -288,10 +288,6 @@ msgstr ""
 msgid "Create your account"
 msgstr "إنشاء حساب"
 
-#: .\account\templates\account\register.html:33
-msgid "Phone"
-msgstr "رقم الجوال"
-
 #: .\account\templates\account\register.html:45
 msgid "Confirm Password"
 msgstr "تأكيد كلمة المرور"
@@ -970,7 +966,7 @@ msgstr ""
 #: .\core\templates\core\base.html:107
 #, fuzzy
 #| msgid "Login to manage your tickets and services"
-msgid "Login to manage your tickets and services."
+msgid "Login to manage your tickets and services"
 msgstr "سجل الدخول لإدارة تذاكرك وخدماتك"
 
 #: .\core\templates\core\base.html:125
@@ -2989,3 +2985,69 @@ msgstr ""
 
 #~ msgid "Total Ticket Price"
 #~ msgstr "إجمالي سعر التذكرة"
+
+msgid "Contact Us"
+msgstr "تواصل معنا"
+
+msgid "Contact ArenaGuide"
+msgstr "تواصل مع ArenaGuide"
+
+msgid "How can we help you?"
+msgstr "كيف يمكننا مساعدتك؟"
+
+msgid "Send us your inquiry, suggestion, or technical issue and our team will review it"
+msgstr "أرسل لنا استفسارك أو اقتراحك أو مشكلتك التقنية وسيقوم فريقنا بمراجعته"
+
+msgid "Get in touch"
+msgstr "ابقَ على تواصل"
+
+msgid "We are here to support your stadium experience"
+msgstr "نحن هنا لدعم تجربتك داخل الملاعب"
+
+msgid "Phone"
+msgstr "الهاتف"
+
+msgid "Location"
+msgstr "الموقع"
+
+msgid "Send a message"
+msgstr "إرسال رسالة"
+
+msgid "Fill in the form and we will receive your message"
+msgstr "قم بتعبئة النموذج وسنستقبل رسالتك"
+
+msgid "Message Type"
+msgstr "نوع الرسالة"
+
+msgid "Other Type"
+msgstr "نوع آخر"
+
+msgid "Subject"
+msgstr "عنوان الرسالة"
+
+msgid "Message"
+msgstr "الرسالة"
+
+msgid "Send Message"
+msgstr "إرسال الرسالة"
+
+msgid "Inquiry"
+msgstr "استفسار"
+
+msgid "Suggestion"
+msgstr "اقتراح"
+
+msgid "Technical Issue"
+msgstr "مشكلة تقنية"
+
+msgid "Other"
+msgstr "أخرى"
+
+msgid "Please specify the message type"
+msgstr "يرجى تحديد نوع الرسالة"
+
+msgid "Your message has been sent successfully"
+msgstr "تم إرسال رسالتك بنجاح"
+
+msgid "Send your inquiry, suggestion, or technical issue and our team will review it as soon as possible"
+msgstr "أرسل استفسارك أو اقتراحك أو مشكلتك التقنية وسيقوم فريقنا بمراجعته في أقرب وقت ممكن"
