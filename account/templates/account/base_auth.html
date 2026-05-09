@@ -25,7 +25,6 @@ Reusable layout for authentication pages (login, register, etc.).
 <body class="auth-body">
     <section class="auth-page">
         <div class="auth-form-section">
-
             <div class="auth-actions">
                 <a href="{% url 'core:home' %}" class="auth-icon-btn" title="{% trans 'Back' %}">
                     {% if LANGUAGE_CODE == 'ar' %}
@@ -35,15 +34,15 @@ Reusable layout for authentication pages (login, register, etc.).
                     {% endif %}
                 </a>
 
-                <form action="{% url 'set_language' %}" method="post">
+                <form action="{% url 'set_language' %}" method="post" class="lang-form">
                     {% csrf_token %}
-                    <input type="hidden" name="next" value="{{ request.get_full_path }}">
-
+                    <input type="hidden" name="next" value="{{ request.path }}">
                     {% if LANGUAGE_CODE == 'ar' %}
                         <input type="hidden" name="language" value="en">
                         <button type="submit" class="auth-icon-btn auth-lang-btn">
                             <span>EN</span>
                         </button>
+
                     {% else %}
                         <input type="hidden" name="language" value="ar">
                         <button type="submit" class="auth-icon-btn auth-lang-btn">
@@ -52,7 +51,7 @@ Reusable layout for authentication pages (login, register, etc.).
                     {% endif %}
                 </form>
             </div>
-
+            
             <a href="{% url 'core:home' %}" class="auth-brand">
                 <img src="{% static 'image/logo.png' %}" alt="ArenaGuide Logo">
                 <span>ArenaGuide</span>
