@@ -1,0 +1,127 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Contact Us" %}{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/contact.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="contact-page">
+    <div class="contact-container">
+
+        <div class="contact-heading">
+            <h2>{% trans "Contact Us" %}</h2>
+            <p>
+                {% trans "Send your inquiry, suggestion, or technical issue and our team will review it as soon as possible" %}
+            </p>
+        </div>
+
+        <div class="contact-layout">
+
+            <form method="post" class="contact-form-card">
+                {% csrf_token %}
+                <div class="contact-form-head">
+                    <h2>{% trans "Send a message" %}</h2>
+                    <p>{% trans "Fill in the form and we will receive your message" %}</p>
+                </div>
+
+                <div class="contact-grid">
+
+                    <div class="contact-field">
+                        <label>{% trans "Full Name" %}</label>
+                        {{ form.name }}
+                    </div>
+
+                    <div class="contact-field">
+                        <label>{% trans "Email" %}</label>
+                        {{ form.email }}
+                    </div>
+
+                    <div class="contact-field">
+                        <label>{% trans "Phone" %}</label>
+                        {{ form.phone }}
+                    </div>
+
+                    <div class="contact-field">
+                        <label>{% trans "Message Type" %}</label>
+                        {{ form.message_type }}
+                    </div>
+
+                </div>
+
+                <div class="contact-field other-type-field" id="otherTypeField">
+                    <label>{% trans "Other Type" %}</label>
+                    {{ form.custom_type }}
+                </div>
+
+                <div class="contact-field">
+                    <label>{% trans "Subject" %}</label>
+                    {{ form.subject }}
+                </div>
+
+                <div class="contact-field">
+                    <label>{% trans "Message" %}</label>
+                    {{ form.message }}
+                </div>
+
+                <button type="submit" class="contact-submit">
+                    {% trans "Send Message" %}
+                </button>
+            </form>
+
+            <div class="contact-info-card">
+
+                <div class="contact-info-head">
+                    <h2>{% trans "Get in touch" %}</h2>
+                    <p>{% trans "We are here to support your stadium experience" %}</p>
+                </div>
+
+                <div class="contact-info-list">
+
+                    <div class="contact-info-item">
+                        <div class="contact-icon">
+                            <i class="bi bi-envelope-fill"></i>
+                        </div>
+
+                        <div>
+                            <strong>{% trans "Email" %}</strong>
+                            <span>support@arenaguide.com</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-item">
+                        <div class="contact-icon">
+                            <i class="bi bi-telephone-fill"></i>
+                        </div>
+
+                        <div>
+                            <strong>{% trans "Phone" %}</strong>
+                            <span>+966 50 000 0000</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-item">
+                        <div class="contact-icon">
+                            <i class="bi bi-geo-alt-fill"></i>
+                        </div>
+
+                        <div>
+                            <strong>{% trans "Location" %}</strong>
+                            <span>{% trans "Saudi Arabia" %}</span>
+                        </div>
+                    </div>
+                    </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<script src="{% static 'js/contact.js' %}"></script>
+
+{% endblock %}

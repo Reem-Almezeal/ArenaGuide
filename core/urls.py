@@ -9,4 +9,6 @@ urlpatterns = [
     path('', views.home_view, name='home'),
     path('about/', views.about_view, name='about'),
     path('logout/', LogoutView.as_view(next_page="home"), name="logout"),
+    path("contact/", views.contact_page, name="contact"),
+
 ]

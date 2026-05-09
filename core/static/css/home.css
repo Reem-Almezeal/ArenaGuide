@@ -50,7 +50,7 @@ a {
     display: inline-block;
     margin-bottom: 10px;
     color: var(--ag-gold);
-    font-weight: 900;
+    font-weight: 700;
 }
 
 .ag-section-head h2,
@@ -67,7 +67,6 @@ a {
     line-height: 1.8;
 }
 
-/* Hero */
 .ag-hero {
     position: relative;
     min-height: 108vh;
