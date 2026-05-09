@@ -13,15 +13,15 @@
 
 <section class="services-hero">
     <div class="services-overlay"></div>
+
     <div class="services-content">
-        <h1>
-            {% trans "Everything You Need Around The Stadium" %}
-        </h1>
+        <h1>{% trans "Everything You Need Around The Stadium" %}</h1>
     </div>
-    {% include "includes/services_section.html" %}
 </section>
 
-{% include "includes/services_section.html" %}
+<section class="services-page-content">
+    {% include "includes/services_section.html" %}
+</section>
 
 {% endblock %}
 

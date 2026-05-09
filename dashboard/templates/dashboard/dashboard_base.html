@@ -4,7 +4,7 @@
 {% get_available_languages as LANGUAGES %}
 
 <!DOCTYPE html>
-<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'en' %}rtl{% else %}rtl{% endif %}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,24 +35,12 @@
                 <span>{% trans "Dashboard" %}</span>
             </a>
 
-            <a href="#">
+            <a href="{% url 'dashboard:gate_management_view' %}">
                 <span>{% trans "Gates" %}</span>
             </a>
 
             <a href="{% url 'dashboard:verify_visitor' %}">
                 <span>{% trans "Verify Visitor" %}</span>
-            </a>
-
-            <a href="#">
-                <span>{% trans "Crowd Monitor" %}</span>
-            </a>
-
-            <a href="#">
-                <span>{% trans "Notifications" %}</span>
-            </a>
-
-            <a href="#" class="danger-link">
-                <span>{% trans "Emergency" %}</span>
             </a>
         </nav>
 
@@ -74,7 +62,7 @@
                 <h1>{% block dashboard_title %}{% trans "Dashboard" %}{% endblock %}</h1>
             </div>
 
-            <div class="topbar-actions">
+            <!--<div class="topbar-actions">
                 <form action="{% url 'set_language' %}" method="post" class="language-form">
                     {% csrf_token %}
                     <input name="next" type="hidden" value="{{ request.path }}">
@@ -90,7 +78,7 @@
                 <button type="button" class="theme-toggle" id="dashboardThemeToggle">
                     <i class="bi bi-moon"></i>
                 </button>
-            </div>
+            </div>-->
         </header>
 
         <section class="dashboard-content">

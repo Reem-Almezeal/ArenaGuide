@@ -18,6 +18,8 @@ from decimal import Decimal
 from django.db.models import Q
 from payment.views import checkout
 from django.urls import reverse
+from django.db.models import IntegerField
+from django.db.models.functions import Cast
 
 
 def make_identity_hash(id_type, id_number:HttpRequest):
@@ -98,22 +100,33 @@ def book_ticket_page(request, match_id:HttpRequest):
     seats = Seat.objects.filter(
         stadium=match.stadium,
         is_active=True,
-    ).select_related("category", "gate").order_by(
-        "category__base_price", "section", "row", "number"
+    ).select_related(
+        "category", "gate"
+    ).annotate(
+        number_as_int=Cast("number", IntegerField())
+    ).order_by(
+        "category__base_price",
+        "section",
+        "row",
+        "number_as_int"
     )
 
     categories = {}
 
     for seat in seats:
         category_name = seat.category.name
+        row_name = seat.row
 
         if category_name not in categories:
             categories[category_name] = {
                 "category": seat.category,
-                "seats": [],
+                "rows": {},
             }
 
-        categories[category_name]["seats"].append({
+        if row_name not in categories[category_name]["rows"]:
+            categories[category_name]["rows"][row_name] = []
+
+        categories[category_name]["rows"][row_name].append({
             "id": seat.id,
             "code": seat.code,
             "section": seat.section,

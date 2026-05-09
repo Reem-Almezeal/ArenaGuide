@@ -1240,8 +1240,6 @@ msgid "Control Center"
 msgstr "مركز المساعدة"
 
 #: .\dashboard\templates\dashboard\organizer_dashboard.html:6
-msgid "Organizer Dashboard"
-msgstr ""
 
 #: .\dashboard\templates\dashboard\organizer_dashboard.html:7
 #: .\dashboard\templates\dashboard\verify_visitor.html:6
@@ -3050,3 +3048,103 @@ msgstr "تم إرسال رسالتك بنجاح"
 
 msgid "Send your inquiry, suggestion, or technical issue and our team will review it as soon as possible"
 msgstr "أرسل استفسارك أو اقتراحك أو مشكلتك التقنية وسيقوم فريقنا بمراجعته في أقرب وقت ممكن"
+
+msgid "Organizer Dashboard"
+msgstr "لوحة تحكم المنظم"
+
+
+msgid "Gate Management"
+msgstr "إدارة البوابات"
+
+msgid "Open Gates"
+msgstr "البوابات المفتوحة"
+
+msgid "Closed Gates"
+msgstr "البوابات المغلقة"
+
+msgid "Crowded Gates"
+msgstr "البوابات المزدحمة"
+
+msgid "Emergency Alerts"
+msgstr "تنبيهات الطوارئ"
+
+msgid "Active Tickets"
+msgstr "التذاكر النشطة"
+
+msgid "Maintenance"
+msgstr "الصيانة"
+
+msgid "Average Crowd"
+msgstr "متوسط الزحام"
+
+msgid "Latest Gate Updates"
+msgstr "آخر تحديثات البوابات"
+
+msgid "Manage All"
+msgstr "إدارة الكل"
+
+msgid "No gate updates yet"
+msgstr "لا توجد تحديثات للبوابات بعد"
+
+msgid "Gate updates will appear here."
+msgstr "ستظهر تحديثات البوابات هنا"
+
+msgid "Organizer Tools"
+msgstr "أدوات المنظم"
+
+msgid "Send Alert"
+msgstr "إرسال تنبيه"
+
+msgid "Update Gate"
+msgstr "تحديث البوابة"
+
+msgid "Emergency Mode"
+msgstr "وضع الطوارئ"
+
+msgid "Organizer Logs"
+msgstr "سجلات المنظم"
+
+msgid "View Logs"
+msgstr "عرض السجلات"
+
+msgid "Gate Status"
+msgstr "حالة البوابة"
+
+msgid "Open"
+msgstr "مفتوحة"
+
+msgid "Closed"
+msgstr "مغلقة"
+
+msgid "Crowded"
+msgstr "مزدحمة"
+
+msgid "Priority"
+msgstr "الأولوية"
+
+msgid "Low"
+msgstr "منخفضة"
+
+msgid "Normal"
+msgstr "عادية"
+
+msgid "High"
+msgstr "عالية"
+
+msgid "Critical"
+msgstr "حرجة"
+
+msgid "No alternative gate"
+msgstr "لا توجد بوابة بديلة"
+
+msgid "Message to Visitors"
+msgstr "رسالة للزوار"
+
+msgid "Example: Gate A is closed, please proceed to Gate B."
+msgstr "مثال: بوابة A مغلقة، يرجى التوجه إلى بوابة B."
+
+msgid "Notify affected visitors"
+msgstr "إشعار الزوار المتأثرين"
+
+msgid "No gates found."
+msgstr "لم يتم العثور على بوابات"

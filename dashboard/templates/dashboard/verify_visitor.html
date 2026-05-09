@@ -67,7 +67,6 @@
 
             {% if error_message %}
                 <div class="verify-alert error">
-                    <i class="bi bi-exclamation-triangle"></i>
                     <span>{{ error_message }}</span>
                 </div>
             {% endif %}
@@ -114,7 +113,6 @@
 
                 <div class="ticket-details">
                     <div class="detail-item">
-                        <i class="bi bi-person-vcard"></i>
                         <div>
                             <span>ID Number</span>
                             <strong>{{ identity_number }}</strong>
@@ -130,7 +128,6 @@
                     </div>
 
                     <div class="detail-item">
-                        <i class="bi bi-grid-3x3-gap"></i>
                         <div>
                             <span>Seat</span>
                             <strong>{{ ticket.seat }}</strong>
@@ -138,7 +135,6 @@
                     </div>
 
                     <div class="detail-item">
-                        <i class="bi bi-door-open"></i>
                         <div>
                             <span>Gate</span>
                             <strong>{{ ticket.gate.name|default:"Not assigned" }}</strong>
@@ -146,7 +142,6 @@
                     </div>
 
                     <div class="detail-item">
-                        <i class="bi bi-shield-check"></i>
                         <div>
                             <span>Ticket Status</span>
                             <strong>{{ ticket.get_status_display }}</strong>
@@ -154,7 +149,6 @@
                     </div>
 
                     <div class="detail-item">
-                        <i class="bi bi-calendar-event"></i>
                         <div>
                             <span>Issued At</span>
                             <strong>{{ ticket.issued_at|date:"M d, Y" }}</strong>
@@ -168,12 +162,10 @@
                     <h4>{{ ticket.match.home_team.name }} vs {{ ticket.match.away_team.name }}</h4>
 
                     <p>
-                        <i class="bi bi-geo-alt"></i>
                         {{ ticket.match.stadium.name }}
                     </p>
 
                     <p>
-                        <i class="bi bi-clock"></i>
                         {{ ticket.match.start_datetime|date:"M d, Y - h:i A" }}
                     </p>
                 </div>
@@ -182,7 +174,6 @@
 
                 <div class="empty-verification">
                     <div>
-                        <i class="bi bi-person-badge"></i>
                         <h3>No Visitor Selected</h3>
                         <p>Search by identity number to display visitor, ticket, seat, and match details here.</p>
                     </div>

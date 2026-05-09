@@ -51,7 +51,7 @@ Reusable layout for authentication pages (login, register, etc.).
                     {% endif %}
                 </form>
             </div>
-            
+
             <a href="{% url 'core:home' %}" class="auth-brand">
                 <img src="{% static 'image/logo.png' %}" alt="ArenaGuide Logo">
                 <span>ArenaGuide</span>
@@ -75,6 +75,6 @@ Reusable layout for authentication pages (login, register, etc.).
             {% endblock %}
         </div>
     </section>
-{% block extra_js %}{% endblock %}
+{% block extra_js %}<script src="{% static 'js/auth_theme.js' %}"></script>{% endblock %}
 </body>
 </html>

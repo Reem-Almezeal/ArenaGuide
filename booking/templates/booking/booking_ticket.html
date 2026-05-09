@@ -47,27 +47,39 @@ Usage:
                         {% trans category_name %} - {{ data.category.base_price }} {% trans "SAR" %}
                     </h3>
 
-                    <div class="seat-grid">
-                        {% for item in data.seats %}
-                            <button
-                                type="button"
-                                class="seat {% if item.is_booked %}booked{% endif %}"
-                                data-seat-id="{{ item.id }}"
-                                data-price="{{ item.price }}"
-                                data-section="{{ item.section }}"
-                                data-row="{{ item.row }}"
-                                data-number="{{ item.number }}"
-                                data-gate="{{ item.gate }}"
-                                data-view-quality="{{ item.view_quality }}"
-                                data-shaded="{{ item.is_shaded }}"
-                                data-sun-exposure="{{ item.sun_exposure }}"
-                                data-notes="{{ item.notes }}"
-                                {% if item.is_booked %}disabled{% endif %}
-                            >
-                                {{ item.number }}
-                            </button>
-                        {% endfor %}
-                    </div>
+        <div class="seat-grid">
+
+            {% for row_name, row_seats in data.rows.items %}
+                <div class="seat-row">
+
+                    {% for item in row_seats %}
+                        <button
+                            type="button"
+                            class="seat {% if item.is_booked %}booked{% endif %}"
+                            data-seat-id="{{ item.id }}"
+                            data-price="{{ item.price }}"
+                            data-section="{{ item.section }}"
+                            data-row="{{ item.row }}"
+                            data-number="{{ item.number }}"
+                            data-gate="{{ item.gate }}"
+                            data-view-quality="{{ item.view_quality }}"
+                            data-shaded="{{ item.is_shaded }}"
+                            data-sun-exposure="{{ item.sun_exposure }}"
+                            data-notes="{{ item.notes }}"
+                            {% if item.is_booked %}disabled{% endif %}>
+                            {% if forloop.parentloop.counter == 1 %}A
+                            {% elif forloop.parentloop.counter == 2 %}B
+                            {% elif forloop.parentloop.counter == 3 %}C
+                            {% elif forloop.parentloop.counter == 4 %}D
+                            {% elif forloop.parentloop.counter == 5 %}E
+                            {% endif %}-{{ item.number }}
+                        </button>
+                    {% endfor %}
+
+                </div>
+            {% endfor %}
+
+        </div>
                 </div>
             {% empty %}
                 <div class="seat-category">

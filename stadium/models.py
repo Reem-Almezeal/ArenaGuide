@@ -53,6 +53,7 @@ class Gate(models.Model):
     stadium = models.ForeignKey("Stadium",on_delete=models.CASCADE,related_name="gates")
     name = models.CharField(max_length=100)
     status = models.CharField(max_length=20,choices=Status.choices,default=Status.CLOSED)
+    crowd_percentage = models.PositiveIntegerField(default=0)
 
     def open_gate(self):
         self.status = self.Status.OPEN

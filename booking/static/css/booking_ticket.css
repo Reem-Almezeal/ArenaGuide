@@ -104,7 +104,14 @@
     align-items: start;
     animation: bookingFadeUp 0.9s ease both;
 }
-
+.seat-row {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 14px;
+    flex-wrap: nowrap;
+}
 .seat-section {
     padding: 28px;
     border-radius: 18px;
@@ -148,11 +155,11 @@
 }
 
 .seat-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(44px, 44px));
-    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
 }
-
 .seat {
     position: relative;
     min-height: 44px;

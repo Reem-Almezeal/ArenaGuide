@@ -14,16 +14,16 @@
 
 <section class="organizer-dashboard">
     <div class="dashboard-stats">
-        {% include "includes/stat_card.html" with icon="bi bi-door-open" color="green" title="Open Gates" value=open_count description="Currently operating normally" %}
-        {% include "includes/stat_card.html" with icon="bi bi-people" color="orange" title="Crowded Gates" value=crowded_count description="Require crowd monitoring" %}
-        {% include "includes/stat_card.html" with icon="bi bi-exclamation-triangle" color="red" title="Emergency Alerts" value=emergency_count description="Needs immediate attention" %}
-        {% include "includes/stat_card.html" with icon="bi bi-ticket-perforated" color="blue" title="Active Tickets" value=active_tickets description="Valid tickets in the system" %}
+        {% include "includes/stat_card.html" with  color="green" title="Open Gates" value=open_count  %}
+        {% include "includes/stat_card.html" with  color="orange" title="Crowded Gates" value=crowded_count  %}
+        {% include "includes/stat_card.html" with  color="red" title="Emergency Alerts" value=emergency_count  %}
+        {% include "includes/stat_card.html" with  color="blue" title="Active Tickets" value=active_tickets  %}
     </div>
 
     <div class="dashboard-grid">
         <div class="dashboard-panel large-panel">
             {% url 'dashboard:gate_management' as gate_management_url %}
-            {% include "includes/panel_head.html" with label="Live Gate Status" title="Latest Gate Updates" url=gate_management_url action_text="Manage All" %}
+            {% include "includes/panel_head.html" with label="" title="Latest Gate Updates" url=gate_management_view action_text="Manage All" %}
             <div class="gate-status-list">
                 {% for update in latest_updates %}
                     <div class="gate-status-card {{ update.status }}">
@@ -56,19 +56,19 @@
         </div>
 
         <div class="dashboard-panel">
-            {% include "includes/panel_head.html" with label="Quick Actions" title="Organizer Tools" %}
+            {% include "includes/panel_head.html" with label="" title="Organizer Tools" %}
             <div class="quick-actions">
                 {% url 'dashboard:send_notification' as send_notification_url %}
-                {% include "includes/quick_action_btn.html" with url=send_notification_url icon="bi bi-bell" text="Send Alert" %}
+                {% include "includes/quick_action_btn.html" with url=send_notification_url  text="Send Alert" %}
 
-                {% url 'dashboard:create_gate_status_update' as create_update_url %}
-                {% include "includes/quick_action_btn.html" with url=create_update_url icon="bi bi-door-open" text="Update Gate" %}
+                {% url 'dashboard:gate_management_view' as create_update_url %}
+                {% include "includes/quick_action_btn.html" with url=create_update_url  text="Update Gate" %}
 
                 {% url 'dashboard:verify_visitor' as verify_url %}
-                {% include "includes/quick_action_btn.html" with url=verify_url icon="bi bi-search" text="Verify Visitor" %}
+                {% include "includes/quick_action_btn.html" with url=verify_url  text="Verify Visitor" %}
 
                 {% url 'dashboard:emergency_control' as emergency_url %}
-                {% include "includes/quick_action_btn.html" with url=emergency_url icon="bi bi-exclamation-octagon" text="Emergency Mode" extra_class="danger" %}
+                {% include "includes/quick_action_btn.html" with url=emergency_url  text="Emergency Mode" extra_class="danger" %}
 
             </div>
         </div>
@@ -77,7 +77,7 @@
     <div class="dashboard-grid">
         <div class="dashboard-panel">
             {% url 'dashboard:activity_logs' as logs_url %}
-            {% include "includes/panel_head.html" with label="Recent Activity" title="Organizer Logs" url=logs_url action_text="View Logs" %}
+            {% include "includes/panel_head.html" with label="" title="Organizer Logs" url=logs_url action_text="View Logs" %}
 
             <div class="activity-list">
                 {% for update in latest_updates|slice:":4" %}
@@ -114,7 +114,7 @@
             </div>
         </div>
         <div class="dashboard-panel">
-            {% include "includes/panel_head.html" with label="Match Overview" title="Current Match" %}
+            {% include "includes/panel_head.html" with label="" title="Current Match" %}
             {% if current_match %}
 
                 <div class="match-overview">
@@ -137,17 +137,16 @@
                     <div class="match-meta">
 
                         <span>
-                            <i class="bi bi-geo-alt"></i>
+                         
                             {{ current_match.stadium.name }}
                         </span>
 
                         <span>
-                            <i class="bi bi-clock"></i>
+                        
                             {{ current_match.start_datetime|date:"M d, Y - h:i A" }}
                         </span>
 
                         <span>
-                            <i class="bi bi-ticket-perforated"></i>
                             {% trans "Tickets" %}:
                             {{ total_tickets|default:0 }}
                         </span>

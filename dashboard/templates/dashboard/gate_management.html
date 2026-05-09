@@ -2,84 +2,96 @@
 {% load static %}
 {% load i18n %}
 
-{% block title %}Gates{% endblock %}
-{% block dashboard_title %}Gate Management{% endblock %}
+{% block title %}{% trans "Gate Management" %}{% endblock %}
+{% block dashboard_title %}{% trans "Gate Management" %}{% endblock %}
 
 {% block dashboard_extra_css %}
-    <link rel="stylesheet" href="{% static 'css/gate_managment.css' %}">
+<link rel="stylesheet" href="{% static 'css/gate_management.css' %}">
 {% endblock %}
 
 {% block dashboard_content %}
 
-<div class="gates-page">
-    <div class="gates-header">
-        <h2>Stadium Gates</h2>
-        <p>Manage stadium gates and monitor their current status.</p>
+<section class="gate-page">
+    <div class="gate-status-overview">
+        <div class="gate-stat open">
+            <span>{% trans "Open Gates" %}</span>
+            <strong>{{ open_gates_count }}</strong>
+        </div>
+
+        <div class="gate-stat closed">
+            <span>{% trans "Closed Gates" %}</span>
+            <strong>{{ closed_gates_count }}</strong>
+        </div>
+
+        <div class="gate-stat maintenance">
+            <span>{% trans "Maintenance" %}</span>
+            <strong>{{ maintenance_gates_count }}</strong>
+        </div>
+
+        <div class="gate-stat crowd">
+            <span>{% trans "Average Crowd" %}</span>
+            <strong>{{ average_crowd }}%</strong>
+        </div>
     </div>
 
-    <div class="gates-grid">
+    <div class="gate-grid">
         {% for gate in gates %}
-        <div class="gate-card">
+        <article class="gate-card">
             <div class="gate-top">
                 <div>
                     <h3>{{ gate.name }}</h3>
-                    <span>{{ gate.stadium.name }}</span>
-                </div>
-                <div class="gate-status
-                    {% if gate.status == 'open' %}
-                        open
-                    {% elif gate.status == 'closed' %}
-                        closed
-                    {% else %}
-                        maintenance
-                    {% endif %}
-                ">
-                    {{ gate.status }}
+                    <p>{{ gate.stadium.name }}</p>
                 </div>
             </div>
-        <div class="gates-grid">
-            {% for gate in gates %}
-                <div class="gate-card">
-                    <div class="gate-header">
-                        <h3>{{ gate.name }}</h3>
-                        <span class="gate-status {{ gate.status }}">
-                            {{ gate.status }}
-                        </span>
-                    </div>
 
-                    <div class="gate-info">
-                        <p><strong>Stadium:</strong> {{ gate.stadium.name }}</p>
-                    </div>
+            <form method="post" action="{% url 'dashboard:update_gate_status' gate.id %}" class="gate-form">
+                {% csrf_token %}
 
-                    <form method="POST"
-                        action="{% url 'dashboard:update_gate_status' gate.id %}">
-                        {% csrf_token %}
-                        {% if gate.status == "open" %}
-                            <button type="submit"
-                                    name="status"
-                                    value="closed"
-                                    class="close-btn">
-                                Close Gate
-                            </button>
-                        {% else %}
-                            <button type="submit"
-                                    name="status"
-                                    value="open"
-                                    class="open-btn">
-                                Open Gate
-                            </button>
+                <label>{% trans "Gate Status" %}</label>
+                <select name="status" class="gate-status-select">
+                    <option value="open">{% trans "Open" %}</option>
+                    <option value="closed">{% trans "Closed" %}</option>
+                    <option value="crowded">{% trans "Crowded" %}</option>
+                    <option value="emergency">{% trans "Emergency" %}</option>
+                    <option value="maintenance">{% trans "Maintenance" %}</option>
+                </select>
+
+                <label>{% trans "Priority" %}</label>
+                <select name="priority">
+                    <option value="low">{% trans "Low" %}</option>
+                    <option value="normal" selected>{% trans "Normal" %}</option>
+                    <option value="high">{% trans "High" %}</option>
+                    <option value="critical">{% trans "Critical" %}</option>
+                </select>
+
+                <label>{% trans "Alternative Gate" %}</label>
+                <select name="alternative_gate">
+                    <option value="">{% trans "No alternative gate" %}</option>
+                    {% for other_gate in gates %}
+                        {% if other_gate.id != gate.id %}
+                        <option value="{{ other_gate.id }}">{{ other_gate.name }}</option>
                         {% endif %}
-                    </form>
-                </div>
-            {% empty %}
-                <div class="empty-state">
-                    <p>No gates found.</p>
-                </div>
-            {% endfor %}
-        </div>
+                    {% endfor %}
+                </select>
 
-        </div>
+                <label>{% trans "Message to Visitors" %}</label>
+                <textarea name="message" rows="3" placeholder="{% trans 'Example: Gate A is closed, please proceed to Gate B.' %}"></textarea>
+                <label class="notify-row">
+                    <input type="checkbox" name="notify_users" checked>
+                    <span>{% trans "Notify affected visitors" %}</span>
+                </label>
+                <button type="submit">
+                    {% trans "Update Gate" %}
+                </button>
+            </form>
+        </article>
+        {% empty %}
+        <p class="empty-gates">{% trans "No gates found." %}</p>
         {% endfor %}
     </div>
-</div>
+</section>
+
+{% endblock %}
+{% block dashboard_extra_js %}
+<script src="{% static 'js/gate_management.js' %}"></script>
 {% endblock %}

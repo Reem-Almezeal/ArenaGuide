@@ -29,7 +29,7 @@
     align-items: center;
     gap: 8px;
     font-size: 12px;
-    font-weight: 800;
+    font-weight: 600;
     letter-spacing: 0.3px;
     text-transform: uppercase;
 }
@@ -37,7 +37,7 @@
 .verify-hero h2 {
     margin: 16px 0 8px;
     font-size: 30px;
-    font-weight: 800;
+    font-weight: 600;
     letter-spacing: -0.6px;
 }
 .input-group select {
@@ -87,7 +87,7 @@
 .card-head h3 {
     margin: 0;
     font-size: 19px;
-    font-weight: 800;
+    font-weight: 600;
     color: #18231d;
 }
 
@@ -99,7 +99,7 @@
 
 .verify-form label {
     font-size: 13px;
-    font-weight: 800;
+    font-weight: 600;
     color: #26352c;
 }
 
@@ -143,7 +143,7 @@
     background: linear-gradient(135deg, #17351f, #0f6b3f);
     color: #ffffff;
     font-size: 14px;
-    font-weight: 800;
+    font-weight: 600;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -202,7 +202,7 @@
     display: block;
     margin-bottom: 4px;
     font-size: 14px;
-    font-weight: 900;
+    font-weight: 700;
 }
 
 .status-banner.success {
@@ -253,13 +253,13 @@
     display: grid;
     place-items: center;
     font-size: 22px;
-    font-weight: 900;
+    font-weight: 700;
     flex: 0 0 auto;
 }
 
 .visitor-profile span {
     font-size: 11px;
-    font-weight: 800;
+    font-weight: 600;
     color: #0f6b3f;
     text-transform: uppercase;
     letter-spacing: 0.4px;
@@ -268,7 +268,7 @@
 .visitor-profile h3 {
     margin: 5px 0 4px;
     font-size: 21px;
-    font-weight: 900;
+    font-weight: 700;
     color: #18231d;
 }
 
@@ -312,7 +312,7 @@
     display: block;
     margin-bottom: 5px;
     font-size: 11px;
-    font-weight: 800;
+    font-weight: 600;
     color: #8a7540;
     text-transform: uppercase;
     letter-spacing: 0.4px;
@@ -321,7 +321,7 @@
 .detail-item strong {
     display: block;
     font-size: 14px;
-    font-weight: 900;
+    font-weight: 700;
     color: #18231d;
 }
 
@@ -338,7 +338,7 @@
     display: block;
     margin-bottom: 7px;
     font-size: 11px;
-    font-weight: 900;
+    font-weight: 700;
     color: #f6d17a;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -347,7 +347,7 @@
 .match-box h4 {
     margin: 0 0 12px;
     font-size: 18px;
-    font-weight: 900;
+    font-weight: 700;
 }
 
 .match-box p {
@@ -390,7 +390,7 @@
 .empty-verification h3 {
     margin: 0 0 8px;
     font-size: 19px;
-    font-weight: 900;
+    font-weight: 700;
     color: #18231d;
 }
 

@@ -36,6 +36,61 @@
     height: 46px;
     margin-top: 2px;
 }
+.arena-body.is-dark .register-compact {
+    color: #f3f4f6;
+}
+
+.arena-body.is-dark .register-compact h1 {
+    color: #ffffff;
+}
+
+.arena-body.is-dark .register-compact p {
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.arena-body.is-dark .register-compact .auth-tabs {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.arena-body.is-dark .register-form .auth-field label {
+    color: rgba(255, 255, 255, 0.84);
+}
+
+.arena-body.is-dark .register-form .auth-input {
+    background: rgba(10, 14, 20, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    color: #ffffff;
+}
+
+.arena-body.is-dark .register-form .auth-input::placeholder {
+    color: rgba(255, 255, 255, 0.38);
+}
+
+.arena-body.is-dark .register-form .auth-input:focus {
+    border-color: #22c55e;
+    box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.15);
+}
+
+.arena-body.is-dark .register-form .auth-submit {
+    background: linear-gradient(135deg, #0f7a3b, #16a34a, #d4a62a);
+    color: #fff;
+    border: 0;
+}
+
+.arena-body.is-dark .register-form .auth-submit:hover {
+    box-shadow: 0 12px 30px rgba(34, 197, 94, 0.22);
+}
+
+.arena-body.is-dark .register-form select.auth-input {
+    background: rgba(10, 14, 20, 0.92);
+    color: #ffffff;
+}
+
+.arena-body.is-dark .register-form textarea.auth-input {
+    background: rgba(10, 14, 20, 0.92);
+    color: #ffffff;
+}
 
 
 @media (max-width: 991px) {

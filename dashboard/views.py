@@ -1,24 +1,13 @@
-from django.shortcuts import render,redirect,get_object_or_404
-from .models import GateStatusUpdate
-from django.http import HttpRequest,HttpResponse
-from django.contrib.auth.decorators import login_required 
-from django.db.models import Count
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpRequest
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from .models import GateStatusUpdate
 from match.models import Match
 from stadium.models import Gate
-from booking.models import Ticket
 from booking.models import Ticket, TicketHolder
 from booking.views import make_identity_hash
-from django.contrib.auth import  logout
-from django.contrib import messages
-from stadium.models import Gate
-
-
-def organizer_dashboard(request:HttpRequest):
-    return render(
-        request,
-        "dashboard/organizer_dashboard.html"
-    )
+from django.db.models import Avg
 
 
 
@@ -85,34 +74,119 @@ def verify_visitor(request:HttpRequest):
     return render(request, "dashboard/verify_visitor.html", {"ticket": ticket,"holder": holder,"id_type": id_type,"identity_number": identity_number,"error_message": error_message, })
 
 
-from stadium.models import Gate
 
 @login_required(login_url="account:login")
 def gate_management_view(request):
     gates = Gate.objects.select_related("stadium").all()
+    open_gates_count = gates.filter(status=Gate.Status.OPEN).count()
+    closed_gates_count = gates.filter(status=Gate.Status.CLOSED).count()
+    maintenance_gates_count = gates.filter( status=Gate.Status.MAINTENANCE).count()
+    average_crowd = gates.aggregate(avg=Avg("crowd_percentage"))["avg"] or 0
+    average_crowd = round(average_crowd)
 
     return render(
         request,
         "dashboard/gate_management.html",
         {
-            "gates": gates
+            "gates": gates,
+            "open_gates_count": open_gates_count,
+            "closed_gates_count": closed_gates_count,
+            "maintenance_gates_count": maintenance_gates_count,
+            "average_crowd": average_crowd,
         }
     )
-
-
 @login_required(login_url="account:login")
 def update_gate_status(request, gate_id):
     if not request.user.is_organizer():
         return redirect("core:home")
+
     gate = get_object_or_404(Gate, id=gate_id)
+
+    if request.method != "POST":
+        return redirect("dashboard:gate_management_view")
+
+    current_match = Match.objects.select_related(
+        "home_team", "away_team", "stadium"
+    ).order_by("-start_datetime").first()
+
+    if not current_match:
+        messages.error(request, "No match found.")
+        return redirect("dashboard:gate_management_view")
+
     status = request.POST.get("status")
+    priority = request.POST.get("priority", GateStatusUpdate.Priority.NORMAL)
+    alternative_gate_id = request.POST.get("alternative_gate")
+    message = request.POST.get("message", "").strip()
+    internal_note = request.POST.get("internal_note", "").strip()
+    notify_users = request.POST.get("notify_users") == "on"
 
-    if status in [
-        Gate.Status.OPEN,
-        Gate.Status.CLOSED,
-        Gate.Status.MAINTENANCE
-    ]:
-        gate.status = status
-        gate.save()
+    crowd_percentage = request.POST.get("crowd_percentage", 0)
+    try:
+        crowd_percentage = int(crowd_percentage)
+    except ValueError:
+        crowd_percentage = 0
 
-    return redirect("dashboard:gate_management")
+    crowd_percentage = max(0, min(crowd_percentage, 100))
+
+    alternative_gate = None
+    if alternative_gate_id:
+        alternative_gate = get_object_or_404(Gate, id=alternative_gate_id)
+
+    affected_tickets = Ticket.objects.filter(
+        gate=gate,
+        match=current_match,
+        status=Ticket.Status.ACTIVE
+    ).select_related("user", "match", "gate")
+
+    affected_count = affected_tickets.count()
+
+    update = GateStatusUpdate.objects.create(
+        gate=gate,
+        match=current_match,
+        status=status,
+        priority=priority,
+        alternative_gate=alternative_gate,
+        title=f"Gate {gate.name} Update",
+        message=message,
+        internal_note=internal_note,
+        notify_users=notify_users,
+        affected_ticket_count=affected_count,
+        updated_by=request.user,
+    )
+
+    gate.status = status
+    gate.crowd_percentage = crowd_percentage
+    gate.save(update_fields=["status", "crowd_percentage"])
+
+    if notify_users and message:
+        try:
+            from notification.models import Notification
+
+            for ticket in affected_tickets:
+                Notification.objects.create(
+                    user=ticket.user,
+                    title=update.title,
+                    message=message,
+                )
+
+                if alternative_gate:
+                    ticket.gate = alternative_gate
+                    ticket.save(update_fields=["gate"])
+
+            update.notification_sent = True
+            update.save(update_fields=["notification_sent"])
+
+            messages.success(
+                request,
+                f"Gate updated. {affected_count} visitors were notified."
+            )
+
+        except Exception:
+            messages.warning(
+                request,
+                "Gate updated, but notifications could not be sent. Check Notification model fields."
+            )
+    else:
+        messages.success(request, "Gate updated successfully.")
+
+    return redirect("dashboard:gate_management_view")
