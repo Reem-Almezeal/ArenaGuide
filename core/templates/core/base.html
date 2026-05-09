@@ -158,25 +158,23 @@
         </div>
 
         <div class="arena-main-menu__bottom">
-            {% if LANGUAGE_CODE == 'ar' %}
-                <a href="/en{{ request.path|slice:'3:' }}{% if request.GET.urlencode %}?{{ request.GET.urlencode }}{% endif %}"
-                class="arena-menu-control"
-                aria-label="Change language">
+            <form action="{% url 'set_language' %}" method="post" class="arena-language-form">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="/">
+                {% if LANGUAGE_CODE == 'ar' %}
+                    <input type="hidden" name="language" value="en">
+                {% else %}
+                    <input type="hidden" name="language" value="ar">
+                {% endif %}
+                <button type="submit" class="arena-menu-control" aria-label="Change language">
                     <i class="bi bi-translate"></i>
-                </a>
-            {% else %}
-                <a href="/ar{{ request.path|slice:'3:' }}{% if request.GET.urlencode %}?{{ request.GET.urlencode }}{% endif %}"
-                class="arena-menu-control"
-                aria-label="Change language">
-                    <i class="bi bi-translate"></i>
-                </a>
-            {% endif %}
+                </button>
+            </form>
 
             <button class="arena-menu-control" id="arenaThemeBtn" type="button" aria-label="Toggle theme">
                 <i class="bi bi-moon-stars-fill"></i>
             </button>
         </div>
-
     </div>
 </header>
 
