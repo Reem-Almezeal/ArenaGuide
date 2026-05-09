@@ -161,12 +161,12 @@
             <form action="{% url 'set_language' %}" method="post" class="arena-language-form">
                 {% csrf_token %}
 
-                <input type="hidden" name="next" value="{{ request.path }}">
-
                 {% if LANGUAGE_CODE == 'ar' %}
                     <input type="hidden" name="language" value="en">
+                    <input type="hidden" name="next" value="/en/">
                 {% else %}
                     <input type="hidden" name="language" value="ar">
+                    <input type="hidden" name="next" value="/ar/">
                 {% endif %}
 
                 <button type="submit" class="arena-menu-control" aria-label="Change language">
